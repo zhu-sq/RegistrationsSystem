@@ -64,7 +64,7 @@
 					<%--<div class="form-group">--%>
 					<%--<input type="email" class="form-control" name="EMAIL" id="exampleInputEmail1" placeholder="Enter your email address">--%>
 					<%--</div>--%>
-					<input type="button" name="login" value="登录" class="btn btn-theme">
+					<input type="button" name="login" value="登录" class="btn btn-theme" >
 				</form>
 				<br/>
 			</div>
@@ -93,7 +93,7 @@
             console.log("jsldjfsfj");
             //window.location.replace(window.location.host+"/login"+"");
             //window.location.href = window.location.host+"/login";
-            window.location.href = "/login?backurl=" + window.location.href;
+            window.location.href = "/login";
         });
     });
 </script>
