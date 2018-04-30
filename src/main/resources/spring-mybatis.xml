@@ -28,7 +28,7 @@
             data-source="dataSource"
             enabled="true"
             ignore-failures="NONE">
-        <jdbc:script location="classpath:com/javen/init/init_database.sql"/>
+        <jdbc:script location="classpath:init_database.sql"/>
     </jdbc:initialize-database>
 
 

@@ -1,51 +1,118 @@
 package com.javen.model;
 
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
+@JsonSerialize(include= JsonSerialize.Inclusion.NON_NULL)
 public class User {
-    private Integer id;
 
-    private String userName;
+    private Integer uno;
 
-    private String password;
+    private String name;
 
-    private Integer age;
+    private String pwd;
 
-    public Integer getId() {
-        return id;
+    private Integer birthday;
+
+    private String sex;
+
+    private String idcard;
+
+    private String phone;
+
+    private String intro;
+
+    private String title;
+
+    private Integer role;
+
+    public Integer getUno() {
+        return uno;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public String getName() {
+        return name;
     }
 
-    public String getUserName() {
-        return userName;
+    public String getPwd() {
+        return pwd;
     }
 
-    public void setUserName(String userName) {
-        this.userName = userName == null ? null : userName.trim();
+    public Integer getBirthday() {
+        return birthday;
     }
 
-    public String getPassword() {
-        return password;
+    public String getSex() {
+        return sex;
     }
 
-    public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
+    public String getIdcard() {
+        return idcard;
     }
 
-    public Integer getAge() {
-        return age;
+    public String getPhone() {
+        return phone;
     }
 
-    public void setAge(Integer age) {
-        this.age = age;
+    public String getIntro() {
+        return intro;
     }
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", userName=" + userName + ", password="
-				+ password + ", age=" + age + "]";
-	}
-    
-    
+    public String getTitle() {
+        return title;
+    }
+
+    public Integer getRole() {
+        return role;
+    }
+
+    public void setUno(Integer uno) {
+        this.uno = uno;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
+    }
+
+    public void setBirthday(Integer birthday) {
+        this.birthday = birthday;
+    }
+
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+
+    public void setIdcard(String idcard) {
+        this.idcard = idcard;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public void setIntro(String intro) {
+        this.intro = intro;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public void setRole(Integer role){
+        this.role=role;
+    }
+
+    @Override
+    public String toString() {
+        return "User [uno=" + uno + ", name=" + name + ", pwd="
+                + pwd + ", birthday=" + birthday + ", sex=" + sex
+                + ", idcard=" + idcard + ", phone=" + phone
+                + ", intro=" + intro+ ", title=" + title
+                +", role=" + role+"]";
+    }
+
+
 }

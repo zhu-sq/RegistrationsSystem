@@ -1,19 +1,19 @@
 CREATE TABLE IF NOT EXISTS user(
    uno INT(4) PRIMARY KEY AUTO_INCREMENT
-  ,name VArCHAr(10) NOT NULL
-  ,pwd VArCHAr(20) NOT NULL
+  ,name VARCHAR(30) NOT NULL
+  ,pwd VARCHAR(50) NOT NULL
   ,birthday TIMESTAMP
-  ,sex CHAr(2) CHECK (sex='男'or sex='女')
-  ,idcard CHAr(18) uNICOdE NOT NULL
-  ,phone INT(11) uNIQuE
-  ,intro VArCHAr(30)
-  ,title VArCHAr(10)
+  ,sex CHAR(2) CHECK (sex='男'or sex='女')
+  ,idcard CHAR(18) UNIQUE
+  ,phone VARCHAR(20) UNIQUE
+  ,intro VARCHAR(100)
+  ,title VARCHAR(30)
 );
 
 CREATE TABLE IF NOT EXISTS role(
    rno INT(2) PRIMARY KEY AUTO_INCREMENT
-  ,name VArCHAr(10) NOT NULL
-  ,intro VArCHAr(10)
+  ,name VARCHAR(30) NOT NULL
+  ,intro VARCHAR(100)
 );
 
 CREATE TABLE IF NOT EXISTS role_user(
@@ -26,8 +26,8 @@ CREATE TABLE IF NOT EXISTS role_user(
 
 CREATE TABLE IF NOT EXISTS department(
    dno INT(4) PRIMARY KEY AUTO_INCREMENT
-  ,name VArCHAr(10) NOT NULL
-  ,detail VArCHAr(50)
+  ,name VARCHAR(30) NOT NULL
+  ,detail VARCHAR(100)
 );
 
 CREATE TABLE IF NOT EXISTS depar_user(
@@ -42,7 +42,7 @@ CREATE TABLE IF NOT EXISTS shift(
    sno INT(4) PRIMARY KEY AUTO_INCREMENT
   ,start_date TIMESTAMP NOT NULL
   ,end_date TIMESTAMP NOT NULL
-  ,detail VArCHAr(20)
+  ,detail VARCHAR(50)
 );
 
 CREATE TABLE IF NOT EXISTS shift_user(
