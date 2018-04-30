@@ -40,12 +40,14 @@ CREATE TABLE IF NOT EXISTS depar_user(
 
 CREATE TABLE IF NOT EXISTS shift(
    sno INT(4) PRIMARY KEY AUTO_INCREMENT
-  ,date TIMESTAMP NOT NULL
+  ,start_date TIMESTAMP NOT NULL
+  ,end_date TIMESTAMP NOT NULL
   ,detail VArCHAr(20)
 );
 
 CREATE TABLE IF NOT EXISTS shift_user(
-   dno INT(4)
+   suno INT(4) PRIMARY KEY AUTO_INCREMENT
+  ,dno INT(4)
   ,uno INT(4)
   ,sno INT(4)
   ,max_num INT(2)
@@ -53,16 +55,13 @@ CREATE TABLE IF NOT EXISTS shift_user(
   ,FOREIGN KEY (dno) REFERENCES department(dno)
   ,FOREIGN KEY (uno) REFERENCES user(uno)
   ,FOREIGN KEY (sno) REFERENCES shift(sno)
-  ,PRIMARY KEY (dno,uno,sno)
 );
 
 CREATE TABLE IF NOT EXISTS registration(
-   doctor INT(4)
-  ,sno INT(4)
+   suno INT(4)
   ,uno INT(4)
-  ,FOREIGN KEY (doctor) REFERENCES user(uno)
+  ,FOREIGN KEY (suno) REFERENCES shift_user(suno)
   ,FOREIGN KEY (uno) REFERENCES user(uno)
-  ,FOREIGN KEY (sno) REFERENCES shift(sno)
-  ,PRIMARY KEY (doctor,uno,sno)
+  ,PRIMARY KEY (suno,uno)
 );
 
