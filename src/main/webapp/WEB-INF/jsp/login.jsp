@@ -25,7 +25,7 @@
                 <div class="col-xs-12">
                     <div class="control-wrapper">
                         <label for="account" class="control-label fa-label"><i class="fa fa-user fa-medium"></i></label>
-                        <input type="text" class="form-control" id="account" placeholder="请输入身份证或联系电话登录">
+                        <input type="text" class="form-control" id="account" placeholder="输入账号/手机/身份证">
                     </div>
                 </div>
             </div>
@@ -75,7 +75,7 @@
             var userPwd = $('#Upassword').val();
             console.log("click:",account,userPwd);
             if (account === undefined || account==="") {
-                layer.msg("请输入用户名");
+                layer.msg("请输入账号/手机号/身份证号");
                 return;
             }
 
@@ -86,9 +86,9 @@
 
             var data ={
                 "account": account,
-                "Upassword": Upassword
-            }
+                "pwd": userPwd
 
+            }
 
             //显示一个加载动画
             var index = layer.open({
