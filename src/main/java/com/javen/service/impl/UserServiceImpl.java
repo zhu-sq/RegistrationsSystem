@@ -33,4 +33,8 @@ public class UserServiceImpl implements IUserService {
     public Integer getRoleByUno(Integer uno){
         return this.userDao.selectRoleByUno(uno);
     }
+
+    public User getUserByBirth(String birth){
+        return this.userDao.getUserByBirth(birth);
+    }
 }  

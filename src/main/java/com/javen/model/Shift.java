@@ -1,0 +1,81 @@
+package com.javen.model;
+
+import org.codehaus.jackson.map.annotate.JsonSerialize;
+
+import java.util.Date;
+
+@JsonSerialize(include= JsonSerialize.Inclusion.NON_NULL)
+public class Shift {
+    private Integer sno;
+    private String startDate;
+    private String endDate;
+    private String detail;
+    private Integer dno;
+    private Integer uno;
+    private Integer maxNum;
+    private Integer num;
+
+    public Integer getSno() {
+        return sno;
+    }
+
+    public String getstartDate() {
+        return startDate;
+    }
+
+    public String getEndDate() {
+        return endDate;
+    }
+
+    public String getDetail() {
+        return detail;
+    }
+
+    public Integer getDno() {
+        return dno;
+    }
+
+    public Integer getUno() {
+        return uno;
+    }
+
+    public Integer getMaxNum() {
+        return maxNum;
+    }
+
+    public Integer getNum() {
+        return num;
+    }
+
+    public void setSno(Integer sno) {
+        this.sno = sno;
+    }
+
+    public void setstartDate(String startDate) {
+        this.startDate = startDate;
+    }
+
+    public void setEndDate(String endDate) {
+        this.endDate = endDate;
+    }
+
+    public void setDetail(String detail) {
+        this.detail = detail;
+    }
+
+    public void setDno(Integer dno) {
+        this.dno = dno;
+    }
+
+    public void setUno(Integer uno) {
+        this.uno = uno;
+    }
+
+    public void setMaxNum(Integer maxNum) {
+        this.maxNum = maxNum;
+    }
+
+    public void setNum(Integer num) {
+        this.num = num;
+    }
+}

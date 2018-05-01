@@ -99,7 +99,6 @@
                 "pwd": userPwd
             }
 
-
             //显示一个加载动画
             var index = layer.open({
                 type:3,

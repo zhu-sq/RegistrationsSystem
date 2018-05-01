@@ -97,7 +97,9 @@ public class LoginController {
         resMap.put("code",0);
         resMap.put("msg","登录成功");
         resMap.put("user",user);
-        httpServletRequest.getSession().setAttribute("login",1);
+        httpServletRequest.getSession().setAttribute("isLogin",1);
+        httpServletRequest.getSession().setAttribute("name",user.getName());
+        httpServletRequest.getSession().setAttribute("uno",user.getUno());
         httpServletRequest.getSession().setAttribute("role",role);
         return resMap;
     }

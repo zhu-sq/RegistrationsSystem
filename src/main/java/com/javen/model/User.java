@@ -1,6 +1,7 @@
 package com.javen.model;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
+import org.springframework.stereotype.Repository;
 
 @JsonSerialize(include= JsonSerialize.Inclusion.NON_NULL)
 public class User {
@@ -11,7 +12,7 @@ public class User {
 
     private String pwd;
 
-    private Integer birthday;
+    private String birthday;
 
     private String sex;
 
@@ -37,7 +38,7 @@ public class User {
         return pwd;
     }
 
-    public Integer getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
@@ -77,7 +78,7 @@ public class User {
         this.pwd = pwd;
     }
 
-    public void setBirthday(Integer birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 

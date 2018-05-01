@@ -17,7 +17,17 @@
     <!-- 静态资源处理  css js imgs -->
     <mvc:default-servlet-handler/>
     <mvc:resources mapping="/resources/**" location="/resources/" />
-    
+
+    <!--配置拦截器，当未登陆时引导到登陆界面-->
+    <mvc:interceptors>
+        <!-- 多个拦截器 -->
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <!-- 自定义的拦截器类 -->
+            <bean class="com.javen.interceptor.Interceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
     <!--避免IE执行AJAX时，返回JSON出现下载文件 -->  
     <bean id="mappingJacksonHttpMessageConverter"  
         class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">  

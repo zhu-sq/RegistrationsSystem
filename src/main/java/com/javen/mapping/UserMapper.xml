@@ -34,6 +34,11 @@
     WHERE uno=#{uno}
   </select>
 
+  <select id="getUserByBirth" resultMap="userResultMap">
+    SELECT * FROM user
+    WHERE birthday=#{birthday}
+  </select>
+
   <!--以下是demo中的语句，在项目中不使用，暂时留下来，学习mabatis的sql语句怎么写-->
   
   <!--<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.INTEGER" >-->

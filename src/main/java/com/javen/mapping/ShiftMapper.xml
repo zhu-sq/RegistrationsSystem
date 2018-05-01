@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.javen.dao.IShiftDao" >
+    <resultMap id="shiftResultMap" type="com.javen.model.Shift">
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="sno" property="sno" jdbcType="INTEGER"/>
+        <result column="start_date" property="startDate" jdbcType="DATE"/>
+        <result column="end_date" property="endDate" jdbcType="DATE"/>
+        <result column="dno" property="dno" jdbcType="INTEGER"/>
+        <result column="uno" property="uno" jdbcType="INTEGER"/>
+        <result column="max_num" property="maxNum" jdbcType="INTEGER"/>
+        <result column="num" property="num" jdbcType="INTEGER"/>
+        <result column="detail" property="detail" jdbcType="VARCHAR"/>
+    </resultMap>
+    
+    <select id="selectByDate" resultMap="shiftResultMap">
+        SELECT * FROM shift
+        WHERE <![CDATA[start_date >=#{startDate} and start_date <=#{endDate}]]>
+    </select>
+
+    <insert id="addShift" parameterType="java.util.List">
+        INSERT INTO shift(start_date,end_date,dno,uno,max_num,num,detail)
+        VALUES
+        <foreach collection ="list" item="shiftItem" index= "index" separator =",">
+            (
+            #{shiftItem.startDate},
+            #{shiftItem.endDate},
+            #{shiftItem.dno},
+            #{shiftItem.uno},
+            #{shiftItem.maxNum},
+            #{shiftItem.num}
+            <if test="shiftItem.detail!=null">
+                ,#{shiftItem.detail}
+            </if>
+            <if test="shiftItem.detail==null">
+                ,""
+            </if>
+            )
+        </foreach>
+    </insert>
+
+</mapper>

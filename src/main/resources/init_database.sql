@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS user(
    uno INT(4) PRIMARY KEY AUTO_INCREMENT
   ,name VARCHAR(30) NOT NULL
   ,pwd VARCHAR(50) NOT NULL
-  ,birthday TIMESTAMP
+  ,birthday DATETIME
   ,sex CHAR(2) CHECK (sex='男'or sex='女')
   ,idcard CHAR(18) UNIQUE
   ,phone VARCHAR(20) UNIQUE
@@ -38,30 +38,25 @@ CREATE TABLE IF NOT EXISTS depar_user(
   ,PRIMARY KEY (uno,dno)
 );
 
+
 CREATE TABLE IF NOT EXISTS shift(
    sno INT(4) PRIMARY KEY AUTO_INCREMENT
-  ,start_date TIMESTAMP NOT NULL
-  ,end_date TIMESTAMP NOT NULL
-  ,detail VARCHAR(50)
-);
-
-CREATE TABLE IF NOT EXISTS shift_user(
-   suno INT(4) PRIMARY KEY AUTO_INCREMENT
+  ,start_date DATETIME NOT NULL
+  ,end_date DATETIME NOT NULL
   ,dno INT(4)
   ,uno INT(4)
-  ,sno INT(4)
   ,max_num INT(2)
-  ,num INT(2) CHECK (num<=max_num)
+  ,num INT(2) DEFAULT 0 CHECK (num<=max_num)
+  ,detail VARCHAR(50)
   ,FOREIGN KEY (dno) REFERENCES department(dno)
   ,FOREIGN KEY (uno) REFERENCES user(uno)
-  ,FOREIGN KEY (sno) REFERENCES shift(sno)
 );
 
 CREATE TABLE IF NOT EXISTS registration(
-   suno INT(4)
+   sno INT(4)
   ,uno INT(4)
-  ,FOREIGN KEY (suno) REFERENCES shift_user(suno)
+  ,FOREIGN KEY (sno) REFERENCES shift(sno)
   ,FOREIGN KEY (uno) REFERENCES user(uno)
-  ,PRIMARY KEY (suno,uno)
+  ,PRIMARY KEY (sno,uno)
 );
 
