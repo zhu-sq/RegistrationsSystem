@@ -11,12 +11,15 @@
                         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
 
     <!-- 自动扫描该包，使SpringMVC认为包下用了@controller注解的类是控制器 -->  
-    <context:component-scan base-package="com.javen.controller" />  
+    <context:component-scan base-package="com.javen.controller" />
+
     <!-- 扩充了注解驱动，可以将请求参数绑定到控制器参数 -->
     <mvc:annotation-driven/>
+
     <!-- 静态资源处理  css js imgs -->
     <mvc:default-servlet-handler/>
     <mvc:resources mapping="/resources/**" location="/resources/" />
+
 
     <!--配置拦截器，当未登陆时引导到登陆界面-->
     <mvc:interceptors>
@@ -36,8 +39,9 @@
                 <value>text/html;charset=UTF-8</value>  
             </list>  
         </property>  
-    </bean>  
-    <!-- 启动SpringMVC的注解功能，完成请求和注解POJO的映射 -->  
+    </bean>
+
+    <!-- 启动SpringMVC的注解功能，完成请求和注解POJO的映射 -->
     <bean  
         class="org.springframework.web.servlet.mvc.annotation.AnnotationMethodHandlerAdapter">  
         <property name="messageConverters">  

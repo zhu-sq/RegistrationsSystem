@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.javen.dao.IRegistrationDao">
+    <resultMap id="userResultMap" type="com.javen.model.User">
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="uno" property="uno" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="pwd" property="pwd" jdbcType="VARCHAR"/>
+        <result column="birthday" property="birthday" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="CHAR"/>
+        <result column="idcard" property="idcard" jdbcType="CHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="intro" property="intro" jdbcType="VARCHAR"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
+        <result column="role" property="role" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <insert id="addRestration">
+        INSERT INTO registration(uno,sno)
+        VALUES (#{uno},#{sno});
+    </insert>
+
+    <select id="getRegNum" resultType="hashmap">
+        SELECT num,max_num FROM shift
+        WHERE sno = #{sno};
+    </select>
+
+    <update id="updateRegNum">
+        UPDATE shift
+        SET num = #{num}
+        WHERE sno=#{sno};
+    </update>
+
+    <delete id="delRestration">
+        DELETE FROM registration WHERE sno=#{sno};
+    </delete>
+
+    <select id="getRegUser" resultMap="userResultMap">
+        select uno,name,sex,birthday,phone,intro
+        FROM user
+        WHERE uno IN (
+            SELECT uno
+            FROM  registration
+            WHERE  sno=#{sno}
+        );
+    </select>
+
+</mapper>

@@ -25,7 +25,6 @@
 //    @Resource
 //    private IUserService userService = null;
 //
-////    @Before
 //    public void before() {
 //        ac = new ClassPathXmlApplicationContext("applicationContext.xml");
 //        userService = (IUserService) ac.getBean("userService");

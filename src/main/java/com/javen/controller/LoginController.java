@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -101,6 +102,28 @@ public class LoginController {
         httpServletRequest.getSession().setAttribute("name",user.getName());
         httpServletRequest.getSession().setAttribute("uno",user.getUno());
         httpServletRequest.getSession().setAttribute("role",role);
+        return resMap;
+    }
+
+    /**
+     * @MethodName : Logout
+     * @Description : 退出当前登录的账号
+     * @return :返回是否正确
+     */
+    @RequestMapping(value = "/logout",method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String,Object> Logout(HttpServletRequest httpServletRequest) {
+        System.out.println("Logout");
+
+        Map<String,Object> resMap=new HashMap<String, Object>();
+
+        Enumeration em = httpServletRequest.getSession().getAttributeNames();
+        while(em.hasMoreElements()){
+            httpServletRequest.getSession().removeAttribute(em.nextElement().toString());
+        }
+
+        resMap.put("code",0);
+        resMap.put("msg","注销登录成功");
         return resMap;
     }
 }

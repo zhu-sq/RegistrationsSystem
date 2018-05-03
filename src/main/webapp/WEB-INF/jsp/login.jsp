@@ -32,8 +32,8 @@
             <div class="form-group">
                 <div class="col-md-12">
                     <div class="control-wrapper">
-                        <label for="userPwd" class="control-label fa-label"><i class="fa fa-lock fa-medium"></i></label>
-                        <input type="password" class="form-control" id="userPwd" placeholder="输入密码">
+                        <label for="Upassword" class="control-label fa-label"><i class="fa fa-lock fa-medium"></i></label>
+                        <input type="password" class="form-control" id="Upassword" placeholder="输入密码">
                     </div>
                 </div>
             </div>
@@ -55,18 +55,7 @@
                 </div>
             </div>
             <hr>
-            <div class="form-group">
-                <div class="col-md-12">
-                    <label>其他登录方式: </label>
-                    <div class="inline-block">
-                        <a href="#"><i class="fa fa-facebook-square login-with"></i></a>
-                        <a href="#"><i class="fa fa-twitter-square login-with"></i></a>
-                        <a href="#"><i class="fa fa-google-plus-square login-with"></i></a>
-                        <a href="#"><i class="fa fa-tumblr-square login-with"></i></a>
-                        <a href="#"><i class="fa fa-github-square login-with"></i></a>
-                    </div>
-                </div>
-            </div>
+
         </form>
         <div class="text-center">
             <a href="" class="templatemo-create-new">创建新账号<i class="fa fa-arrow-circle-o-right"></i></a>
@@ -79,18 +68,19 @@
 
 <script src="/resources/lib/jquery-2.1.4.min.js"></script>
 <script src="/resources/lib/layer/layer.js"></script>
+<script src="/resources/lib/jquery.cookie.js"></script>
 <script>
     $(document).ready(function() {
         $('#login').click(function () {
             var account = $('#account').val();
-            var userPwd = $('#userPwd').val();
+            var userPwd = $('#Upassword').val();
             console.log("click:",account,userPwd);
             if (account === undefined || account==="") {
                 layer.msg("请输入账号/手机号/身份证号");
                 return;
             }
 
-            if (userPwd === undefined || userPwd==="") {
+            if (Upassword === undefined || userPwd==="") {
                 layer.msg("请输入密码");
                 return;
             }
@@ -98,6 +88,7 @@
             var data ={
                 "account": account,
                 "pwd": userPwd
+
             }
 
             //显示一个加载动画
@@ -120,8 +111,11 @@
                         layer.msg("账号密码不正确");
                     }else{
                         //跳转到首页
+                        window.location.href="index.jsp";
                         layer.msg("登录成功");
                     }
+                    $.cookie("Uname",data.Uname,{path:"/"});
+                    $.cookie("role",data.role,{path:"/"});
                 },
                 error:function () {
                     //关闭加载动画
