@@ -9,8 +9,10 @@ import org.springframework.stereotype.Service;
 import com.javen.dao.IUserDao;
 import com.javen.model.User;
 import com.javen.service.IUserService;
-  
-  
+
+import java.util.Map;
+
+
 @Service("userService")  
 public class UserServiceImpl implements IUserService {  
     @Resource  
@@ -36,5 +38,13 @@ public class UserServiceImpl implements IUserService {
 
     public User getUserByBirth(String birth){
         return this.userDao.getUserByBirth(birth);
+    }
+
+    public void addUser(User user){
+        this.userDao.addUser(user);
+    }
+
+    public void defineRole(Map<String,String> queryMap){
+        this.userDao.defineRole(queryMap);
     }
 }  

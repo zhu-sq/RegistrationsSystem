@@ -4,17 +4,17 @@ CREATE TABLE IF NOT EXISTS user(
   ,pwd VARCHAR(50) NOT NULL
   ,birthday DATETIME
   ,sex CHAR(2) CHECK (sex='男'or sex='女')
-  ,idcard CHAR(18) UNIQUE
+  ,idcard CHAR(20) UNIQUE
   ,phone VARCHAR(20) UNIQUE
   ,intro VARCHAR(100)
   ,title VARCHAR(30)
-);
+)DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS role(
    rno INT(2) PRIMARY KEY AUTO_INCREMENT
   ,name VARCHAR(30) NOT NULL
   ,intro VARCHAR(100)
-);
+)DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS role_user(
    uno INT(4)
@@ -22,13 +22,13 @@ CREATE TABLE IF NOT EXISTS role_user(
   ,FOREIGN KEY (uno) REFERENCES user(uno)
   ,FOREIGN KEY (rno) REFERENCES role(rno)
   ,PRIMARY KEY (uno,rno)
-);
+)DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS department(
    dno INT(4) PRIMARY KEY AUTO_INCREMENT
   ,name VARCHAR(30) NOT NULL
   ,detail VARCHAR(100)
-);
+)DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS depar_user(
    uno INT(4)
@@ -36,7 +36,7 @@ CREATE TABLE IF NOT EXISTS depar_user(
   ,FOREIGN KEY (uno) REFERENCES user(uno)
   ,FOREIGN KEY (dno) REFERENCES department(dno)
   ,PRIMARY KEY (uno,dno)
-);
+)DEFAULT CHARSET=utf8;
 
 
 CREATE TABLE IF NOT EXISTS shift(
@@ -50,7 +50,7 @@ CREATE TABLE IF NOT EXISTS shift(
   ,detail VARCHAR(50)
   ,FOREIGN KEY (dno) REFERENCES department(dno)
   ,FOREIGN KEY (uno) REFERENCES user(uno)
-);
+)DEFAULT CHARSET=utf8;
 
 CREATE TABLE IF NOT EXISTS registration(
    sno INT(4)
@@ -58,5 +58,5 @@ CREATE TABLE IF NOT EXISTS registration(
   ,FOREIGN KEY (sno) REFERENCES shift(sno)
   ,FOREIGN KEY (uno) REFERENCES user(uno)
   ,PRIMARY KEY (sno,uno)
-);
+)DEFAULT CHARSET=utf8;
 

@@ -23,13 +23,13 @@
         <property name="location" value="classpath:jdbc.properties" />
     </bean>
 
-    <!--使用jdbc初始化数据库-->
-    <jdbc:initialize-database
-            data-source="dataSource"
-            enabled="true"
-            ignore-failures="NONE">
-        <jdbc:script location="classpath:init_database.sql"/>
-    </jdbc:initialize-database>
+    <!--&lt;!&ndash;使用jdbc初始化数据库&ndash;&gt;-->
+    <!--<jdbc:initialize-database-->
+            <!--data-source="dataSource"-->
+            <!--enabled="true"-->
+            <!--ignore-failures="NONE">-->
+        <!--<jdbc:script location="classpath:init_database.sql"/>-->
+    <!--</jdbc:initialize-database>-->
 
 
     <!--mybatis操作数据库-->
