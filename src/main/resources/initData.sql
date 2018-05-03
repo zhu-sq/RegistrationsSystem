@@ -1,4 +1,31 @@
 
+
+
+
+-- 设置shift表的约束条件，约定num不能大于max_num，并且num要大于0，max_num>0
+DELIMITER |
+CREATE TRIGGER shift_num BEFORE UPDATE ON shift
+  FOR EACH ROW
+  BEGIN
+    DECLARE msg varchar(200);
+    IF NEW.num > OLD.max_num THEN
+      set msg = '预约号已满';
+      SIGNAL SQLSTATE 'HY000' SET MESSAGE_TEXT = msg;
+    END IF;
+
+    IF NEW.num < 0 THEN
+      set msg = '预约号为0';
+      SIGNAL SQLSTATE 'HY001' SET MESSAGE_TEXT = msg;
+    END IF;
+
+    IF NEW.max_num < 0 THEN
+      set msg = '最大挂号数不能小于0';
+      SIGNAL SQLSTATE 'HY002' SET MESSAGE_TEXT = msg;
+    END IF;
+  END |
+DELIMITER ;
+
+
 -- 删除表格，重新建立
 DROP TABLE registration;
 DROP TABLE depar_user;

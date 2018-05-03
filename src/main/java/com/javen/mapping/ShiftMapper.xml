@@ -40,4 +40,17 @@
         </foreach>
     </insert>
 
+    <update id="updateShift" parameterType="com.javen.model.Shift">
+        update shift
+        <set>
+            <if test="startDate!=null">start_date=#{startDat},</if>
+            <if test="endDate!=null">end_date=#{endDate},</if>
+            <if test="dno!=null">start_date=#{dno},</if>
+            <if test="uno!=null">start_date=#{uno},</if>
+            <if test="maxNum!=null">start_date=#{maxNum},</if>
+            <if test="num!=null">start_date=#{num},</if>
+            <if test="detail!=null">start_date=#{detail}</if>
+        </set>
+        WHERE sno=#{sno}
+    </update>
 </mapper>

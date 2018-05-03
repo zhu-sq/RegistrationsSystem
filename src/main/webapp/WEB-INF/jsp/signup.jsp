@@ -105,7 +105,6 @@
 <script>
     $(document).ready(function() {
         $('#regis').click(function () {
-
             var Uname = $('#Uname').val();
             var Usex = $('#Usex').val();
             var Ugender = $('#Ugender').val();

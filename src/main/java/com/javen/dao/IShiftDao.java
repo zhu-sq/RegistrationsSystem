@@ -8,4 +8,5 @@ import java.util.*;
 public interface IShiftDao {
      LinkedList<Shift> selectByDate(HashMap<String,Object> map);
      void addShift(List<Shift> list);
+     void updateShift(Shift shift);
 }
