@@ -21,6 +21,9 @@ public class ShiftServiceImpl implements IShiftService{
     public LinkedList<Shift> getShiftByDate(HashMap<String,Object> map){
         return this.shiftDao.selectByDate(map);
     }
+    public LinkedList<Shift> getShiftByDnoUno(HashMap<String,Object> map){
+        return this.shiftDao.getShiftByDnoUno(map);
+    }
 
     public void addShift(List<Shift> list){
         this.shiftDao.addShift(list);

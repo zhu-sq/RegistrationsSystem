@@ -32,6 +32,10 @@ public class UserServiceImpl implements IUserService {
         return this.userDao.selectByAccountInfo(uno,phone,idcard);
     }
 
+    public User getUserByUno(Integer uno){
+        return this.userDao.selectUserByUno(uno);
+    }
+
     public Integer getRoleByUno(Integer uno){
         return this.userDao.selectRoleByUno(uno);
     }

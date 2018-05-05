@@ -19,6 +19,17 @@
         WHERE <![CDATA[start_date >=#{startDate} and start_date <=#{endDate}]]>
     </select>
 
+    <select id="getShiftByDnoUno" resultMap="shiftResultMap">
+        SELECT * FROM shift WHERE
+             <if test="dno!=null">
+                 dno=#{dno}
+             </if>
+             <if test="uno!=null">
+                 uno=#{uno}
+             </if>
+        AND <![CDATA[start_date >=#{startDate} and start_date <=#{endDate}]]>
+    </select>
+
     <insert id="addShift" parameterType="java.util.List">
         INSERT INTO shift(start_date,end_date,dno,uno,max_num,num,detail)
         VALUES
