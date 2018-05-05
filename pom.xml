@@ -22,7 +22,7 @@
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>3.8.1</version>
+			<version>3.8.2</version>
 			 <!-- 表示开发的时候引入，发布的时候不会加载此包 -->  
 			<scope>test</scope>
 		</dependency>
@@ -106,8 +106,8 @@
          <!-- 导入Mysql数据库链接jar包 -->  
         <dependency>  
             <groupId>mysql</groupId>  
-            <artifactId>mysql-connector-java</artifactId>  
-            <version>5.1.36</version>  
+            <artifactId>mysql-connector-java</artifactId>
+            <version>5.1.24</version>
         </dependency>  
         <!-- 导入dbcp的jar包，用来在applicationContext.xml中配置数据库 -->  
         <dependency>  

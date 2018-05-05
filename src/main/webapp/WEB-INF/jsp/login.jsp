@@ -60,6 +60,7 @@
         <div class="text-center">
             <a href="" class="templatemo-create-new">创建新账号<i class="fa fa-arrow-circle-o-right"></i></a>
         </div>
+        <div style="display: none">${role}</div>
     </div>
 </div>
 </body>

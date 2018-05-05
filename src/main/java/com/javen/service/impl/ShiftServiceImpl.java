@@ -25,4 +25,8 @@ public class ShiftServiceImpl implements IShiftService{
     public void addShift(List<Shift> list){
         this.shiftDao.addShift(list);
     }
+
+    public void updateShift(Shift shift){
+        this.shiftDao.updateShift(shift);
+    }
 }

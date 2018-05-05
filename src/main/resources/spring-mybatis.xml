@@ -4,7 +4,7 @@
        xmlns:p="http://www.springframework.org/schema/p"
        xmlns:context="http://www.springframework.org/schema/context"
        xmlns:mvc="http://www.springframework.org/schema/mvc"
-       xmlns:jdbc="http://www.springframework.org/schema/jdbc"
+       xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:tx="http://www.springframework.org/schema/tx"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
                         http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
                         http://www.springframework.org/schema/context
@@ -12,7 +12,7 @@
                         http://www.springframework.org/schema/mvc
                         http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
                         http://www.springframework.org/schema/jdbc
-                        http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd">
+                        http://www.springframework.org/schema/jdbc/spring-jdbc-3.0.xsd http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd">
 
     <!-- 自动扫描 -->
     <context:component-scan base-package="com.javen" />
@@ -20,16 +20,21 @@
     <!-- 引入配置文件 -->
     <bean id="propertyConfigurer"
           class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
-        <property name="location" value="classpath:jdbc.properties" />
+        <property name="locations">
+            <list>
+                <value>classpath:jdbc.properties</value>
+                <value>classpath:role_config.properties</value>
+            </list>
+        </property>
     </bean>
 
-    <!--使用jdbc初始化数据库-->
-    <jdbc:initialize-database
-            data-source="dataSource"
-            enabled="true"
-            ignore-failures="NONE">
-        <jdbc:script location="classpath:init_database.sql"/>
-    </jdbc:initialize-database>
+    <!--&lt;!&ndash;使用jdbc初始化数据库&ndash;&gt;-->
+    <!--<jdbc:initialize-database-->
+            <!--data-source="dataSource"-->
+            <!--enabled="true"-->
+            <!--ignore-failures="NONE">-->
+        <!--<jdbc:script location="classpath:init_database.sql"/>-->
+    <!--</jdbc:initialize-database>-->
 
 
     <!--mybatis操作数据库-->
@@ -75,5 +80,8 @@
           class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource" />
     </bean>
+
+    <!-- 事务注解驱动，标注@Transactional的类和方法将具有事务性 -->
+    <tx:annotation-driven transaction-manager="transactionManager" />
 
 </beans>  

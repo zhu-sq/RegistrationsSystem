@@ -39,6 +39,19 @@
     WHERE birthday=#{birthday}
   </select>
 
+  <insert id="addUser" parameterType="com.javen.model.User">
+         INSERT INTO user(name,pwd,birthday,sex,idcard,phone,intro)
+         VALUES (#{name},#{pwd},#{birthday},#{sex},#{idcard},#{phone},#{intro})
+  </insert>
+
+  <insert id="defineRole" parameterType="java.util.Map">
+        INSERT INTO role_user(uno,rno)
+        VALUES ((SELECT DISTINCT uno FROM user WHERE idcard=#{idcard}),#{role})
+  </insert>
+
+
+
+
   <!--以下是demo中的语句，在项目中不使用，暂时留下来，学习mabatis的sql语句怎么写-->
   
   <!--<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.INTEGER" >-->

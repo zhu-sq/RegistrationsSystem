@@ -102,6 +102,7 @@
 </script>
 <script>
     $(document).ready(function() {
+
         $('#signup,#dot_signup').click(function () {
 
             var name = $('#name').val();
@@ -110,6 +111,9 @@
             var idcard = $('#idcard').val();
             var phone = $('#phone').val();
             console.log("click:",name,sex,Ugender,pwd,idcard,phone);
+
+
+
 
             if (name === undefined || name==="") {
                 layer.msg("请输入姓名");
