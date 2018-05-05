@@ -25,55 +25,49 @@
             <div class="form-group">
                 <div class="col-xs-12">
                     <div class="control-wrapper">
-                        <label for="Uname" class="control-label fa-label"><i class="fa fa-user fa-medium"></i></label>
-                        <input type="text" class="form-control" id="Uname" placeholder="输入姓名">
+                        <label for="name" class="control-label fa-label"><i class="fa fa-user fa-medium"></i></label>
+                        <input type="text" class="form-control" id="name" placeholder="输入姓名">
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-xs-12">
                     <div class="control-wrapper">
-                        <label for="Usex" class="control-label fa-label"><i class="fa fa-user fa-medium"></i></label>
-                        <input type="text" class="form-control" id="Usex" placeholder="输入性别">
+                        <label for="sex" class="control-label fa-label"><i class="fa fa-user fa-medium"></i></label>
+                        <input type="text" class="form-control" id="sex" placeholder="输入性别">
                     </div>
                 </div>
             </div>
+
             <div class="form-group">
-                <div class="col-xs-12">
+                <div class="col-md-12">
                     <div class="control-wrapper">
-                        <label for="Ugender" class="control-label fa-label"><i class="fa fa-user fa-medium"></i></label>
-                        <input type="text" class="form-control" id="Ugender" placeholder="输入年龄">
+                        <label for="pwd" class="control-label fa-label"><i class="fa fa-lock fa-medium"></i></label>
+                        <input type="password" class="form-control" id="pwd" placeholder="输入密码">
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-12">
                     <div class="control-wrapper">
-                        <label for="Upassword" class="control-label fa-label"><i class="fa fa-lock fa-medium"></i></label>
-                        <input type="password" class="form-control" id="Upassword" placeholder="输入密码">
+                        <label for="idcard" class="control-label fa-label"><i class="fa fa-lock fa-medium"></i></label>
+                        <input type="text" class="form-control" id="idcard" placeholder="输入身份证号">
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-12">
                     <div class="control-wrapper">
-                        <label for="Uid" class="control-label fa-label"><i class="fa fa-lock fa-medium"></i></label>
-                        <input type="text" class="form-control" id="Uid" placeholder="输入身份证号">
+                        <label for="phone" class="control-label fa-label"><i class="fa fa-lock fa-medium"></i></label>
+                        <input type="text" class="form-control" id="phone" placeholder="输入联系电话">
                     </div>
                 </div>
             </div>
             <div class="form-group">
                 <div class="col-md-12">
                     <div class="control-wrapper">
-                        <label for="Uphone" class="control-label fa-label"><i class="fa fa-lock fa-medium"></i></label>
-                        <input type="text" class="form-control" id="Uphone" placeholder="输入联系电话">
-                    </div>
-                </div>
-            </div>
-            <div class="form-group">
-                <div class="col-md-12">
-                    <div class="control-wrapper">
-                        <input  type="button" id="regis" value="注册" class="btn btn-info">
+                        <input  type="button" id="signup" value="注册" class="btn btn-info">
+                        <input  type="button" id="dot_signup" value="医生注册" class="btn btn-info hide">
                     </div>
                 </div>
             </div>
@@ -88,7 +82,9 @@
 
 <script src="/resources/lib/jquery-2.1.4.min.js"></script>
 <script src="/resources/lib/layer/layer.js"></script>
+<script src="/resources/lib/jquery.cookie.js"></script>
 <script>
+    $document.wait(function () {
     $.ajax({
         url: "",
         data: {},
@@ -97,54 +93,51 @@
         dataType:"json",
         success: function (res){
             if(res.role=="1"){
-                window.location.href="doc_signup.jsp";
+               $("#signup").hide();
+               $("#dot_signup").show();
             }
         }
+    })
     })
 </script>
 <script>
     $(document).ready(function() {
-        $('#regis').click(function () {
+        $('#signup,#dot_signup').click(function () {
 
-            var Uname = $('#Uname').val();
-            var Usex = $('#Usex').val();
-            var Ugender = $('#Ugender').val();
-            var Upassword = $('#Upassword').val();
-            var Uid = $('#Uid').val();
-            var Uphone = $('#Uphone').val();
-            console.log("click:",Uname,Usex,Ugender,Upassword,Uid,Uphone);
+            var name = $('#name').val();
+            var sex = $('#sex').val();
+            var pwd = $('#pwd').val();
+            var idcard = $('#idcard').val();
+            var phone = $('#phone').val();
+            console.log("click:",name,sex,Ugender,pwd,idcard,phone);
 
-            if (Uname === undefined || Uname==="") {
+            if (name === undefined || name==="") {
                 layer.msg("请输入姓名");
                 return;
             }
-            if (Usex === undefined || Usex==="") {
+            if (sex === undefined || sex==="") {
                 layer.msg("请输入性别");
                 return;
             }
-            if (Ugender === undefined || Ugender==="") {
-                layer.msg("请输入年龄");
-                return;
-            }
-            if (Upassword === undefined || Upassword==="") {
+
+            if (pwd === undefined || pwd==="") {
                 layer.msg("请输入密码");
                 return;
             }
-            if (Uid === undefined || Uid==="") {
+            if (idcard === undefined || idcard==="") {
                 layer.msg("请输入身份证号码");
                 return;
             }
-            if (Uphone === undefined || Uphone==="") {
+            if (phone === undefined || phone==="") {
                 layer.msg("请输入联系电话");
                 return;
             }
             var data ={
-                "Uname": Uname,
-                "Usex": Usex,
-                "Ugender":Ugender,
-                "userPwd": Upassword,
-                "Uid":Uid,
-                "Uphone":Uphone
+                "name": name,
+                "sex": sex,
+                "pwd": pwd,
+                "idcard":idcard,
+                "phone":phone
             }
 
 
@@ -170,6 +163,8 @@
                         //跳转到首页
                         window.location.href="index.jsp";
                         layer.msg("注册成功！");
+                        $.cookie("name",data.name,{path:"/"});
+                        $.cookie("role",data.role,{path:"/"});
                     }
                 },
                 error:function () {

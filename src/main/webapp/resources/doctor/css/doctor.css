@@ -1,0 +1,37 @@
+/*公用*/
+.comWidth{width: 1000px; margin-left: auto;margin-right: auto;}
+.leftArea{float: left;}
+.rightArea{float: right;}
+.hide{display: none;}
+.show{display:block;}
+
+/*topBar*/
+.topBar{height: 32px;background-color: #F7F7F7;line-height: 32px;}
+.topBar a:hover{color: red;}
+.loginArea p{display: inline-block;}
+.loginArea {float: right;}
+
+/*logo*/
+.logoBar{height: 150px;}
+.logo{padding-left: 15px; padding-top: 36.5px;}
+.logo_text{line-height: 150px;font-size: 22px;color: #145b7d;font-family: "STKaiti";}
+
+/*导航*/
+.navBox{height: 45px;background-color: #76becc;color: #fff;width: 1000px;margin:auto;}
+.allDepatrment{width: 250px;line-height: 45px;position: relative;}
+.allDepatrment h3{text-align:center;}
+.allDepatrment i{width: 11px;height: 7px;overflow: hidden;background:url(../img/down.png) left center no-repeat; display: inline-block;}
+.nav,.allDepatrment{font-family: "Microsoft YaHei", "微软雅黑";font-size: 18px; }
+.nav{line-height: 45px;}
+.nav li{float:left;}
+.nav a{height: 45px;display: inline-block;padding: 0 80px;color:#ffffff; }
+.nav .active{background-color: #9acfea;}
+
+/*搜索框*/
+/*searchbox*/
+.search_box{height:400px;background-image: url("../img/background.jpg");}
+.search_text{width:500px;height:50px;border-color: #a3cf62;padding: 2px;margin-left: 250px;font-size: 18px;font-family: "Microsoft YaHei","微软雅黑";margin-top: 150px;}
+.search_btn{font-size: 16px;font-family: "Microsoft YaHei","微软雅黑"; color: white; background-color: #a3cf62;width: 80px;height: 55px;}
+
+/*底部*/
+#bottomBar{height: 37px;background-color: #8D8D8D; }

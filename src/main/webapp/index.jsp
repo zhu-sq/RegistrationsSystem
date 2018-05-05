@@ -6,44 +6,20 @@
 	<title>Document</title>
 	<link href="resources/index/css/reset.css" rel="stylesheet" type="text/css"/>
 	<link href="resources/index/css/main.css" rel="stylesheet" type="text/css" />
-	<script type="text/javascript" src="resources/lib/jquery-2.1.4.min.js"></script>
-	<script type="text/javascript">
+	<script type="text/javascript" src="/resources/lib/jquery-2.1.4.min.js"></script>
+	<script type="text/javascript" src="/resources/lib/jquery.cookie.js"></script>
+	<script src="/resources/lib/layer/layer.js"></script>
 
-        $(function () {
-			$(".Dep_item").mouseover(function () {
-				$(this).addClass("Dep_active").siblings().removeClass("Dep_active");
-				$(".Deplist_item").eq($(".Dep_item").index(this)).show().siblings(".Deplist_item").hide();
-
-            })
-            $(".Dep_item").mouseout(function () {
-                $(this).removeClass("Dep_active");
-                $(".Deplist_item").eq($(".Dep_item").index(this)).hide();
-            })
-        })
-                $(document).ready(function () {
-                    $("#banner_bar ol li").mouseover(function (event) {
-                        var index=$(this).index();
-                        $("#banner_bar ul li").eq(index).fadeIn().siblings().fadeOut();
-                        $(this).addClass("active").siblings().removeClass("active");
-                    })
-                })
-                $(function(){
-                    $(".dep_doc li").mouseover(function(){
-                        $(this).addClass("active").siblings().removeClass("active");
-                        $("#docter .mod").eq($(".dep_doc li").index(this)).show().siblings("#docter .mod").hide();
-                    });
-                });
-</script>
 </head>
 
 <body>
 <div class="top">
 	<div class="topBar">
 		<div class="comWidth">
-
-			<div class="rightArea">
-				您好！请 <a href="/login">登录</a> | <a href="/regis">注册</a>
+			<div class="rightArea ">
+				您好！请 <a href="/login">登录</a> | <a href="#">注册</a>
 			</div>
+			<div class="loginArea hide " >欢迎你！<p class="Username"></p>&nbsp&nbsp<a id="logout" href="#">退出登录</a>&nbsp&nbsp<a href="#">个人信息</a> </div>
 		</div>
 	</div>
 	<div class="logoBar">
@@ -55,10 +31,7 @@
 			<div class="logo_text fl">
 				<h2>医院挂号网上预约系统</h2>
 			</div>
-			<div class="search_box fr">
-				<input type="text" maxlength="50" class="search_text" placeholder="请输入科室名或医生名"/>
-				<input type="button" value="搜索" class="search_btn">
-			</div>
+
 
 		</div>
 	</div>
@@ -67,28 +40,21 @@
 			<div class="allDepatrment fl" >
 				<h3>全部科室<i></i></h3>
 				<div class="Depatrment_show">
-					<dl class="Dep_item  " /*onmouseover="tabSwitch(this)"*/>
-						<dt ><b>儿科</b> &nbsp&nbsp&nbsp小儿感冒 抽动症</dt>
-					</dl>
-					<dl class="Dep_item" >
-						<dt ><b>妇产科</b> &nbsp&nbsp&nbsp阴道炎 不孕不育</dt>
-					</dl>
-					<dl class="Dep_item" >
-						<dt ><b>外科</b> &nbsp&nbsp&nbsp肾结石 脑外伤</dt>
-					</dl>
-					<dl class="Dep_item" >
-						<dt ><b>内科</b> &nbsp&nbsp&nbsp高血压 冠心病</dt>
-					</dl>
-					<dl class="Dep_item" >
-						<dt ><b>五官科</b> &nbsp&nbsp&nbsp白内障 近视</dt>
-					</dl>
-					<dl class="Dep_item" >
-						<dt ><b>骨外科</b> &nbsp&nbsp&nbsp关节炎 骨折</dt>
-					</dl>
-					<dl class="Dep_item">
-						<dt ><b>肿瘤科</b> &nbsp&nbsp&nbsp癌痛</dt>
-					</dl>
+					<ul>
+						<li class="dep_item "><b>儿科</b> &nbsp&nbsp&nbsp小儿感冒 抽动症</li>
 
+						<li class="dep_item"><b>妇产科</b> &nbsp&nbsp&nbsp阴道炎 不孕不育</li>
+
+						<li class="dep_item" ><b>外科</b> &nbsp&nbsp&nbsp肾结石 脑外伤</li>
+
+						<li class="dep_item"><b>内科</b> &nbsp&nbsp&nbsp高血压 冠心病</li>
+
+						<li class="dep_item"><b>五官科</b> &nbsp&nbsp&nbsp白内障 近视</li>
+
+						<li class="dep_item"><b>骨外科</b> &nbsp&nbsp&nbsp关节炎 骨折</li>
+
+						<li class="dep_item"><b>肿瘤科</b> &nbsp&nbsp&nbsp癌痛</li>
+					</ul>
 				</div>
 				<div class="Dep_list ">
 					<div class="Deplist_item  hide">
@@ -192,105 +158,75 @@
 		</ol>
 	</div>
 </div>
-<br>
-<br>
-<div class="doc_search comWidth ">
-	<div class="left_title">找医生</div>
-	<ul class="dep_doc">
-		<li class="active"><a href="#"> 儿科</a></li>
-		<li><a href="#">妇产科</a> </li>
-		<li><a href="#">外科</a> </li>
-		<li><a href="#">内科</a> </li>
-		<li><a href="#">五官科</a> </li>
-		<li><a href="#">骨外科</a> </li>
-		<li><a href="#">肿瘤科</a> </li>
-	</ul>
-	<div id="docter">
-		<div class="mod">
-			<ul>
-				<li><img src="resources/index/img/doct.jpg"></li>
-				<li>儿科主任</li>
-			</ul>
-			<ul>
-				<li><img src="resources/index/img/doct.jpg"></li>
-				<li>儿科副主任</li>
-			</ul>
-		</div>
-		<div class="mod" style="display: none">
-			<ul>
-				<li><img src="resources/index/img/doct.jpg"></li>
-				<li>妇产科主任</li>
 
-			</ul>
-			<ul>
-				<li><img src="resources/index/img/doct.jpg"></li>
-				<li>妇产科副主任</li>
-
-			</ul>
-		</div>
-		<div class="mod"style="display: none">
-			<ul>
-				<li><img src="resources/index/img/doct.jpg"></li>
-				<li>外科主任</li>
-
-			</ul>
-			<ul>
-				<li><img src="resources/index/img/doct.jpg"></li>
-				<li>外科副主任</li>
-
-			</ul>
-		</div>
-		<div class="mod"style="display: none">
-			<ul>
-				<li><img src="resources/index/img/doct.jpg"></li>
-				<li>内科主任</li>
-
-			</ul>
-			<ul>
-				<li><img src="resources/index/img/doct.jpg"></li>
-				<li>内科副主任</li>
-
-			</ul>
-		</div>
-		<div class="mod"style="display: none">
-			<ul>
-				<li><img src="resources/index/img/doct.jpg"></li>
-				<li>五官科主任</li>
-
-			</ul>
-			<ul>
-				<li><img src="resources/index/img/doct.jpg"></li>
-				<li>五官科副主任</li>
-
-			</ul>
-		</div>
-		<div class="mod"style="display: none">
-			<ul>
-				<li><img src="resources/index/img/doct.jpg"></li>
-				<li>骨外科主任</li>
-
-			</ul>
-			<ul>
-				<li><img src="resources/index/img/doct.jpg"></li>
-				<li>骨外科副主任</li>
-
-			</ul>
-		</div>
-		<div class="mod"style="display: none">
-			<ul>
-				<li><img src="resources/index/img/doct.jpg"></li>
-				<li>肿瘤科主任</li>
-
-			</ul>
-			<ul>
-				<li><img src="resources/index/img/doct.jpg"></li>
-				<li>肿瘤科副主任</li>
-
-			</ul>
-		</div>
-	</div>
-</div>
-<br>
 <div id="bottomBar"></div>
+<script type="text/javascript">
+
+    $(function () {
+        $(".Depatrment_show li").mouseover(function () {
+            $(this).addClass("Dep_active").siblings().removeClass("Dep_active");
+            $(".Deplist_item").eq($(".Depatrment_show li").index(this)).show().siblings(".Deplist_item").hide();
+
+        })
+        $(".Depatrment_show li").mouseout(function () {
+            $(this).removeClass("Dep_active");
+            $(".Deplist_item").eq($(".Depatrment_show li").index(this)).hide();
+        })
+    });
+    $(document).ready(function () {
+        $("#banner_bar ol li").mouseover(function (event) {
+            var index=$(this).index();
+            $("#banner_bar ul li").eq(index).fadeIn().siblings().fadeOut();
+            $(this).addClass("active").siblings().removeClass("active");
+        })
+    });
+    $(function(){
+        $(".dep_item").mouseover(function(){
+            $(this).addClass("active").siblings().removeClass("active");
+            $("#docter .mod").eq($(".dep_item").index(this)).show().siblings("#docter .mod").hide();
+        });
+    });
+    $(function () {
+        var Uname=$.cookie("name");
+        if(Uname!=null ){
+            $(".loginArea.Username").text("Uname" );
+            $(".loginArea").show();
+            $(".rightArea").hide();
+        }
+    });
+    $("#logout").click(function () {
+
+        layer.confirm('确定退出登录？', {
+            btn: ['确定','取消'] //按钮
+        }, function(){
+
+            $.ajax({
+                url: "~/logout",
+                data: {},
+                type: "get",
+                contentType: "application/json",
+                dataType: "json",
+                success: function (res) {
+                    if (res.code != 0) {
+                        layer.msg
+                        {
+                            "退出失败"
+                        };
+                    } else {
+                        layer.msg('退出成功', {icon: 1});
+                        $.cookie("name", "", {expires: -1});
+                        $.cookie("role", "", {expires: -1});
+                        $(".rightArea").show();
+                        $(".loginArea").hide();
+                    }
+                }
+            })
+        }, function(){
+            layer.close();
+        });
+    });
+
+
+</script>
 </body>
 </html>

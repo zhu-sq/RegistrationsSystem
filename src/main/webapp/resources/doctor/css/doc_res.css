@@ -1,0 +1,37 @@
+/*公用*/
+.comWidth{width: 1000px; margin-left: auto;margin-right: auto;}
+.leftArea{float: left;}
+.rightArea{float: right;}
+.hide{display: none;}
+.show{display:block;}
+
+/*topBar*/
+.topBar{height: 32px;background-color: #F7F7F7;line-height: 32px;}
+.topBar a:hover{color: red;}
+.loginArea p{display: inline-block;}
+.loginArea {float: right;}
+
+/*logo*/
+.logoBar{height: 150px;}
+.logo{padding-left: 15px; padding-top: 36.5px;}
+.logo_text{line-height: 150px;font-size: 22px;color: #145b7d;font-family: "STKaiti";}
+
+/*导航*/
+.navBox{height: 45px;background-color: #76becc;color: #fff;width: 1000px;margin:auto;}
+.allDepatrment{width: 250px;line-height: 45px;position: relative;}
+.allDepatrment h3{text-align:center;}
+.allDepatrment i{width: 11px;height: 7px;overflow: hidden;background:url(../img/down.png) left center no-repeat; display: inline-block;}
+.nav,.allDepatrment{font-family: "Microsoft YaHei", "微软雅黑";font-size: 18px; }
+.nav{line-height: 45px;}
+.nav li{float:left;}
+.nav a{height: 45px;display: inline-block;padding: 0 80px;color:#ffffff; }
+.nav .active{background-color: #9acfea;}
+
+/*过渡区*/
+.transition{font-family: "Microsoft YaHei", "微软雅黑";font-size: 25px;color: #0d6aad;padding-top: 50px;}
+.resul{font-family: "Microsoft YaHei", "微软雅黑";font-size: 25px;color: #0d6aad;margin-top: 50px;}
+.resul a:hover{color: red;}
+.no_res{font-family: "Microsoft YaHei", "微软雅黑";font-size: 25px;color: #0d6aad;padding-top: 50px;}
+.resul p{display: inline-block;}
+/*底部*/
+#bottomBar{margin-top:100px;height: 37px;background-color: #8D8D8D; }

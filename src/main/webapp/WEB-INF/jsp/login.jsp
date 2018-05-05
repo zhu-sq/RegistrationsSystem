@@ -32,8 +32,8 @@
             <div class="form-group">
                 <div class="col-md-12">
                     <div class="control-wrapper">
-                        <label for="Upassword" class="control-label fa-label"><i class="fa fa-lock fa-medium"></i></label>
-                        <input type="password" class="form-control" id="Upassword" placeholder="输入密码">
+                        <label for="userPwd" class="control-label fa-label"><i class="fa fa-lock fa-medium"></i></label>
+                        <input type="password" class="form-control" id="userPwd" placeholder="输入密码">
                     </div>
                 </div>
             </div>
@@ -72,14 +72,14 @@
     $(document).ready(function() {
         $('#login').click(function () {
             var account = $('#account').val();
-            var userPwd = $('#Upassword').val();
+            var userPwd = $('#userPwd').val();
             console.log("click:",account,userPwd);
             if (account === undefined || account==="") {
                 layer.msg("请输入账号/手机号/身份证号");
                 return;
             }
 
-            if (Upassword === undefined || userPwd==="") {
+            if (userPwd === undefined || userPwd==="") {
                 layer.msg("请输入密码");
                 return;
             }
@@ -112,9 +112,10 @@
                         //跳转到首页
                         window.location.href="index.jsp";
                         layer.msg("登录成功");
+                        $.cookie("name",data.name,{path:"/"});
+                        $.cookie("role",data.role,{path:"/"});
                     }
-                    $.cookie("Uname",data.Uname,{path:"/"});
-                    $.cookie("role",data.role,{path:"/"});
+
                 },
                 error:function () {
                     //关闭加载动画

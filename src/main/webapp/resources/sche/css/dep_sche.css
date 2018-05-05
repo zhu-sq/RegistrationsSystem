@@ -1,0 +1,42 @@
+/*公用*/
+.comWidth{width: 1000px; margin-left: auto;margin-right: auto;}
+.leftArea{float: left;}
+.rightArea{float: right;}
+.hide{display: none;}
+.show{display:block;}
+
+/*topBar*/
+.topBar{height: 32px;background-color: #F7F7F7;line-height: 32px;}
+.topBar a:hover{color: red;}
+.loginArea p{display: inline-block;}
+.loginArea {float: right;}
+
+/*logo*/
+.logoBar{height: 150px;}
+.logo{padding-left: 15px; padding-top: 36.5px;}
+.logo_text{line-height: 150px;font-size: 22px;color: #145b7d;font-family: "STKaiti";}
+
+/*导航*/
+.navBox{height: 45px;background-color: #76becc;color: #fff;width: 1000px;margin:auto;}
+.allDepatrment{width: 250px;line-height: 45px;position: relative;}
+.allDepatrment h3{text-align:center;}
+.allDepatrment i{width: 11px;height: 7px;overflow: hidden;background:url(../img/down.png) left center no-repeat; display: inline-block;}
+.nav,.allDepatrment{font-family: "Microsoft YaHei", "微软雅黑";font-size: 18px; }
+.nav{line-height: 45px;}
+.nav li{float:left;}
+.nav a{height: 45px;display: inline-block;padding: 0 80px;color:#ffffff; }
+.nav .active{background-color: #9acfea;}
+/*科室介绍*/
+.dep{font-family: "Microsoft YaHei", "微软雅黑";font-size: 20px;color: #0d6aad;float: left;margin-left: 50px;margin-top: 20px;}
+.dep p{display: inline-block;}
+.imgs{float: left;margin-left: 152px;margin-top: 20px;}
+
+/*排班表*/
+.dep_sche{width: 1000px;margin-left: auto;margin-right: auto;margin-top: 220px;}
+.week{font-size: 20px;color: #0d6aad;font-family: "Microsoft YaHei", "微软雅黑";height: 50px;background-color: #9acfea;}
+.mor,.aft{font-size: 20px;color: #0d6aad;font-family: "Microsoft YaHei", "微软雅黑";height: 150px;background-color: #BFE;text-align: center;}
+.time{background-color: #9acfea;}
+
+
+/*底部*/
+#bottomBar{margin-top:100px;height: 37px;background-color: #8D8D8D; }
