@@ -106,7 +106,7 @@ public class ShiftController {
         HashMap<String,Object> map = new HashMap<String, Object>();
         map.put("uno",uno);
         map.put("dno",dno);
-        map.put("startDate",DateTools.GetNowDate());
+        map.put("startDate",DateTools.GetTimesmorning());
         map.put("endDate",DateTools.GetFutureDate(7));
 
         log.info(DateTools.GetNowDate()+" "+DateTools.GetFutureDate(7));
