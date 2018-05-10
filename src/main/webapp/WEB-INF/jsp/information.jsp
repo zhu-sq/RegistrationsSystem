@@ -1,18 +1,18 @@
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
-  Date: 2018/5/1
-  Time: 21:06
+  Date: 2018/5/6
+  Time: 16:17
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Depatrment</title>
     <link href="resources/index/css/reset.css" rel="stylesheet" type="text/css"/>
-    <link href="resources/department/css/department.css" rel="stylesheet" type="text/css"/>
+    <link href="resources/information/inf.css" rel="stylesheet" type="text/css"/>
 
 </head>
 
@@ -31,57 +31,36 @@
         <div class="comWidth">
             <div class="logo fl">
                 <a href="#"><img src="resources/index/img/timg.jpg" alt="医疗logo"></a>
-
             </div>
             <div class="logo_text fl">
                 <h2>医院挂号网上预约系统</h2>
             </div>
-
-
         </div>
     </div>
     <div class="navBox">
         <div class="comWidth">
             <div class="allDepatrment fl" >
-                <h3>全部科室<i></i></h3>
+                <h3>全部科室</h3>
             </div>
             <ul class="nav fl" >
-                <li class="active"><a href="#" ><b>按科室挂号</b></a></li>
+                <li ><a href="#" ><b>按科室挂号</b></a></li>
                 <li><a href="#"><b>按医生挂号</b></a></li>
             </ul>
         </div>
     </div>
 </div>
-<div class="transition ">科室列表</div>
-<div class="dep_show comWidth">
-    <dt>儿科</dt>
-    <dd>
-        <a href="#">儿科</a><a href="#">小儿呼吸科</a><a href="#">小儿外科</a><a href="#">小儿内科</a><a href="#">小儿骨科</a>
-    </dd>
-    <dt>妇产科</dt>
-    <dd>
-        <a href="#">妇科</a><a href="#">产科</a><a href="#">妇科内分泌</a><a href="#">妇泌尿科</a><a href="#">遗传咨询科</a>
-    </dd>
-    <dt>外科</dt>
-    <dd>
-        <a href="#">神经外科</a><a href="#">心血管外科</a><a href="#">胸外科</a><a href="#">整形科</a><a href="#">泌尿外科</a>
-    </dd>
-    <dt>内科</dt>
-    <dd>
-        <a href="#">心血管内科</a><a href="#">神经内科</a><a href="#">内分泌科</a><a href="#">消化内科</a><a href="#">普通内科</a>
-    </dd>
-    <dt>五官科</dt>
-    <dd>
-        <a href="#">耳鼻喉</a><a href="#">头颈外科</a><a href="#">口腔科</a><a href="#">正畸科</a><a href="#">牙周科</a>
-    </dd>
-    <dt>骨外科</dt>
-    <dd>
-        <a href="#">骨科</a><a href="#">脊柱外科</a><a href="#">手外科</a><a href="#">创伤骨科</a><a href="#">矫形骨科</a>
-    </dd>
-    <dt>肿瘤科</dt>
-    <dd>
-        <a href="#">肿瘤内科</a><a href="#">肿瘤外科</a><a href="#">肿瘤妇科</a><a href="#">放疗科</a><a href="#">肿瘤康复科</a>
-    </dd>
+<div class="inf comWidth">
+    <div>姓名：<p id="name"></p> </div>
+    <div>生日：<p id="bir"></p><input type="text" id="birth " maxlength="20" placeholder="格式：2016-03-25" style="display: none"></div>
+    <div>性别：<p id="sex"></p></div>
+    <div>身份证号码：<p id="idc"></p></div>
+    <div>联系电话：<p id="phone"></p><input type="text" id="phones " maxlength="12" placeholder="请输入新的联系电话" style="display: none"></div>
+    <div class="doc_it hide">
+        <div>职称：<p id="tit"></p><input type="text" id="tit " maxlength="20" placeholder="请输入新的职称" style="display: none"></div>
+        <div>个人简介：<p id="intro"></p><input type="text" id="intros " maxlength="50" placeholder="请输入新的个人简介" style="display: none"></div>
+
+    </div>
+    <div><button type="button" id="change">修改</button> </div>
 </div>
 <div id="bottomBar"></div>
 </body>

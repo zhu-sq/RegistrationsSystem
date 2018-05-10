@@ -1,18 +1,18 @@
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
-  Date: 2018/5/1
-  Time: 21:06
+  Date: 2018/5/5
+  Time: 19:36
   To change this template use File | Settings | File Templates.
 --%>
-<%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Depatrment</title>
     <link href="resources/index/css/reset.css" rel="stylesheet" type="text/css"/>
-    <link href="resources/department/css/department.css" rel="stylesheet" type="text/css"/>
+    <link href="resources/sche/css/doc_sche.css" rel="stylesheet" type="text/css"/>
 
 </head>
 
@@ -46,43 +46,58 @@
                 <h3>全部科室<i></i></h3>
             </div>
             <ul class="nav fl" >
-                <li class="active"><a href="#" ><b>按科室挂号</b></a></li>
+                <li ><a href="#" ><b>按科室挂号</b></a></li>
                 <li><a href="#"><b>按医生挂号</b></a></li>
             </ul>
         </div>
     </div>
 </div>
-<div class="transition ">科室列表</div>
-<div class="dep_show comWidth">
-    <dt>儿科</dt>
-    <dd>
-        <a href="#">儿科</a><a href="#">小儿呼吸科</a><a href="#">小儿外科</a><a href="#">小儿内科</a><a href="#">小儿骨科</a>
-    </dd>
-    <dt>妇产科</dt>
-    <dd>
-        <a href="#">妇科</a><a href="#">产科</a><a href="#">妇科内分泌</a><a href="#">妇泌尿科</a><a href="#">遗传咨询科</a>
-    </dd>
-    <dt>外科</dt>
-    <dd>
-        <a href="#">神经外科</a><a href="#">心血管外科</a><a href="#">胸外科</a><a href="#">整形科</a><a href="#">泌尿外科</a>
-    </dd>
-    <dt>内科</dt>
-    <dd>
-        <a href="#">心血管内科</a><a href="#">神经内科</a><a href="#">内分泌科</a><a href="#">消化内科</a><a href="#">普通内科</a>
-    </dd>
-    <dt>五官科</dt>
-    <dd>
-        <a href="#">耳鼻喉</a><a href="#">头颈外科</a><a href="#">口腔科</a><a href="#">正畸科</a><a href="#">牙周科</a>
-    </dd>
-    <dt>骨外科</dt>
-    <dd>
-        <a href="#">骨科</a><a href="#">脊柱外科</a><a href="#">手外科</a><a href="#">创伤骨科</a><a href="#">矫形骨科</a>
-    </dd>
-    <dt>肿瘤科</dt>
-    <dd>
-        <a href="#">肿瘤内科</a><a href="#">肿瘤外科</a><a href="#">肿瘤妇科</a><a href="#">放疗科</a><a href="#">肿瘤康复科</a>
-    </dd>
+<img src="resources/sche/img/doct.jpg" class="imgs">
+<div class="introduce   ">
+    <a href="#"> <h3 id="DRname"></h3></a>
+    <div>性别：<p id="DRsex"></p></div>
+    <div>年龄：<p id="DRgender"></p></div>
+    <div>联系电话：<p id="DRphone"></p></div>
+    <div>职称：<p id="DRtitle"></p></div>
+    <div>所属科室：<p id="Dno"></p></div>
+    <div>个人简介：<p id="DRdetail"></p></div>
 </div>
+<table class="doc_sche">
+    <tbody>
+    <tr class="week">
+        <th ></th>
+        <th class="day">1</th>
+        <th class="day">2</th>
+        <th class="day">3</th>
+        <th class="day">4</th>
+        <th class="day">5</th>
+        <th class="day">6</th>
+        <th class="day">7</th>
+    </tr>
+    <tr class="mor">
+        <td class="time">上午</td>
+        <td class="am"></td>
+        <td class="am"></td>
+        <td class="am"></td>
+        <td class="am"></td>
+        <td class="am"></td>
+        <td class="am"></td>
+        <td class="am"></td>
+    </tr>
+    <tr class="aft">
+        <td class="time">下午</td>
+        <td class="pm"></td>
+        <td class="pm"></td>
+        <td class="pm"></td>
+        <td class="pm"></td>
+        <td class="pm"></td>
+        <td class="pm"></td>
+        <td class="pm"></td>
+    </tr>
+    </tbody>
+</table>
+
+
 <div id="bottomBar"></div>
 </body>
 <script type="text/javascript" src="resources/lib/jquery-2.1.4.min.js"></script>
@@ -124,5 +139,17 @@
             layer.close();
         });
     });
+    $(function(){
+        var mydate=new Date();
+        var mytime=mydate.getTime();
+        var dayTime=24*60*60*1000;
+        for(var i=0;i<$(".day").length;i++){
+            var mydays=new Date(mytime+i*dayTime);
+            var mymonth=mydays.getMonth()+1;
+            var myday=mydays.getDate();
+            $(".day").eq(i).html(mymonth+"月"+myday+"日");
+        }
+    })
+
 </script>
 </html>
