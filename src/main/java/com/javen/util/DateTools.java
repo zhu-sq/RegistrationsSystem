@@ -22,19 +22,43 @@ public class DateTools {
     }
 
 
+
     /**
-     * @MethodName : GetNowDate
-     * @Description : 获取今天的日期
+     * @MethodName : GetFutureDate
+     * @Description : 获得past天后的日期
      * @return :返回今天的日期，格式为 "yyyy-MM-dd HH:mm:ss"
      */
     public static String GetFutureDate(int past){
         Calendar calendar = Calendar.getInstance();
         calendar.set(Calendar.DAY_OF_YEAR, calendar.get(Calendar.DAY_OF_YEAR) + past);
+        calendar.set(Calendar.HOUR_OF_DAY, 0);
+        calendar.set(Calendar.SECOND, 0);
+        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.MILLISECOND, 0);
         Date today = calendar.getTime();
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         String result = format.format(today);
         return result;
     }
+
+
+
+    /**
+     * @MethodName : GetTimesmorning
+     * @Description : 获取今天0点时间
+     * @return :返回今天的日期，格式为 "yyyy-MM-dd HH:mm:ss"
+     */
+    public static String GetTimesmorning() {
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.HOUR_OF_DAY, 0);
+        cal.set(Calendar.SECOND, 0);
+        cal.set(Calendar.MINUTE, 0);
+        cal.set(Calendar.MILLISECOND, 0);
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return sdf.format(cal.getTime());
+    }
+
+
 
 
 
