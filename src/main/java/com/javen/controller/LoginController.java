@@ -67,6 +67,7 @@ public class LoginController {
         Integer uno=0,phone=0;
         String idcard="",pwd="";
 
+        //三种登录方法：账号登录，手机号登录，身份证号登录
         //小于11位，说明是账号
         if(param.get("account").length()<11){
             uno=Integer.parseInt(param.get("account"));

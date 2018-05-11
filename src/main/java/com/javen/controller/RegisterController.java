@@ -59,11 +59,11 @@ public class RegisterController {
             return resMap;//返回给前端页面提示
         }
 
-        String opt = param.get("opt");
+        String opt = param.get("opt");//1管理员2医生3普通用户
         String role="";
         String sessionRole = "";
         User user = new User();
-        if(httpServletRequest.getSession().getAttribute("role")!=null){//1管理员2医生3普通用户
+        if(httpServletRequest.getSession().getAttribute("role")!=null){
             sessionRole = httpServletRequest.getSession().getAttribute("role").toString();
         }
         if(opt==null || !opt.equals("1")){
@@ -90,7 +90,7 @@ public class RegisterController {
             userService.addUser(user);
 
             Map<String,String> queryMap=new HashMap<String, String>();
-            queryMap.put("idcard","441702199606031720");
+            queryMap.put("idcard",param.get("idcard"));
             queryMap.put("rno",role);
 
             userService.defineRole(queryMap);

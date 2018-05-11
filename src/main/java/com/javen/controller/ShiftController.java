@@ -26,7 +26,7 @@ public class ShiftController {
     private IShiftService shiftService;
 
     /**
-     * @MethodName : GetShifByDate
+     * @MethodName : GetShiftByDate
      * @Description : 根据时间段获取挂号信息 包含开始和结束时间
      * @param  startDate:开始的时间
      * @param  endDate:结束时间
@@ -34,14 +34,14 @@ public class ShiftController {
      */
     @RequestMapping(value = "/getByDate",method = RequestMethod.GET)
     @ResponseBody
-    public Map<String,Object> GetShifByDate(@RequestParam(value="startDate") String startDate,
+    public Map<String,Object> GetShiftByDate(@RequestParam(value="startDate") String startDate,
                                             @RequestParam(value="endDate") String endDate) {
         log.info("-------------getByDate-------");
         log.info(startDate);
         log.info(endDate);
         Map<String,Object> resMap=new HashMap<String, Object>();
         if(startDate==null || endDate==null
-                || !isVaildDate(startDate)  || !isVaildDate(endDate)){
+                || !isValidDate(startDate)  || !isValidDate(endDate)){
             resMap.put("code",1);
             resMap.put("msg","查询日期不正确");
             log.info("查询日期不正确");
@@ -118,13 +118,13 @@ public class ShiftController {
 
 
     /**
-     * @MethodName : isVaildDate
+     * @MethodName : isValidDate
      * @Description : 判断传来的日期是否符合格式
      * @param  date:要判断的日期
      * @return :返回是否符合格式
      */
-    private Boolean isVaildDate(String date){
-        Boolean isVail=true;
+    private Boolean isValidDate(String date){
+        Boolean isValid=true;//拼写错误
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         try {
             // 设置lenient为false. 否则SimpleDateFormat会比较宽松地验证日期，比如2007/02/29会被接受，并转换成2007/03/01
@@ -133,9 +133,9 @@ public class ShiftController {
         } catch (ParseException e) {
             e.printStackTrace();
             // 如果throw java.text.ParseException或者NullPointerException，就说明格式不对
-            isVail=false;
+            isValid=false;
         }
-        return isVail;
+        return isValid;
     }
 
 

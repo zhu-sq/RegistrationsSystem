@@ -4,6 +4,7 @@ package com.javen.service.impl;
 import com.javen.dao.IShiftDao;
 import com.javen.dao.IUserDao;
 import com.javen.model.Shift;
+import com.javen.model.User;
 import com.javen.service.IShiftService;
 import org.springframework.stereotype.Service;
 
@@ -18,13 +19,9 @@ public class ShiftServiceImpl implements IShiftService{
     @Resource
     private IShiftDao shiftDao;
 
-    public LinkedList<Shift> getShiftByDate(HashMap<String,Object> map){
-        return this.shiftDao.selectByDate(map);
-    }
+    public LinkedList<Shift> getShiftByDate(HashMap<String,Object> map){ return this.shiftDao.selectByDate(map); }
 
-    public void addShift(List<Shift> list){
-        this.shiftDao.addShift(list);
-    }
+    public void addShift(List<Shift> list){ this.shiftDao.addShift(list); }
 
     public void updateShift(Shift shift){
         this.shiftDao.updateShift(shift);

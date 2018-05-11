@@ -2,7 +2,6 @@ package com.javen.service;
 
 import com.javen.model.Shift;
 
-
 import java.util.*;
 
 public interface IShiftService {

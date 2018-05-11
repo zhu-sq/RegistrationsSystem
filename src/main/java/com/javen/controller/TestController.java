@@ -33,7 +33,7 @@ public class TestController {
 
     @RequestMapping(value = "/getUserByBirth",method = RequestMethod.GET)
     @ResponseBody
-    public Map<String,Object> GetShifByDate(@RequestParam(value="birthday") String birthday) {
+    public Map<String,Object> GetShiftByDate(@RequestParam(value="birthday") String birthday) {
         System.out.println("sdfsfsdfssfdsd");
         log.info(birthday);
         Map<String,Object> resMap=new HashMap<String, Object>();
