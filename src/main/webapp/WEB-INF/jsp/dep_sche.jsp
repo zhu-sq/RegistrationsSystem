@@ -112,7 +112,7 @@
             $.cookie("name", "", {expires: -1});
             $.cookie("role", "", {expires: -1});
             $.ajax({
-                url: "~/logout",
+                url: "~/login/logout",
                 data: {},
                 type: "get",
                 contentType: "application/json",

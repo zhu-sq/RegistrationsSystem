@@ -54,13 +54,26 @@
     <div>生日：<p id="bir"></p><input type="text" id="birth " maxlength="20" placeholder="格式：2016-03-25" style="display: none"></div>
     <div>性别：<p id="sex"></p></div>
     <div>身份证号码：<p id="idc"></p></div>
-    <div>联系电话：<p id="phone"></p><input type="text" id="phones " maxlength="12" placeholder="请输入新的联系电话" ></div>
-    <div class="doc_it hide">
+    <div>联系电话：<p id="phone"></p><input type="text" id="phones " maxlength="12" placeholder="请输入新的联系电话" style="display: none"></div>
+    <div class="doc_it hide ">
         <div>职称：<p id="tit"></p><input type="text" id="tit " maxlength="20" placeholder="请输入新的职称" style="display: none"></div>
         <div>个人简介：<p id="intro"></p><input type="text" id="intros " maxlength="50" placeholder="请输入新的个人简介" style="display: none"></div>
-
+        <div>预约用户信息：</div>
+        <div><input type="text" id="dsno " maxlength="20" placeholder="请输入班次号" ><button type="button" id="snos">提交</button> </div>
+        <div>患者编号：<p id="unos"></p> </div>
+        <div>患者姓名：<p id="Uname"></p> </div>
+        <div>患者电话：<p id="uphone"></p> </div>
     </div>
     <div><button type="button" id="change">修改</button> </div>
+    <div class="infor">
+        <h3>预约信息</h3>
+        <div>班次号：<p id="sno"></p> </div>
+        <div>医生姓名：<p id="DRname"></p> </div>
+        <div>科室名称：<p id="Dpname"></p> </div>
+        <div>开始时间：<p id="sd"></p> </div>
+        <div>结束时间：<p id="ed"></p> </div>
+    </div>
+
 </div>
 <div id="bottomBar"></div>
 </body>
@@ -79,6 +92,8 @@
             window.open(); //sssssss
         }else if(Role==2){
             $(".doc_it").show();
+            $(".infor").hide();
+
         }
     })
     $(".logout").click(function () {
@@ -87,7 +102,7 @@
         }, function(){
 
             $.ajax({
-                url: "~/logout",
+                url: "~/login/logout",
                 data: {},
                 type: "get",
                 contentType: "application/json",
@@ -111,22 +126,92 @@
     });
     $(function () {
 
-        var uno=$.cookie("uno");
+        var uno = $.cookie("uno");
         $.ajax({
-            url: "~/logout",
-            data: {"uno":uno},
+            url: "~/login/logout",
+            data: {"uno": uno},
             type: "post",
             contentType: "application/json",
             dataType: "json",
             success: function (res) {
 
-            if(res.code==0){
-                $("#name").html(res.name);
-                $("#bir").html(res.birthday);
-                $("#sex").html(res.sex);
+                if (res.code == 0) {
+                    $("#name").html(res.name);
+                    $("#bir").html(res.birthday);
+                    $("#sex").html(res.sex);
+                    $("#idc").html(res.idcard);
+                    $("#phone").html(res.phone);
+                    $("#tit").html(res.tit);
+                    $("#intro").html(res.intro);
+                }
             }
+        });
+    });
+        $(function () {
+            var uno = $.cookie("uno");
+            $.ajax({
+                url: "~/pri/shift/getShiftByUno",
+                data: {"uno": uno},
+                type: "get",
+                contentType: "application/json",
+                dataType: "json",
+                success: function (res) {
 
-            }
-        })
+                    if (res.code == 0) {
+
+                        $("#sno").html(res.sno);
+                        $("#DRname").html(res.doctName);
+                        $("#Dpname").html(res.deparName);
+                        $("#sd").html(res.startDate);
+                        $("#ed").html(res.endDate);
+
+                    }
+                }
+            });
+        });
+            $("#snos").click(function () {
+
+                var dsno = $("#dsno").val();
+                $.ajax({
+                    url: "~/pri/pri/reg/getReg",
+                    data: {"sno": dsno},
+                    type: "get",
+                    contentType: "application/json",
+                    dataType: "json",
+                    success: function (res) {
+
+                        if (res.code == 0) {
+                            $("#unos").html(res.users.uno);
+                            $("#Uname").html(res.users.name);
+                            $("#Uphone").html(res.users.phone);
+                        }
+                    }
+                });
+            });
+            $("#change").click(function () {
+                var birt=$("#bir").val();
+                var phones=$("#phone").val();
+                var tits=$("#tit").val();
+                var intr=$("#intro").val();
+                var data={
+                    "birthday" :birt,
+                    "phone":phones,
+                    "tits":title,
+                    "intr":intro
+                }
+
+                $.ajax({
+                    url: "~/pri/pri/reg/getReg",
+                    data: JSON.stringify(data),
+                    type: "get",
+                    contentType: "application/json",
+                    dataType: "json",
+                    success: function (res) {
+                        if(res.code==0){
+                            layer.msg("修改成功");
+                        }
+                        }
+                    });
+                    })
 </script>
 </html>

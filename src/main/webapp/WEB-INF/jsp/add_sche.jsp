@@ -77,7 +77,7 @@
         }, function(){
 
             $.ajax({
-                url: "~/logout",
+                url: "~/login/logout",
                 data: {},
                 type: "get",
                 contentType: "application/json",

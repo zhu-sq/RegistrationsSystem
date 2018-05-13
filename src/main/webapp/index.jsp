@@ -138,7 +138,7 @@
 				</div>
 			</div>
 			<ul class="nav fl" >
-				<li><a href="#" ><b>按科室挂号</b></a></li>
+				<li><a href="/department" ><b>按科室挂号</b></a></li>
 				<li><a href="#"><b>按医生挂号</b></a></li>
 			</ul>
 		</div>
@@ -206,7 +206,7 @@
         }, function(){
 
             $.ajax({
-                url: "~/logout",
+                url: "~/login/logout",
                 data: {},
                 type: "get",
                 contentType: "application/json",

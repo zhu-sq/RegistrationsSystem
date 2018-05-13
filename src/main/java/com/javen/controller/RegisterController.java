@@ -26,7 +26,10 @@ public class RegisterController {
 
     @RequestMapping(value="",method= RequestMethod.GET)
     public ModelAndView RegistPage(HttpServletRequest httpServletRequest){
-        String role = httpServletRequest.getSession().getAttribute("role").toString();
+        String role = null;
+        if(httpServletRequest.getSession().getAttribute("role") !=null){
+            role = httpServletRequest.getSession().getAttribute("role").toString();
+        }
         if(role==null || !role.equals("1")){
             return new ModelAndView("regist");
         }
