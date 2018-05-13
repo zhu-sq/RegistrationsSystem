@@ -58,7 +58,7 @@
 
         </form>
         <div class="text-center">
-            <a href="" class="templatemo-create-new">创建新账号<i class="fa fa-arrow-circle-o-right"></i></a>
+            <a href="/reg" class="templatemo-create-new">创建新账号<i class="fa fa-arrow-circle-o-right"></i></a>
         </div>
         <div style="display: none">${role}</div>
     </div>
@@ -115,6 +115,7 @@
                         layer.msg("登录成功");
                         $.cookie("name",data.name,{path:"/"});
                         $.cookie("role",data.role,{path:"/"});
+                        $.cookie("uno",data.uno,{path:"/"});
                     }
 
                 },
