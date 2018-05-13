@@ -25,10 +25,19 @@
 .nav li{float:left;}
 .nav a{height: 45px;display: inline-block;padding: 0 80px;color:#ffffff; }
 .nav .active{background-color: #9acfea;}
-
+/*个人信息*/
 .inf{font-family: "Microsoft YaHei", "微软雅黑";font-size: 20px;color: #8D8D8D;padding-left: 300px;}
 .inf div{padding-top: 50px;}
 .inf p,input{display: inline-block;}
+.inf input[type="text"]{width: 300px;height: 35px;font-size: 20px;border-radius:4px;border:1px solid #c8cccf;}
+#change{ width: 70px;height: 30px;border-radius:4px;border:1px solid #c8cccf;font-size: 20px;background-color: #0d6aad;color: #ffffff;}
 
+/*添加排班表*/
+
+ .adds{font-family: "Microsoft YaHei", "微软雅黑";font-size: 20px;color: #8D8D8D;padding-left: 300px;}
+.adds div{padding-top: 50px;}
+.adds input{display: inline-block;}
+.adds input[type="text"]{width: 300px;height: 35px;font-size: 20px;border-radius:4px;border:1px solid #c8cccf;}
+#ad{ width: 70px;height: 30px;border-radius:4px;border:1px solid #c8cccf;font-size: 20px;background-color: #0d6aad;color: #ffffff;}
 /*底部*/
 #bottomBar{margin-top:100px;height: 37px;background-color: #8D8D8D; }

@@ -125,9 +125,10 @@
         });
     });
     $(document).wait(function () {
+        var dname=window.location.href.split("=")[1];
         $.ajax({
             url: "",
-            data: {},
+            data: {"name":dname},
             type: "get",
             contentType: "application/json",
             dataType:"json",
@@ -136,7 +137,11 @@
                     $(".no_res").hide();
                     for(var i=0;i<res.length;i++){
                         $(".resul").eq(i).show();
-                        $("#DRname").text(res[i].name);
+                        var a = document.createElement("a");
+                        var node = document.createTextNode(res[j].name);
+                        a.appendChild(node);
+                        a.setAttribute("href","docs(res.uno)");
+                        $("DRname").appendChild(d);
                         $("#DRsex").text(res[i].sex);
                         $("#DRphone").text(res[i].phone);
                         $("#DRtitle").text(res[i].title);
@@ -148,5 +153,9 @@
             }
         })
     })
+    function docs(uno) {
+        var url=""+uno;
+        window.open(url);
+    }
 </script>
 </html>

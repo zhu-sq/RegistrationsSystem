@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: Administrator
-  Date: 2018/5/6
-  Time: 16:17
+  Date: 2018/5/11
+  Time: 23:35
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -49,18 +49,14 @@
         </div>
     </div>
 </div>
-<div class="inf comWidth">
-    <div>姓名：<p id="name"></p> </div>
-    <div>生日：<p id="bir"></p><input type="text" id="birth " maxlength="20" placeholder="格式：2016-03-25" style="display: none"></div>
-    <div>性别：<p id="sex"></p></div>
-    <div>身份证号码：<p id="idc"></p></div>
-    <div>联系电话：<p id="phone"></p><input type="text" id="phones " maxlength="12" placeholder="请输入新的联系电话" ></div>
-    <div class="doc_it hide">
-        <div>职称：<p id="tit"></p><input type="text" id="tit " maxlength="20" placeholder="请输入新的职称" style="display: none"></div>
-        <div>个人简介：<p id="intro"></p><input type="text" id="intros " maxlength="50" placeholder="请输入新的个人简介" style="display: none"></div>
-
-    </div>
-    <div><button type="button" id="change">修改</button> </div>
+<div class="adds">
+    <div>开始时间：<input type="text" id="sd " maxlength="20" placeholder="格式：2016-03-25 08:00:00"></div>
+    <div>结束时间：<input type="text" id="ed " maxlength="20" placeholder="格式：2016-03-25 08:00:00"></div>
+    <div>科室编号：<input type="text" id="dn " maxlength="20" placeholder="请输入科室编号"></div>
+    <div>医生编号：<input type="text" id="un " maxlength="20" placeholder="请输入医生编号"></div>
+    <div>最大预约数：<input type="text" id="mn " maxlength="20" placeholder="请输入最大预约数"></div>
+    <div>已预约数：<input type="text" id="nu " maxlength="20" placeholder="请输入已预约数"></div>
+    <div><button type="button" id="ad">添加</button> </div>
 </div>
 <div id="bottomBar"></div>
 </body>
@@ -69,18 +65,12 @@
 <script src="/resources/lib/layer/layer.js"></script>
 <script type="text/javascript">
     $(function () {
-        var Uname=$.cookie("name");
-        if(Uname!=null ){
-            $(".loginArea.Username").text(Uname );
+        var Uname = $.cookie("name");
+        if (Uname != null) {
+            $(".loginArea.Username").text(Uname);
             $(".loginArea").show();
         }
-        var Role=$.cookie("role");
-        if (Role==1){
-            window.open(); //sssssss
-        }else if(Role==2){
-            $(".doc_it").show();
-        }
-    })
+    }
     $(".logout").click(function () {
         layer.confirm('确定退出登录？', {
             btn: ['确定','取消'] //按钮
@@ -110,23 +100,58 @@
         });
     });
     $(function () {
-
-        var uno=$.cookie("uno");
-        $.ajax({
-            url: "~/logout",
-            data: {"uno":uno},
-            type: "post",
-            contentType: "application/json",
-            dataType: "json",
-            success: function (res) {
-
-            if(res.code==0){
-                $("#name").html(res.name);
-                $("#bir").html(res.birthday);
-                $("#sex").html(res.sex);
+        $("#ad").click(function () {
+            var sd=$("#sd").val();
+            var ed=$("#ed").val();
+            var dn=$("#dn").val();
+            var un=$("#un").val();
+            var mn=$("#mn").val();
+            var nu=$("#nu").val();
+            if (sd === undefined || sd==="") {
+                layer.msg("请输入开始时间");
+                return;
             }
-
+            if (ed === undefined || ed==="") {
+                layer.msg("请输入结束时间");
+                return;
             }
-        })
+            if (dn === undefined || dn==="") {
+                layer.msg("请输入科室编号");
+                return;
+            }
+            if (un === undefined || un==="") {
+                layer.msg("请输入医生编号");
+                return;
+            }
+            if (mn === undefined || mn==="") {
+                layer.msg("请输入最大预约数");
+                return;
+            }
+            if (nu === undefined || nu==="") {
+                layer.msg("请输入已有预约数");
+                return;
+            }
+            var data={
+                "startDate" :sd,
+                "endDate": ed,
+                "dno": dn,
+                "uno": un,
+                "maxNum": mn,
+                "num": nu
+            }
+            $.ajax({
+                url: "~/pri/shift/updateShift",
+                data: JSON.stringify(data),
+                type: "POST",
+                contentType: "application/json",
+                dataType:"json",
+                success: function (res) {
+                    if(res.code==0){
+                        layer.msg("添加成功！");
+                    }
+                }
+            });
+        });
+    })
 </script>
 </html>

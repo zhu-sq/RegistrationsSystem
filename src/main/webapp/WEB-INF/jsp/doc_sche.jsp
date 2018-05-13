@@ -56,10 +56,9 @@
 <div class="introduce   ">
     <a href="#"> <h3 id="DRname"></h3></a>
     <div>性别：<p id="DRsex"></p></div>
-    <div>年龄：<p id="DRgender"></p></div>
+    <div>出生年份：<p id="DRgender"></p></div>
     <div>联系电话：<p id="DRphone"></p></div>
     <div>职称：<p id="DRtitle"></p></div>
-    <div>所属科室：<p id="Dno"></p></div>
     <div>个人简介：<p id="DRdetail"></p></div>
 </div>
 <table class="doc_sche">
@@ -150,6 +149,83 @@
             $(".day").eq(i).html(mymonth+"月"+myday+"日");
         }
     })
-
+    $(function () {
+        var Unos=window.location.href.split("=")[1];
+        var uno=parseInt(Unos);
+        $.ajax({
+            url: "~/shift/getByDnoUno",
+            data: JSON.stringify({"uno" :uno}),
+            type: "GET",
+            contentType: "application/json",
+            dataType:"json",
+            success: function (data) {
+                if(data.code==0){
+                    $("#DRname").html(data.user.name);
+                    $("#DRsex").html(data.user.sex);
+                    $("#DRgender").html(data.user.birthday.split("-")[0]);
+                    $("#DRphone").html(data.user.phone);
+                    $("#DRtitle").html(data.user.title);
+                    $("#DRdetail").html(data.user.intro);
+                    var mydate=new Date();
+                    var mytime=mydate.getTime();
+                    var dayTime=24*60*60*1000;
+                    for(var i=0;i<$(".day").length;i++){
+                        var mydays=new Date(mytime+i*dayTime);
+                        var mymonth=mydays.getMonth()+1;
+                        var myday=mydays.getDate();
+                        for(varj=0;j<data.shifts.length;j++){
+                            var a=data.shifts[j].endDate.split(" ");
+                            var b=a[0].split("-");
+                            if((b[1]==mymonth)&&(b[2]==myday)){
+                                var c=a[1].split(":");
+                                if(c[0]<"12"){
+                                    var nums=data.shifts[j].maxNum-data.shifts[j].num;
+                                    if(nums>0){
+                                        $(".am").eq(i).html("剩余"+nums+"个号");
+                                    var d = document.createElement("a");
+                                    var node = document.createTextNode("预约");
+                                    d.appendChild(node);
+                                    d.setAttribute("href","doc(data.shifts[j].sno)");
+                                    $(".am").eq(i).appendChild(d);
+                                    }else {
+                                        $(".am").eq(i).html("没有号了");
+                                    }
+                                }else {
+                                    var nums=data.shifts[j].maxNum-data.shifts[j].num;
+                                    if(nums>0){
+                                        $(".pm").eq(i).html("剩余"+nums+"个号");
+                                        var d = document.createElement("a");
+                                        var node = document.createTextNode("预约");
+                                        d.appendChild(node);
+                                        d.setAttribute("href","doc(data.shifts[j].sno)");
+                                        $(".pm").eq(i).appendChild(d);
+                                    }else {
+                                        $(".pm").eq(i).html("没有号了");
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        })
+    })
+    function doc(sno) {
+        var uno=$.cookie("uno");
+        $.ajax({
+            url: "~/pri/pri/reg/addReg",
+            data: JSON.stringify({"sno":sno,"uno" :uno}),
+            type: "GET",
+            contentType: "application/json",
+            dataType:"json",
+            success: function (data) {
+                if(data.code==0){
+                    layer.msg("预约成功");
+                }else {
+                    layer.msg("预约失败");
+                }
+            }
+            })
+    }
 </script>
 </html>

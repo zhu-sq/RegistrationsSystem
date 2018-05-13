@@ -56,31 +56,31 @@
 <div class="dep_show comWidth">
     <dt>儿科</dt>
     <dd>
-        <a href="#">儿科</a><a href="#">小儿呼吸科</a><a href="#">小儿外科</a><a href="#">小儿内科</a><a href="#">小儿骨科</a>
+        <a href="javascript:depno();" id="dep_01">儿科</a><a href="javascript:depno();" id="dep_02">小儿呼吸科</a><a href="javascript:depno();" id="dep_03">小儿外科</a><a href="#" id="dep_04">小儿内科</a><a href="javascript:depno();" id="dep_05">小儿骨科</a>
     </dd>
     <dt>妇产科</dt>
     <dd>
-        <a href="#">妇科</a><a href="#">产科</a><a href="#">妇科内分泌</a><a href="#">妇泌尿科</a><a href="#">遗传咨询科</a>
+        <a href="javascript:depno();" id="dep_06">妇科</a><a href="javascript:depno();" id="dep_07">产科</a><a href="javascript:depno();" id="dep_08">妇科内分泌</a><a href="javascript:depno();" id="dep_09">妇泌尿科</a><a href="javascript:depno();" id="dep_10">遗传咨询科</a>
     </dd>
     <dt>外科</dt>
     <dd>
-        <a href="#">神经外科</a><a href="#">心血管外科</a><a href="#">胸外科</a><a href="#">整形科</a><a href="#">泌尿外科</a>
+        <a href="javascript:depno();" id="dep_11">神经外科</a><a href="javascript:depno();" id="dep_12">心血管外科</a><a href="javascript:depno();" id="dep_13">胸外科</a><a href="javascript:depno();" id="dep_14">整形科</a><a href="javascript:depno();" id="dep_15">泌尿外科</a>
     </dd>
     <dt>内科</dt>
     <dd>
-        <a href="#">心血管内科</a><a href="#">神经内科</a><a href="#">内分泌科</a><a href="#">消化内科</a><a href="#">普通内科</a>
+        <a href="javascript:depno();" id="dep_16">心血管内科</a><a href="javascript:depno();" id="dep_17">神经内科</a><a href="javascript:depno();" id="dep_18">内分泌科</a><a href="javascript:depno();" id="dep_19">消化内科</a><a href="javascript:depno();" id="dep_20">普通内科</a>
     </dd>
     <dt>五官科</dt>
     <dd>
-        <a href="#">耳鼻喉</a><a href="#">头颈外科</a><a href="#">口腔科</a><a href="#">正畸科</a><a href="#">牙周科</a>
+        <a href="javascript:depno();" id="dep_21">耳鼻喉</a><a href="javascript:depno();" id="dep_22">头颈外科</a><a href="javascript:depno();" id="dep_23">口腔科</a><a href="javascript:depno();" id="dep_24">正畸科</a><a href="javascript:depno();" id="dep_25">牙周科</a>
     </dd>
     <dt>骨外科</dt>
     <dd>
-        <a href="#">骨科</a><a href="#">脊柱外科</a><a href="#">手外科</a><a href="#">创伤骨科</a><a href="#">矫形骨科</a>
+        <a href="javascript:depno();" id="dep_26">骨科</a><a href="javascript:depno();" id="dep_27">脊柱外科</a><a href="javascript:depno();" id="dep_28">手外科</a><a href="javascript:depno();" id="dep_29">创伤骨科</a><a href="javascript:depno();" id="dep_30">矫形骨科</a>
     </dd>
     <dt>肿瘤科</dt>
     <dd>
-        <a href="#">肿瘤内科</a><a href="#">肿瘤外科</a><a href="#">肿瘤妇科</a><a href="#">放疗科</a><a href="#">肿瘤康复科</a>
+        <a href="javascript:depno();" id="dep_31">肿瘤内科</a><a href="javascript:depno();" id="dep_32">肿瘤外科</a><a href="javascript:depno();" id="dep_33">肿瘤妇科</a><a href="javascript:depno();" id="dep_34">放疗科</a><a href="javascript:depno();" id="dep_35">肿瘤康复科</a>
     </dd>
 </div>
 <div id="bottomBar"></div>
@@ -124,5 +124,11 @@
             layer.close();
         });
     });
+    function depno() {
+        var dnoss = $(this).attr("id");
+        var d = dnos.substr(dnos.length - 2);
+        var url="/shift/getByDnoUno?dno="+d;
+        window.open(url);
+    }
 </script>
 </html>

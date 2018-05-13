@@ -17,7 +17,7 @@
 	<div class="topBar">
 		<div class="comWidth">
 			<div class="rightArea ">
-				您好！请 <a href="/login">登录</a> | <a href="#">注册</a>
+				您好！请 <a href="/login">登录</a> | <a href="/reg">注册</a>
 			</div>
 			<div class="loginArea hide " >欢迎你！<p class="Username"></p>&nbsp&nbsp<a id="logout" href="#">退出登录</a>&nbsp&nbsp<a href="#">个人信息</a> </div>
 		</div>
@@ -60,7 +60,7 @@
 					<div class="Deplist_item  hide">
 						<dt>儿科</dt>
 						<dd>
-							<a href="#" id="dep_01">儿科</a><a href="#" id="dep_02">小儿呼吸科</a><a href="#" id="dep_03">小儿外科</a><a href="#" id="dep_04">小儿内科</a><a href="#" id="dep_05">小儿骨科</a>
+							<a href="javascript:depno();" id="dep_01">儿科</a><a href="javascript:depno();" id="dep_02">小儿呼吸科</a><a href="javascript:depno();" id="dep_03">小儿外科</a><a href="#" id="dep_04">小儿内科</a><a href="javascript:depno();" id="dep_05">小儿骨科</a>
 						</dd>
 						<br>
 						<dt>儿科常见疾病</dt>
@@ -71,7 +71,7 @@
 					<div class="Deplist_item  hide">
 						<dt>妇产科</dt>
 						<dd>
-							<a href="#" id="dep_06">妇科</a><a href="#" id="dep_07">产科</a><a href="#" id="dep_08">妇科内分泌</a><a href="#" id="dep_09">妇泌尿科</a><a href="#" id="dep_10">遗传咨询科</a>
+							<a href="javascript:depno();" id="dep_06">妇科</a><a href="javascript:depno();" id="dep_07">产科</a><a href="javascript:depno();" id="dep_08">妇科内分泌</a><a href="javascript:depno();" id="dep_09">妇泌尿科</a><a href="javascript:depno();" id="dep_10">遗传咨询科</a>
 						</dd>
 						<br>
 						<dt>妇产科常见疾病</dt>
@@ -82,7 +82,7 @@
 					<div class="Deplist_item  hide">
 						<dt>外科</dt>
 						<dd>
-							<a href="#" id="dep_11">神经外科</a><a href="#" id="dep_12">心血管外科</a><a href="#" id="dep_13">胸外科</a><a href="#" id="dep_14">整形科</a><a href="#" id="dep_15">泌尿外科</a>
+							<a href="javascript:depno();" id="dep_11">神经外科</a><a href="javascript:depno();" id="dep_12">心血管外科</a><a href="javascript:depno();" id="dep_13">胸外科</a><a href="javascript:depno();" id="dep_14">整形科</a><a href="javascript:depno();" id="dep_15">泌尿外科</a>
 						</dd>
 						<br>
 						<dt>外科常见疾病</dt>
@@ -93,7 +93,7 @@
 					<div class="Deplist_item  hide">
 						<dt>内科</dt>
 						<dd>
-							<a href="#" id="dep_16">心血管内科</a><a href="#" id="dep_17">神经内科</a><a href="#" id="dep_18">内分泌科</a><a href="#" id="dep_19">消化内科</a><a href="#" id="dep_20">普通内科</a>
+							<a href="javascript:depno();" id="dep_16">心血管内科</a><a href="javascript:depno();" id="dep_17">神经内科</a><a href="javascript:depno();" id="dep_18">内分泌科</a><a href="javascript:depno();" id="dep_19">消化内科</a><a href="javascript:depno();" id="dep_20">普通内科</a>
 						</dd>
 						<br>
 						<dt>内科常见疾病</dt>
@@ -104,7 +104,7 @@
 					<div class="Deplist_item  hide">
 						<dt>五官科</dt>
 						<dd>
-							<a href="#" id="dep_21">耳鼻喉</a><a href="#" id="dep_22">头颈外科</a><a href="#" id="dep_23">口腔科</a><a href="#" id="dep_24">正畸科</a><a href="#" id="dep_25">牙周科</a>
+							<a href="javascript:depno();" id="dep_21">耳鼻喉</a><a href="javascript:depno();" id="dep_22">头颈外科</a><a href="javascript:depno();" id="dep_23">口腔科</a><a href="javascript:depno();" id="dep_24">正畸科</a><a href="javascript:depno();" id="dep_25">牙周科</a>
 						</dd>
 						<br>
 						<dt>五官科常见疾病</dt>
@@ -115,7 +115,7 @@
 					<div class="Deplist_item  hide">
 						<dt>骨外科</dt>
 						<dd>
-							<a href="#" id="dep_26">骨科</a><a href="#" id="dep_27">脊柱外科</a><a href="#" id="dep_28">手外科</a><a href="#" id="dep_29">创伤骨科</a><a href="#" id="dep_30">矫形骨科</a>
+							<a href="javascript:depno();" id="dep_26">骨科</a><a href="javascript:depno();" id="dep_27">脊柱外科</a><a href="javascript:depno();" id="dep_28">手外科</a><a href="javascript:depno();" id="dep_29">创伤骨科</a><a href="javascript:depno();" id="dep_30">矫形骨科</a>
 						</dd>
 						<br>
 						<dt>骨外科常见疾病</dt>
@@ -126,7 +126,7 @@
 					<div class="Deplist_item  hide">
 						<dt>肿瘤科</dt>
 						<dd>
-							<a href="#" id="dep_31">肿瘤内科</a><a href="#" id="dep_32">肿瘤外科</a><a href="#" id="dep_33">肿瘤妇科</a><a href="#" id="dep_34">放疗科</a><a href="#" id="dep_35">肿瘤康复科</a>
+							<a href="javascript:depno();" id="dep_31">肿瘤内科</a><a href="javascript:depno();" id="dep_32">肿瘤外科</a><a href="javascript:depno();" id="dep_33">肿瘤妇科</a><a href="javascript:depno();" id="dep_34">放疗科</a><a href="javascript:depno();" id="dep_35">肿瘤康复科</a>
 						</dd>
 						<br>
 						<dt>肿瘤科常见疾病</dt>
@@ -168,11 +168,16 @@
             $(".Deplist_item").eq($(".Depatrment_show li").index(this)).show().siblings(".Deplist_item").hide();
 
         })
-        $(".Depatrment_show li").mouseout(function () {
-            $(this).removeClass("Dep_active");
-            $(".Deplist_item").eq($(".Depatrment_show li").index(this)).hide();
-        })
+         $(".Depatrment_show li").mouseout(function () {
+             $(this).removeClass("Dep_active");
+         })
+
     });
+    $(function () {
+        $(".Deplist_item").mouseleave(function () {
+            $(this).hide();
+        })
+    })
     $(document).ready(function () {
         $("#banner_bar ol li").mouseover(function (event) {
             var index=$(this).index();
@@ -227,8 +232,7 @@
     });
   function depno() {
       var dnoss = $(this).attr("id");
-      var d = dnos.substr(dnos.length - 2);
-      alert(d);
+      var d = dnoss.substr(dnoss.length - 2);
       var url="/shift/getByDnoUno?dno="+d;
       window.open(url);
   }

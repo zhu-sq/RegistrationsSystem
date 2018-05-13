@@ -103,17 +103,9 @@
                 layer.msg("请输入医生姓名");
                 return;
             }
-            var data={"doc_name" :doc_name}
-            $ ajax({
-                url:,
-                data:JSON.stringify(data),
-                type: "get",
-                contentType: "application/json",
-                dataType:"json",
-                success: function (data){
-                    document.location.href="#";
-                }
-            })
+            var url=""+doc_name;
+            window.open(url);
+
         })
     })
 </script>
