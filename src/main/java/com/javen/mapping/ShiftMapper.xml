@@ -12,8 +12,14 @@
         <result column="max_num" property="maxNum" jdbcType="INTEGER"/>
         <result column="num" property="num" jdbcType="INTEGER"/>
         <result column="detail" property="detail" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="VARCHAR"/>
+        <result column="birthday" property="birthday" jdbcType="VARCHAR"/>
+        <result column="phone" property="phone" jdbcType="VARCHAR"/>
+        <result column="intro" property="intro" jdbcType="VARCHAR"/>
+        <result column="title" property="title" jdbcType="VARCHAR"/>
     </resultMap>
-    
+
     <select id="selectByDate" resultMap="shiftResultMap">
         SELECT * FROM shift
         WHERE <![CDATA[start_date >=#{startDate} and start_date <=#{endDate}]]>
@@ -25,6 +31,19 @@
     </select>
 
 
+
+    <select id="getShiftByDnoUno" resultMap="shiftResultMap">
+        SELECT sno,start_date,end_date, dno,s.uno,max_num,num,detail,name,birthday,sex,phone,intro,title
+        FROM shift s LEFT JOIN user u
+        ON s.uno=u.uno
+        <if test="dno!=null">
+            WHERE s.dno=#{dno}
+        </if>
+        <if test="uno!=null">
+            WHERE s.uno = #{uno}
+        </if>
+        AND <![CDATA[start_date >=#{startDate} and start_date <=#{endDate}]]>
+    </select>
 
     <insert id="addShift" parameterType="java.util.List">
         INSERT INTO shift(start_date,end_date,dno,uno,max_num,num,detail)
@@ -60,4 +79,15 @@
         </set>
         WHERE sno=#{sno}
     </update>
+
+    <select id="selectRegByUno" resultMap="shiftResultMap">
+        SELECT * FROM registration
+        WHERE uno=#{uno}
+    </select>
+
+    <select id="selectShiftBySno" resultMap="shiftResultMap">
+        SELECT * FROM shift
+        WHERE sno=#{sno}
+    </select>
+
 </mapper>

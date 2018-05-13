@@ -9,6 +9,7 @@ public interface IUserService {
      User getUserByAccountInfo(Integer uno,Integer phone,String idcard);
      Integer getRoleByUno(Integer uno);
      User getUserByBirth(String birthday);
+     User getUserByUno(Integer uno);
      void addUser(User user);
      void defineRole(Map<String,String> queryMap);
 }

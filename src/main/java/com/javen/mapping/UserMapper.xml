@@ -49,7 +49,10 @@
         VALUES ((SELECT DISTINCT uno FROM user WHERE idcard=#{idcard}),#{role})
   </insert>
 
-
+  <select id="selectUserByUno" resultType="com.javen.model.User">
+    SELECT * FROM user
+    WHERE uno=#{uno}
+  </select>
 
 
   <!--以下是demo中的语句，在项目中不使用，暂时留下来，学习mabatis的sql语句怎么写-->

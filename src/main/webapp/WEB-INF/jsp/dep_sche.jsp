@@ -13,48 +13,7 @@
     <title>Depatrment</title>
     <link href="resources/index/css/reset.css" rel="stylesheet" type="text/css"/>
     <link href="resources/sche/css/dep_sche.css" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript" src="resources/lib/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="resources/lib/jquery.cookie.js"></script>
-    <script src="/resources/lib/layer/layer.js"></script>
-    <script type="text/javascript">
-        $(function () {
-            var Uname=$.cookie("name");
-            if(Uname!=null ){
-                $(".loginArea.Username").text(Uname");
-                $(".loginArea").show();
-            }
-        })
-        $(".logout").click(function () {
-            layer.confirm('确定退出登录？', {
-                btn: ['确定','取消'] //按钮
-            }, function(){
-                layer.msg('退出成功', {icon: 1});
-                $.cookie("name", "", {expires: -1});
-                $.cookie("role", "", {expires: -1});
-                $.ajax({
-                    url: "~/logout",
-                    data: {},
-                    type: "get",
-                    contentType: "application/json",
-                    dataType: "json",
-                    success: function (res) {
-                        if (res.code != 0) {
-                            layer.msg
-                            {
-                                "退出失败"
-                            };
-                        } else {
-                            layer.msg('退出成功', {icon: 1});
-                            $.cookie("name", "", {expires: -1});
-                            $.cookie("role", "", {expires: -1});
-                        }
-                    }
-                })
-            }, function(){
-                layer.close();
-            });
-        });
-    </script>
+
 </head>
 
 <body>
@@ -95,20 +54,20 @@
 </div>
 <img src="resources/sche/img/dep.jpg" class="imgs">
 <div class="dep ">
-    <h1 id="dep_name">神经内科</h1>
-    <div class="fl">科室简介：医院重点科室<p id="dep_detail fl"></p></div>
+    <h1 id="dep_name"></h1>
+    <div class="fl"><p id="dep_detail "></p></div>
 </div>
 <table class="dep_sche">
     <tbody>
     <tr class="week">
-        <th></th>
-        <th>星期一</th>
-        <th>星期二</th>
-        <th>星期三</th>
-        <th>星期四</th>
-        <th>星期五</th>
-        <th>星期六</th>
-        <th>星期日</th>
+        <th ></th>
+        <th class="day">1</th>
+        <th class="day">2</th>
+        <th class="day">3</th>
+        <th class="day">4</th>
+        <th class="day">5</th>
+        <th class="day">6</th>
+        <th class="day">7</th>
     </tr>
     <tr class="mor">
         <td class="time">上午</td>
@@ -134,4 +93,74 @@
 </table>
 <div id="bottomBar"></div>
 </body>
+<script type="text/javascript" src="resources/lib/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="resources/lib/jquery.cookie.js"></script>
+<script src="/resources/lib/layer/layer.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var Uname=$.cookie("name");
+        if(Uname!=null ){
+            $(".loginArea.Username").text(Uname);
+            $(".loginArea").show();
+        }
+    })
+    $(".logout").click(function () {
+        layer.confirm('确定退出登录？', {
+            btn: ['确定','取消'] //按钮
+        }, function(){
+            layer.msg('退出成功', {icon: 1});
+            $.cookie("name", "", {expires: -1});
+            $.cookie("role", "", {expires: -1});
+            $.ajax({
+                url: "~/logout",
+                data: {},
+                type: "get",
+                contentType: "application/json",
+                dataType: "json",
+                success: function (res) {
+                    if (res.code != 0) {
+                        layer.msg
+                        {
+                            "退出失败"
+                        };
+                    } else {
+                        layer.msg('退出成功', {icon: 1});
+                        $.cookie("name", "", {expires: -1});
+                        $.cookie("role", "", {expires: -1});
+                    }
+                }
+            })
+        }, function(){
+            layer.close();
+        });
+    });
+    $(function(){
+        var mydate=new Date();
+        var mytime=mydate.getTime();
+        var dayTime=24*60*60*1000;
+        for(var i=0;i<$(".day").length;i++){
+            var mydays=new Date(mytime+i*dayTime);
+            var mymonth=mydays.getMonth()+1;
+            var myday=mydays.getDate();
+            $(".day").eq(i).html(mymonth+"月"+myday+"日");
+        }
+    })
+    $(function () {
+        var dnos=window.location.href.split("=")[1];
+        var dno=parseInt(dnos);
+        $.ajax({
+            url: "/login/loginOpt",
+            data: JSON.stringify({"dno" :dno}),
+            type: "GET",
+            contentType: "application/json",
+            dataType:"json",
+            success: function (data) {
+             if(date.code==0){
+                $("#dep_name").html(data.depar.name);
+                $("#dep_detail fl").html(data.depar.detail);
+
+            }
+            }
+    })
+</script>
 </html>

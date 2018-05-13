@@ -26,18 +26,17 @@
 .nav li{float:left;}
 .nav a{height: 45px;display: inline-block;padding: 0 80px;color:#ffffff; }
 .nav .active{background-color: #9acfea;}
-/*科室介绍*/
-.dep{font-family: "Microsoft YaHei", "微软雅黑";font-size: 20px;color: #0d6aad;float: left;margin-left: 50px;margin-top: 20px;}
-.dep p{display: inline-block;}
-.imgs{float: left;margin-left: 152px;margin-top: 20px;}
 
-/*排班表*/
-.dep_sche{width: 1000px;margin-left: auto;margin-right: auto;margin-top: 220px;}
+/*底部*/
+#bottomBar{margin-top:100px;height: 37px;background-color: #8D8D8D; }
+
+.doc_sche{width: 1000px;margin-left: auto;margin-right: auto;margin-top: 180px;}
 .week{font-size: 20px;color: #0d6aad;font-family: "Microsoft YaHei", "微软雅黑";height: 50px;background-color: #9acfea;}
 .day{width: 125px;}
 .mor,.aft{font-size: 20px;color: #0d6aad;font-family: "Microsoft YaHei", "微软雅黑";height: 150px;background-color: #BFE;text-align: center;}
 .time{background-color: #9acfea;}
 
-
-/*底部*/
-#bottomBar{margin-top:100px;height: 37px;background-color: #8D8D8D; }
+.introduce {font-family: "Microsoft YaHei", "微软雅黑";font-size: 25px;color: #0d6aad;margin-top: 50px;}
+.introduce a:hover{color: red;}
+.introduce p{display: inline-block;}
+.imgs{float: left;margin-left: 152px;margin-top: 20px;width: 200px;height: 280px;}

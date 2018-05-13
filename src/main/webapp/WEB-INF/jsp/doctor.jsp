@@ -7,49 +7,7 @@
     <link href="resources/index/css/reset.css" rel="stylesheet" type="text/css"/>
     <link href="resources/doctor/css/doctor.css" rel="stylesheet" type="text/css"/>
     <link href="lib/bootstrap/bootstrap.min.css" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript" src="resources/lib/jquery-2.1.4.min.js"></script>
-    <script type="text/javascript" src="resources/lib/jquery.cookie.js"></script>
 
-    <script src="/resources/lib/layer/layer.js"></script>
-    <script type="text/javascript">
-        $(function () {
-            var Uname=$.cookie("name");
-            if(Uname!=null ){
-                $(".loginArea.Username").text("Uname" );
-                $(".loginArea").show();
-            }
-        })
-        $(".logout").click(function () {
-            layer.confirm('确定退出登录？', {
-                btn: ['确定','取消'] //按钮
-            }, function(){
-                layer.msg('退出成功', {icon: 1});
-                $.cookie("name", "", {expires: -1});
-                $.cookie("role", "", {expires: -1});
-                $.ajax({
-                    url: "~/logout",
-                    data: {},
-                    type: "get",
-                    contentType: "application/json",
-                    dataType: "json",
-                    success: function (res) {
-                        if (res.code != 0) {
-                            layer.msg
-                            {
-                                "退出失败"
-                            };
-                        } else {
-                            layer.msg('退出成功', {icon: 1});
-                            $.cookie("name", "", {expires: -1});
-                            $.cookie("role", "", {expires: -1});
-                        }
-                    }
-                })
-            }, function(){
-                layer.close();
-            });
-        });
-    </script>
 </head>
 
 <body>
@@ -96,7 +54,48 @@
 </div>
 <div id="bottomBar"></div>
 </body>
-<script>
+
+<script type="text/javascript" src="resources/lib/jquery-2.1.4.min.js"></script>
+<script type="text/javascript" src="resources/lib/jquery.cookie.js"></script>
+<script src="/resources/lib/layer/layer.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var Uname=$.cookie("name");
+        if(Uname!=null ){
+            $(".loginArea.Username").text("Uname" );
+            $(".loginArea").show();
+        }
+    })
+    $(".logout").click(function () {
+        layer.confirm('确定退出登录？', {
+            btn: ['确定','取消'] //按钮
+        }, function(){
+            layer.msg('退出成功', {icon: 1});
+            $.cookie("name", "", {expires: -1});
+            $.cookie("role", "", {expires: -1});
+            $.ajax({
+                url: "~/logout",
+                data: {},
+                type: "get",
+                contentType: "application/json",
+                dataType: "json",
+                success: function (res) {
+                    if (res.code != 0) {
+                        layer.msg
+                        {
+                            "退出失败"
+                        };
+                    } else {
+                        layer.msg('退出成功', {icon: 1});
+                        $.cookie("name", "", {expires: -1});
+                        $.cookie("role", "", {expires: -1});
+                    }
+                }
+            })
+        }, function(){
+            layer.close();
+        });
+    });
     $(document).ready(function () {
         $("#search").click(function () {
             var doc_name=$("doc_name").val();
