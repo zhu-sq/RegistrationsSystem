@@ -176,6 +176,7 @@
         });
     });
     $("#change").click(function () {
+        $("#bir,#phone,#tit,#intro").hide();
         $(".inf input").show();
         $(".inf button").show();
         $(this).hide();
@@ -211,9 +212,11 @@
             contentType: "application/json",
             dataType: "json",
             success: function (res) {
+
                 if(res.code!=0){
                     layer.msg(res.msg);
                     return;
+
                 }
                 layer.msg("修改成功");
                 window.location.href='/informationPage';
