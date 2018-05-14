@@ -14,7 +14,15 @@
 
 <body>
 <div class="top">
-	<%@include file="WEB-INF/jsp/head.jsp"%>
+	<%--<jsp:include page="/WEB-INF/jsp/head.jsp" />--%>
+	<div class="topBar">
+		<div class="comWidth">
+			<div class="rightArea ">
+				您好！请 <a href="/login">登录</a> | <a href="/reg">注册</a>
+			</div>
+			<div class="loginArea hide " >欢迎你！<p class="Username"></p>&nbsp&nbsp<a id="logout" href="#">退出登录</a>&nbsp&nbsp<a href="/informationPage">个人信息</a> </div>
+		</div>
+	</div>
 	<div class="logoBar">
 		<div class="comWidth">
 			<div class="logo fl">
@@ -161,9 +169,9 @@
             $(".Deplist_item").eq($(".Depatrment_show li").index(this)).show().siblings(".Deplist_item").hide();
 
         });
-         $(".Depatrment_show li").mouseout(function () {
-             $(this).removeClass("Dep_active");
-         })
+        $(".Depatrment_show li").mouseout(function () {
+            $(this).removeClass("Dep_active");
+        })
 
     });
     $(function () {
@@ -225,12 +233,12 @@
             layer.close();
         });
     });
-  function depno(obj) {
-      var dnoss =obj.id;
-      var d = dnoss.substr(dnoss.length - 2);
-      var url="/depSchePage?dno="+d;
-      window.open(url);
-  }
+    function depno(obj) {
+        var dnoss =obj.id;
+        var d = dnoss.substr(dnoss.length - 2);
+        var url="/depSchePage?dno="+d;
+        window.open(url);
+    }
 
 </script>
 </body>
