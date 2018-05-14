@@ -181,9 +181,9 @@
                     }else {
                         //跳转到首页
                         layer.msg("注册成功！");
-                        $.cookie("name",data.name,{path:"/"});
-                        $.cookie("role",data.role,{path:"/"});
-                        $.cookie("uno",data.uno,{path:"/"});
+                        $.cookie("name",data.user.name,{path:"/"});
+                        $.cookie("role",data.user.role,{path:"/"});
+                        $.cookie("uno",data.user.uno,{path:"/"});
                         window.location.href="/index.jsp";
 
 

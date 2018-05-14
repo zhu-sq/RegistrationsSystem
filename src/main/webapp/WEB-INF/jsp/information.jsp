@@ -87,6 +87,7 @@
         if(Uname!=null ){
             $(".Username").text(Uname );
             $(".loginArea").show();
+            $(".rightArea").hide();
         }
         var Role=$.cookie("role");
         if (Role==1){
