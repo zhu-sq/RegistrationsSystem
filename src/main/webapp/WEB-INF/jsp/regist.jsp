@@ -119,7 +119,7 @@
             var pwd2 = $('#pwd2').val();
             var idcard = $('#idcard').val();
             var phone = $('#phone').val();
-            console.log("click:",name,sex,pwd,idcard,phone);
+            console.log("click:",name,sex,pwd1,idcard,phone);
 
 
             if (name === undefined || name==="") {

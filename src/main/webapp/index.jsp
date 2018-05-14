@@ -194,7 +194,7 @@
     $(function () {
         var Uname=$.cookie("name");
         if(Uname!=null ){
-            $(".loginArea.Username").text("Uname" );
+            $(".loginArea.Username").text(Uname );
             $(".loginArea").show();
             $(".rightArea").hide();
         }
