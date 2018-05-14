@@ -61,7 +61,7 @@
         <div>预约用户信息：</div>
         <div><input type="text" id="dsno " maxlength="20" placeholder="请输入班次号" ><button type="button" id="snos">提交</button> </div>
         <div>患者编号：<p id="unos"></p> </div>
-        <div>患者姓名：<p id="Uname"></p> </div>
+        <div>患者姓名：<p id="Unames"></p> </div>
         <div>患者电话：<p id="uphone"></p> </div>
     </div>
     <div><button type="button" id="change">修改</button> </div>
@@ -85,7 +85,7 @@
     $(function () {
         var Uname=$.cookie("name");
         if(Uname!=null ){
-            $(".loginArea.Username").text(Uname );
+            $(".Username").text(Uname );
             $(".loginArea").show();
         }
         var Role=$.cookie("role");
@@ -183,7 +183,7 @@
 
                         if (res.code == 0) {
                             $("#unos").html(res.users.uno);
-                            $("#Uname").html(res.users.name);
+                            $("#Unames").html(res.users.name);
                             $("#Uphone").html(res.users.phone);
                         }
                     }

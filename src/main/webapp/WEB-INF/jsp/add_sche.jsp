@@ -66,7 +66,7 @@
     $(function () {
         var Uname = $.cookie("name");
         if (Uname != null) {
-            $(".loginArea.Username").text(Uname);
+            $(".Username").text(Uname);
             $(".loginArea").show();
         }
     }

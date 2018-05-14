@@ -193,8 +193,9 @@
     });
     $(function () {
         var Uname=$.cookie("name");
+        console.log(Uname);
         if(Uname!=null ){
-            $(".loginArea.Username").text(Uname );
+            $(".Username").html(Uname );
             $(".loginArea").show();
             $(".rightArea").hide();
         }

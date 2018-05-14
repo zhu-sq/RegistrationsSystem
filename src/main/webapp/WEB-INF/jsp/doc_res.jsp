@@ -90,7 +90,7 @@
     $(function () {
         var Uname=$.cookie("name");
         if(Uname!=null ){
-            $(".loginArea.Username").text(Uname );
+            $(".Username").text(Uname );
             $(".loginArea").show();
         }
     })
@@ -141,7 +141,7 @@
                         var node = document.createTextNode(res[j].name);
                         a.appendChild(node);
                         a.setAttribute("href","docs(res.uno)");
-                        $("DRname").appendChild(d);
+                        $("#DRname").appendChild(d);
                         $("#DRsex").text(res[i].sex);
                         $("#DRphone").text(res[i].phone);
                         $("#DRtitle").text(res[i].title);

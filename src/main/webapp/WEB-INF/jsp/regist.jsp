@@ -25,7 +25,7 @@
             <div class="form-group">
                 <div class="col-xs-12">
                     <div class="control-wrapper">
-                        <label for="name" class="control-label fa-label <style></style>"><i class="fa fa-user fa-medium"></i></label>
+                        <label for="name" ><i class="fa fa-user fa-medium"></i></label>
                         姓名<input type="text" class="form-control" id="name" placeholder="输入姓名">
                     </div>
                 </div>
@@ -33,7 +33,7 @@
             <div class="form-group">
                 <div class="col-xs-12">
                     <div class="control-wrapper">
-                        <label for="sex" class="control-label fa-label"><i class="fa fa-user fa-medium"></i></label>
+                        <label for="sex" ><i class="fa fa-user fa-medium"></i></label>
                         性别<input type="text" class="form-control" id="sex" placeholder="输入性别">
                     </div>
                 </div>
@@ -42,7 +42,7 @@
             <div class="form-group">
             <div class="col-md-12">
                 <div class="control-wrapper">
-                    <label for="pwd1" class="control-label fa-label"><i class="fa fa-lock fa-medium"></i></label>
+                    <label for="pwd1" ><i class="fa fa-lock fa-medium"></i></label>
                     密码 <input type="password" class="form-control" id="pwd1" placeholder="输入密码">
                 </div>
             </div>
@@ -50,7 +50,7 @@
             <div class="form-group">
                 <div class="col-md-12">
                     <div class="control-wrapper">
-                        <label for="pwd2" class="control-label fa-label"><i class="fa fa-lock fa-medium"></i></label>
+                        <label for="pwd2" ><i class="fa fa-lock fa-medium"></i></label>
                         密码<input type="password" class="form-control" id="pwd2" placeholder="再次输入密码">
                     </div>
                 </div>
@@ -58,7 +58,7 @@
             <div class="form-group">
                 <div class="col-md-12">
                     <div class="control-wrapper">
-                        <label for="idcard" class="control-label fa-label"><i class="fa fa-lock fa-medium"></i></label>
+                        <label for="idcard" ><i class="fa fa-lock fa-medium"></i></label>
                         身份证号码<input type="text" class="form-control" id="idcard" placeholder="输入身份证号">
                     </div>
                 </div>
@@ -66,8 +66,18 @@
             <div class="form-group">
                 <div class="col-md-12">
                     <div class="control-wrapper">
-                        <label for="phone" class="control-label fa-label"><i class="fa fa-lock fa-medium"></i></label>
+                        <label for="phone" ><i class="fa fa-lock fa-medium"></i></label>
                         联系电话 <input type="text" class="form-control" id="phone" placeholder="输入联系电话">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group ">
+                <div class="col-md-12">
+                    <div class="control-wrapper">
+                        <div class="doc_tit hide">
+                        <label for="phone" ><i class="fa fa-lock fa-medium"></i></label>
+                        职称 <input type="text" class="form-control" id="title" placeholder="输入职称">
+                        </div>
                     </div>
                 </div>
             </div>
@@ -103,6 +113,7 @@
             if(res.role=="1"){
                $("#signup").hide();
                $("#dot_signup").show();
+               $(".doc_tit").show();
             }
         }
     });
@@ -119,6 +130,7 @@
             var pwd2 = $('#pwd2').val();
             var idcard = $('#idcard').val();
             var phone = $('#phone').val();
+            var title=$("#title").val();
             console.log("click:",name,sex,pwd1,idcard,phone);
 
 
@@ -152,7 +164,8 @@
                 "sex": sex,
                 "pwd": pwd1,
                 "idcard":idcard,
-                "phone":phone
+                "phone":phone,
+                "title":title
             }
 
 
