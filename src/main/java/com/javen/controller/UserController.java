@@ -7,10 +7,7 @@ import com.javen.service.IUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
@@ -67,6 +64,41 @@ public class UserController{
         userService.updateUser(user);
         resMap.put("code",0);
         resMap.put("msg","修改信息成功");
+        return resMap;
+    }
+
+    /**
+     * @MethodName : GetUser
+     * @Description : 修改用户个人信息
+     *                1.数据不合法，返回错误信息
+     *                2.合法，将表单数据更新到数据库中并存入session
+     * @param name :客户端传来的json数据，含有账号密码等信息
+     * @return :返回是否正确
+     */
+    @RequestMapping(value = "/user/getUser",method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String,Object> GetUser(@RequestParam(value="name") String name){
+        log.info("-------------GetUser-------");
+        Map<String,Object> resMap=new HashMap<String, Object>();
+        log.info(name);
+        if(name == null){
+            resMap.put("code",1);//输入信息不合法
+            resMap.put("msg","用户名称为空");
+            return resMap;
+        }
+
+        Map<String,String> queryMap = new HashMap<String, String>();
+        queryMap.put("name",name);
+        User user = userService.getUserByAccountInfo(queryMap);
+        if(user==null){
+            resMap.put("code",10);
+            resMap.put("msg","医生不存在");
+            return resMap;
+        }
+
+        resMap.put("code",0);
+        resMap.put("msg","操作成功");
+        resMap.put("user",user);
         return resMap;
     }
 }

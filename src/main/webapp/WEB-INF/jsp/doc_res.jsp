@@ -52,9 +52,8 @@
         </div>
     </div>
 </div>
-<div class="transition comWidth"> <h3>搜索结果<h3> </div>
-<div class="no_res comWidth"><h3>查无此人，请检查医生名字</h3></div>
-<div class="resul comWidth hide ">
+
+<div class="resul comWidth">
     <a href="#"> <h3 id="DRname"></h3></a>
     <div>性别：<p id="DRsex"></p></div>
     <div>年龄：<p id="DRgender"></p></div>
@@ -63,7 +62,7 @@
     <div>所属科室：<p id="Dno"></p></div>
     <div>个人简介：<p id="DRdetail"></p></div>
 </div>
-<div class="resul comWidth hide">
+<div class="resul comWidth">
     <a href="#"> <h3 id="DRname"></h3></a>
     <div>性别：<p id="DRsex"></p></div>
     <div>年龄：<p id="DRgender"></p></div>
@@ -72,7 +71,7 @@
     <div>所属科室：<p id="Dno"></p></div>
     <div>个人简介：<p id="DRdetail"></p></div>
 </div>
-<div class="resul comWidth hide">
+<div class="resul comWidth">
     <a href="#"> <h3 id="DRname"></h3></a>
     <div>性别：<p id="DRsex"></p></div>
     <div>年龄：<p id="DRgender"></p></div>
@@ -90,30 +89,45 @@
 <script type="text/javascript">
 
     $(function () {
-        var dname=window.location.href.split("=")[1];
+        var uno=window.location.href.split("=")[1];
         $.ajax({
-            url: "",
-            data: {"name":dname},
-            type: "get",
-            contentType: "application/json",
-            dataType:"json",
-            success: function (res){
-                if(res.length!=0){
-                    $(".no_res").hide();
-                    for(var i=0;i<res.length;i++){
-                        $(".resul").eq(i).show();
-                        var a = document.createElement("a");
-                        var node = document.createTextNode(res[j].name);
-                        a.appendChild(node);
-                        a.setAttribute("href","docs(res.uno)");
-                        $("#DRname").appendChild(d);
-                        $("#DRsex").text(res[i].sex);
-                        $("#DRphone").text(res[i].phone);
-                        $("#DRtitle").text(res[i].title);
-                        $("#Dno").text(res[i].Dno);
-                        $("#DRdetail").text(res[i].intro);
-                    }
-
+            url: "/shift/getByDnoUno?dno="+dno,
+            type: "GET",
+            success: function (data) {
+                if(data.code!=0){
+                    layer.msg(data.msg);
+                }
+                if(data.code==0){
+                    var day=0;
+                    $('.mor').find('.am').each(function () {
+                        var amTime = new Date(getTime('8:00:00',day++));
+                        for(i=0;i<data.shifts.length;i++){
+                            var item = data.shifts[i];
+                            var itemTime = new Date(item.startDate);
+                            if(itemTime.getTime()>amTime.getTime()) break;
+                            if(itemTime.getTime()==amTime.getTime()){
+                                var html = '<li><a href="/docSchePage?uno=' + item.uno
+                                    +'">' +item.name
+                                    +'</li>';
+                                $(this).append(html);
+                            }
+                        }
+                    })
+                    day=0;
+                    $('.aft').find('.pm').each(function () {
+                        var amTime = new Date(getTime('14:00:00',day++));
+                        for(i=0;i<data.shifts.length;i++){
+                            var item = data.shifts[i];
+                            var itemTime = new Date(item.startDate);
+                            if(itemTime.getTime()>amTime.getTime()) break;
+                            if(itemTime.getTime()==amTime.getTime()){
+                                var html = '<li><a href="/docSchePage?uno=' + item.uno
+                                    +'">' +item.name
+                                    +'</li>';
+                                $(this).append(html);
+                            }
+                        }
+                    })
                 }
             }
         })

@@ -46,15 +46,25 @@ public class RegistrationController {
     @RequestMapping(value = "/addReg",method = RequestMethod.GET)
     @ResponseBody
     public Map<String,Object> AddReg(@RequestParam(value="sno") Integer sno,
-                                     @RequestParam(value="uno") Integer uno) {
+                                     @RequestParam(value="uno") Integer uno,
+                                     HttpServletRequest request) {
         log.info("-------------AddReg-------");
         log.info(sno+"");
         log.info(uno+"");
+
+
         Map<String,Object> resMap=new HashMap<String, Object>();
         if(sno==null || uno==null){
             resMap.put("code",1);
             resMap.put("msg","用户或排班编号为空");
             log.info("用户或排班编号为空");
+            return resMap;
+        }
+
+        if(request.getSession().getAttribute("uno")==null || !request.getSession().getAttribute("uno").equals(uno)){
+            resMap.put("code",4);
+            resMap.put("msg","请登录");
+            log.info("请登录");
             return resMap;
         }
 

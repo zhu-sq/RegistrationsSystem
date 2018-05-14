@@ -129,10 +129,7 @@
         });
     });
     $(function () {
-
-
-        var res=$.cookie("user");
-
+        var res=JSON.parse($.cookie("user"));
         $("#name").html(res.name);
         $("#bir").html(res.birthday);
         $("#sex").html(res.sex);
@@ -161,7 +158,6 @@
         });
     });
     $("#snos").click(function () {
-
         var dsno = $("#dsno").val();
         $.ajax({
             url: "/pri/pri/reg/getReg",
@@ -192,20 +188,20 @@
     })
     $("#sure").click(function () {
 
-        var birt=$("#bir").val();
-        var phones=$("#phone").val();
+        var birt=$("#birth").val();
+        var phones=$("#phones").val();
         var tits=$("#tit").val();
         var intr=$("#intro").val();
 
-        if (phones!=11){
+        if (phones!="" && phones.length!=11){
             layer.msg("请输入正确的电话号码");
             return;
         }
         var data={
             "birthday" :birt,
             "phone":phones,
-            "tits":title,
-            "intr":intro
+            "title":tits,
+            "intro":intr
         }
 
         $.ajax({
@@ -215,9 +211,12 @@
             contentType: "application/json",
             dataType: "json",
             success: function (res) {
-                if(res.code==0){
-                    layer.msg("修改成功");
+                if(res.code!=0){
+                    layer.msg(res.msg);
+                    return;
                 }
+                layer.msg("修改成功");
+                window.location.href='/informationPage';
             }
         });
     })

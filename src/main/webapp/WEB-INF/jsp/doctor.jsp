@@ -68,8 +68,23 @@
                 layer.msg("请输入医生姓名");
                 return;
             }
-            var url="/docResPage"+"?doc_name="+doc_name;
-            window.open(url);
+
+            $.ajax({
+                url: "/user/getUser?name="+doc_name,
+                type: "GET",
+                success: function (data) {
+                    if(data.code!=0){
+                        layer.msg(data.msg);
+                        return;
+                    }
+                    var url="/docSchePage"+"?uno="+data.user.uno;
+                    window.open(url);
+
+                }
+            })
+
+
+
 
         })
     })
