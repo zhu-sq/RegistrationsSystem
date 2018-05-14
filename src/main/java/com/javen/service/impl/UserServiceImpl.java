@@ -51,4 +51,6 @@ public class UserServiceImpl implements IUserService {
     public void defineRole(Map<String,String> queryMap){
         this.userDao.defineRole(queryMap);
     }
+
+    public void updateUser(User user){this.userDao.updateUser(user);}
 }  

@@ -55,6 +55,20 @@
   </select>
 
 
+  <update id="updateUser" parameterType="com.javen.model.User">
+    update user
+    <set>
+      <if test="name!=null">start_date=#{name},</if>
+      <if test="pwd!=null">end_date=#{pwd},</if>
+      <if test="birthday!=null">start_date=#{birthday},</if>
+      <if test="phone!=null">start_date=#{phone},</if>
+      <if test="intro!=null">start_date=#{intro},</if>
+      <if test="title!=null">start_date=#{title},</if>
+    </set>
+    WHERE uno=#{uno}
+  </update>
+
+
   <!--以下是demo中的语句，在项目中不使用，暂时留下来，学习mabatis的sql语句怎么写-->
   
   <!--<select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.INTEGER" >-->

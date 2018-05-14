@@ -13,4 +13,5 @@ public interface IUserDao {
     User selectUserByUno(Integer uno);
     void addUser(User user);
     void defineRole(Map<String,String> queryMap);
+    void updateUser(User user);
 }

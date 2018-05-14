@@ -12,4 +12,5 @@ public interface IUserService {
      User getUserByUno(Integer uno);
      void addUser(User user);
      void defineRole(Map<String,String> queryMap);
+     void updateUser(User user);
 }
