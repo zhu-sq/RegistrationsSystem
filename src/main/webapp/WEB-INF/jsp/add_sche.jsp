@@ -50,12 +50,12 @@
     </div>
 </div>
 <div class="adds">
-    <div>开始时间：<input type="text" id="sd " maxlength="20" placeholder="格式：2016-03-25 08:00:00"></div>
-    <div>结束时间：<input type="text" id="ed " maxlength="20" placeholder="格式：2016-03-25 08:00:00"></div>
-    <div>科室编号：<input type="text" id="dn " maxlength="20" placeholder="请输入科室编号"></div>
-    <div>医生编号：<input type="text" id="un " maxlength="20" placeholder="请输入医生编号"></div>
-    <div>最大预约数：<input type="text" id="mn " maxlength="20" placeholder="请输入最大预约数"></div>
-    <div>已预约数：<input type="text" id="nu " maxlength="20" placeholder="请输入已预约数"></div>
+    <div>开始时间：<input type="text" id="sd" maxlength="20" placeholder="格式：2016-03-25 08:00:00"></div>
+    <div>结束时间：<input type="text" id="ed" maxlength="20" placeholder="格式：2016-03-25 08:00:00"></div>
+    <div>科室编号：<input type="text" id="dn" maxlength="20" placeholder="请输入科室编号"></div>
+    <div>医生编号：<input type="text" id="un" maxlength="20" placeholder="请输入医生编号"></div>
+    <div>最大预约数：<input type="text" id="mn" maxlength="20" placeholder="请输入最大预约数"></div>
+    <div>已预约数：<input type="text" id="nu" maxlength="20" placeholder="请输入已预约数"></div>
     <div><button type="button" id="ad">添加</button> </div>
 </div>
 <div id="bottomBar"></div>
@@ -71,12 +71,11 @@
             $(".loginArea").show();
             $(".rightArea").hide();
         }
-    }
+    });
     $(".logout").click(function () {
         layer.confirm('确定退出登录？', {
             btn: ['确定','取消'] //按钮
         }, function(){
-
             $.ajax({
                 url: "/login/logout",
                 data: {},
@@ -102,7 +101,7 @@
             layer.close();
         });
     });
-    $(function () {
+
         $("#ad").click(function () {
             var sd=$("#sd").val();
             var ed=$("#ed").val();
@@ -134,16 +133,21 @@
                 layer.msg("请输入已有预约数");
                 return;
             }
+
             var data={
-                "startDate" :sd,
-                "endDate": ed,
-                "dno": dn,
-                "uno": un,
-                "maxNum": mn,
-                "num": nu
+                "shifts":[
+                    {
+                        "startDate" :sd,
+                        "endDate": ed,
+                        "dno": dn,
+                        "uno": un,
+                        "maxNum": mn,
+                        "num": nu
+                    }
+                ]
             }
             $.ajax({
-                url: "/pri/shift/updateShift",
+                url: "/pri/shift/addShift",
                 data: JSON.stringify(data),
                 type: "POST",
                 contentType: "application/json",
@@ -155,6 +159,5 @@
                 }
             });
         });
-    })
 </script>
 </html>

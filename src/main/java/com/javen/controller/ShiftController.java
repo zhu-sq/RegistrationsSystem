@@ -146,13 +146,20 @@ public class ShiftController {
      */
     @RequestMapping(value = "/pri/shift/addShift",method = RequestMethod.POST)
     @ResponseBody
-    public Map<String,Object> AddShift(@RequestBody Map<String, List<Shift>> msgMap) {
+    public Map<String,Object> AddShift(@RequestBody Map<String, List<Shift>> msgMap,HttpServletRequest request) {
         log.info("-------------SetShift-------");
         log.info(msgMap.toString());
 
         Map<String,Object> resMap=new HashMap<String, Object>();
 
         List<Shift> list = msgMap.get("shifts");
+
+        if(request.getSession().getAttribute("role") ==null || !request.getSession().getAttribute("role").toString().equals("1")){
+            resMap.put("code","2");
+            resMap.put("msg","请先登录");
+            return resMap;
+        }
+
 
         if(list==null || list.size()==0){
             resMap.put("code","1");
