@@ -123,6 +123,8 @@
                     layer.msg(data.msg);
                 }
                 if(data.code==0){
+                    $("#dep_name").html(data.depar.name);
+                    $("#dep_detail ").html(data.depar.detail);
                     var day=0;
                     $('.mor').find('.am').each(function () {
                         var amTime = new Date(getTime('8:00:00',day++));

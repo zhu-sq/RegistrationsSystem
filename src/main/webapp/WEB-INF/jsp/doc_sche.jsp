@@ -57,7 +57,7 @@
 <div class="introduce   ">
     <a href="#"> <h3 id="DRname"></h3></a>
     <div>性别：<p id="DRsex"></p></div>
-    <div>出生年份：<p id="DRgender"></p></div>
+    <div>出生日期：<p id="DRbir"></p></div>
     <div>联系电话：<p id="DRphone"></p></div>
     <div>职称：<p id="DRtitle"></p></div>
     <div>个人简介：<p id="DRdetail"></p></div>
@@ -127,6 +127,12 @@
                     layer.msg(data.msg);
                 }
                 if(data.code==0){
+                    $("#DRname").html(data.user.name);
+                    $("#DRsex").html(data.user.sex);
+                    $("#DRbir").html(data.user.birthday);
+                    $("#DRphone").html(data.user.phone);
+                    $("#DRtitle").html(data.user.title);
+                    $("#DRdetail").html(data.user.intro);
                     var day=0;
                     $('.mor').find('.am').each(function () {
                         var amTime = new Date(getTime('8:00:00',day++));
