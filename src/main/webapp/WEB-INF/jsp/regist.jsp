@@ -151,7 +151,7 @@
             });
 
             $.ajax({
-                url: "/login/loginOpt",
+                url: "/reg/RegistOpt",
                 data: JSON.stringify(data),
                 type: "POST",
                 contentType: "application/json",
