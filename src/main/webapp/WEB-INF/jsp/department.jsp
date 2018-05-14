@@ -102,7 +102,7 @@
         }, function(){
 
             $.ajax({
-                url: "~/login/logout",
+                url: "/login/logout",
                 data: {},
                 type: "get",
                 contentType: "application/json",

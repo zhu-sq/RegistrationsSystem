@@ -103,7 +103,7 @@
         }, function(){
 
             $.ajax({
-                url: "~/login/logout",
+                url: "/login/logout",
                 data: {},
                 type: "get",
                 contentType: "application/json",
@@ -129,7 +129,7 @@
 
         var uno = $.cookie("uno");
         $.ajax({
-            url: "~/login/logout",
+            url: "/login/logout",
             data: {"uno": uno},
             type: "post",
             contentType: "application/json",
@@ -151,7 +151,7 @@
         $(function () {
             var uno = $.cookie("uno");
             $.ajax({
-                url: "~/pri/shift/getShiftByUno",
+                url: "/pri/shift/getShiftByUno",
                 data: {"uno": uno},
                 type: "get",
                 contentType: "application/json",
@@ -174,7 +174,7 @@
 
                 var dsno = $("#dsno").val();
                 $.ajax({
-                    url: "~/pri/pri/reg/getReg",
+                    url: "/pri/pri/reg/getReg",
                     data: {"sno": dsno},
                     type: "get",
                     contentType: "application/json",
@@ -213,7 +213,7 @@
                 }
 
                 $.ajax({
-                    url: "~/pri/pri/reg/getReg",
+                    url: "/pri/pri/reg/getReg",
                     data: JSON.stringify(data),
                     type: "get",
                     contentType: "application/json",

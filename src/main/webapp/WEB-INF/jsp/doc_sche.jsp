@@ -115,7 +115,7 @@
         }, function(){
 
             $.ajax({
-                url: "~/login/logout",
+                url: "/login/logout",
                 data: {},
                 type: "get",
                 contentType: "application/json",
@@ -152,7 +152,7 @@
         var Unos=window.location.href.split("=")[1];
         var uno=parseInt(Unos);
         $.ajax({
-            url: "~/shift/getByDnoUno",
+            url: "/shift/getByDnoUno",
             data: JSON.stringify({"uno" :uno}),
             type: "GET",
             contentType: "application/json",
@@ -212,7 +212,7 @@
     function doc(sno) {
         var uno=$.cookie("uno");
         $.ajax({
-            url: "~/pri/pri/reg/addReg",
+            url: "/pri/pri/reg/addReg",
             data: JSON.stringify({"sno":sno,"uno" :uno}),
             type: "GET",
             contentType: "application/json",

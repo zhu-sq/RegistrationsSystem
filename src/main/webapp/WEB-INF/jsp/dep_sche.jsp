@@ -112,7 +112,7 @@
             $.cookie("name", "", {expires: -1});
             $.cookie("role", "", {expires: -1});
             $.ajax({
-                url: "~/login/logout",
+                url: "/login/logout",
                 data: {},
                 type: "get",
                 contentType: "application/json",
@@ -149,7 +149,7 @@
         var dnos=window.location.href.split("=")[1];
         var dno=parseInt(dnos);
         $.ajax({
-            url: "~/shift/getByDnoUno",
+            url: "/shift/getByDnoUno",
             data: JSON.stringify({"dno" :dno}),
             type: "GET",
             contentType: "application/json",

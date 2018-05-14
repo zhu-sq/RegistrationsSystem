@@ -76,7 +76,7 @@
         }, function(){
 
             $.ajax({
-                url: "~/login/logout",
+                url: "/login/logout",
                 data: {},
                 type: "get",
                 contentType: "application/json",
@@ -139,7 +139,7 @@
                 "num": nu
             }
             $.ajax({
-                url: "~/pri/shift/updateShift",
+                url: "/pri/shift/updateShift",
                 data: JSON.stringify(data),
                 type: "POST",
                 contentType: "application/json",
