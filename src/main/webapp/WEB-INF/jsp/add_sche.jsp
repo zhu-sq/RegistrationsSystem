@@ -91,6 +91,10 @@
                         layer.msg('退出成功', {icon: 1});
                         $.cookie("name", "", {expires: -1});
                         $.cookie("role", "", {expires: -1});
+                        $.cookie("uno", "", {expires: -1});
+                        $(".rightArea").show();
+                        $(".loginArea").hide();
+                        window.location.href="/index.jsp";
                     }
                 }
             })

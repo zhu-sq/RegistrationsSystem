@@ -191,6 +191,7 @@
                         layer.msg("注册成功！");
                         $.cookie("name",data.name,{path:"/"});
                         $.cookie("role",data.role,{path:"/"});
+                        $.cookie("uno",data.uno,{path:"/"});
                         window.location.href="/index.jsp";
 
 
