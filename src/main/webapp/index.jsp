@@ -161,6 +161,7 @@
 </div>
 
 <div id="bottomBar"></div>
+<script type="text/javascript" src="WEB-INF/jsp/logout.jsp"></script>
 <script type="text/javascript">
 
     $(function () {
@@ -192,47 +193,7 @@
             $("#docter .mod").eq($(".dep_item").index(this)).show().siblings("#docter .mod").hide();
         });
     });
-    $(function () {
-        var Uname=$.cookie("name");
-        console.log(Uname);
-        if(Uname!=null ){
-            $(".Username").html(Uname );
-            $(".loginArea").show();
-            $(".rightArea").hide();
-        }
-    });
-    $("#logout").click(function () {
 
-        layer.confirm('确定退出登录？', {
-            btn: ['确定','取消'] //按钮
-        }, function(){
-
-            $.ajax({
-                url: "/login/logout",
-                data: {},
-                type: "get",
-                contentType: "application/json",
-                dataType: "json",
-                success: function (res) {
-                    if (res.code != 0) {
-                        layer.msg;
-                        {
-                            "退出失败"
-                        }
-                    } else {
-                        layer.msg('退出成功', {icon: 1});
-                        $.cookie("name", "", {expires: -1});
-                        $.cookie("role", "", {expires: -1});
-                        $.cookie("uno", "", {expires: -1});
-                        $(".rightArea").show();
-                        $(".loginArea").hide();
-                    }
-                }
-            })
-        }, function(){
-            layer.close();
-        });
-    });
     function depno(obj) {
         var dnoss =obj.id;
         var d = dnoss.substr(dnoss.length - 2);

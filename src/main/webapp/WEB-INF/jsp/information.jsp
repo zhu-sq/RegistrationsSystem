@@ -43,7 +43,7 @@
                 <h3>全部科室</h3>
             </div>
             <ul class="nav fl" >
-               <li><a href="/departmentPage" ><b>按科室挂号</b></a></li>
+                <li><a href="/departmentPage" ><b>按科室挂号</b></a></li>
                 <li><a href="/doctorPage"><b>按医生挂号</b></a></li>
             </ul>
         </div>
@@ -54,7 +54,7 @@
     <div>生日：<p id="bir"></p><input type="text" id="birth" maxlength="20" placeholder="格式：2016-03-25" style="display: none"></div>
     <div>性别：<p id="sex"></p></div>
     <div>身份证号码：<p id="idc"></p></div>
-        <div>联系电话：<p id="phone"></p><input type="text" id="phones" maxlength="12" placeholder="请输入新的联系电话" style="display: none"></div>
+    <div>联系电话：<p id="phone"></p><input type="text" id="phones" maxlength="12" placeholder="请输入新的联系电话" style="display: none"></div>
     <div class="doc_it hide ">
         <div>职称：<p id="tit"></p><input type="text" id="tit " maxlength="20" placeholder="请输入新的职称" style="display: none"></div>
         <div>个人简介：<p id="intro"></p><input type="text" id="intros " maxlength="50" placeholder="请输入新的个人简介" style="display: none"></div>
@@ -83,15 +83,15 @@
 <script src="/resources/lib/layer/layer.js"></script>
 <script type="text/javascript">
     $(function () {
-        var Uname=$.cookie("name");
+        var Uname=$.cookie("user.name");
         if(Uname!=null ){
             $(".Username").text(Uname );
             $(".loginArea").show();
             $(".rightArea").hide();
         }
-        var Role=$.cookie("role");
+        var Role=$.cookie("user.role");
         if (Role==1){
-            window.open(); //sssssss
+            window.open("/addSchePage");
         }else if(Role==2){
             $(".doc_it").show();
             $(".infor").hide();
@@ -117,9 +117,7 @@
                         };
                     } else {
                         layer.msg('退出成功', {icon: 1});
-                        $.cookie("name", "", {expires: -1});
-                        $.cookie("role", "", {expires: -1});
-                        $.cookie("uno", "", {expires: -1});
+                        $.cookie("user", "", {expires: -1});
                         $(".rightArea").show();
                         $(".loginArea").hide();
                         window.location.href="/index.jsp";
@@ -131,99 +129,97 @@
         });
     });
     $(function () {
-        var uno = $.cookie("uno");
+
+
+        var res=$.cookie("user");
+
+        $("#name").html(res.name);
+        $("#bir").html(res.birthday);
+        $("#sex").html(res.sex);
+        $("#idc").html(res.idcard);
+        $("#phone").html(res.phone);
+        $("#tit").html(res.tit);
+        $("#intro").html(res.intro);
+    });
+    $(function () {
+        var uno = $.cookie("user.uno");
         $.ajax({
-            url: "/login/logout",
+            url: "/shift/getShiftByUno",
             data: {"uno": uno},
-            type: "post",
-            contentType: "application/json",
-            dataType: "json",
+            type: "get",
             success: function (res) {
                 if (res.code == 0) {
-                    $("#name").html(res.name);
-                    $("#bir").html(res.birthday);
-                    $("#sex").html(res.sex);
-                    $("#idc").html(res.idcard);
-                    $("#phone").html(res.phone);
-                    $("#tit").html(res.tit);
-                    $("#intro").html(res.intro);
+                    $("#sno").html(res.sno);
+                    $("#DRname").html(res.doctName);
+                    $("#Dpname").html(res.deparName);
+                    $("#sd").html(res.startDate);
+                    $("#ed").html(res.endDate);
+                }else if(res.code==10){
+                    layer.msg("没有挂号信息");
                 }
             }
         });
     });
-        $(function () {
-            var uno = $.cookie("uno");
-            $.ajax({
-                url: "/shift/getShiftByUno",
-                data: {"uno": uno},
-                type: "get",
-                success: function (res) {
-                    if (res.code == 0) {
-                        $("#sno").html(res.sno);
-                        $("#DRname").html(res.doctName);
-                        $("#Dpname").html(res.deparName);
-                        $("#sd").html(res.startDate);
-                        $("#ed").html(res.endDate);
-                    }else if(res.code==10){
-                        layer.msg("没有挂号信息");
-                    }
+    $("#snos").click(function () {
+
+        var dsno = $("#dsno").val();
+        $.ajax({
+            url: "/pri/pri/reg/getReg",
+            data: {"sno": dsno},
+            type: "get",
+            contentType: "application/json",
+            dataType: "json",
+            success: function (res) {
+
+                if (res.code == 0) {
+                    $("#unos").html(res.users.uno);
+                    $("#Unames").html(res.users.name);
+                    $("#Uphone").html(res.users.phone);
                 }
-            });
+            }
         });
-            $("#snos").click(function () {
+    });
+    $("#change").click(function () {
+        $(".inf input").show();
+        $(".inf button").show();
+        $(this).hide();
+    })
+    $("#cancel").click(function () {
+        $(".inf input").hide();
+        $("#change").show();
+        $(this).hide();
+        $("#sure").hide();
+    })
+    $("#sure").click(function () {
 
-                var dsno = $("#dsno").val();
-                $.ajax({
-                    url: "/pri/pri/reg/getReg",
-                    data: {"sno": dsno},
-                    type: "get",
-                    contentType: "application/json",
-                    dataType: "json",
-                    success: function (res) {
+        var birt=$("#bir").val();
+        var phones=$("#phone").val();
+        var tits=$("#tit").val();
+        var intr=$("#intro").val();
 
-                        if (res.code == 0) {
-                            $("#unos").html(res.users.uno);
-                            $("#Unames").html(res.users.name);
-                            $("#Uphone").html(res.users.phone);
-                        }
-                    }
-                });
-            });
-            $("#change").click(function () {
-                $(".inf input").show();
-                $(".inf button").show();
-                $(this).hide();
-            })
-            $("#cancel").click(function () {
-                $(".inf input").hide();
-                $("#change").show();
-                $(this).hide();
-                $("#sure").hide();
-            })
-            $("#sure").click(function () {
-                var birt=$("#birth").val();
-                var phones=$("#phones").val();
-                var title=$("#tit").val();
-                var intro=$("#intro").val();
-                var data={
-                    "birthday" :birt,
-                    "phone":phones,
-                    "tits":title,
-                    "intr":intro
+        if (phones!=11){
+            layer.msg("请输入正确的电话号码");
+            return;
+        }
+        var data={
+            "birthday" :birt,
+            "phone":phones,
+            "tits":title,
+            "intr":intro
+        }
+
+        $.ajax({
+            url: "/user/updateUser",
+            data: JSON.stringify(data),
+            type: "post",
+            contentType: "application/json",
+            dataType: "json",
+            success: function (res) {
+                if(res.code==0){
+                    layer.msg("修改成功");
                 }
-
-                $.ajax({
-                    url: "/user/updateUser",
-                    data: JSON.stringify(data),
-                    type: "post",
-                    contentType: "application/json",
-                    dataType: "json",
-                    success: function (res) {
-                        if(res.code==0){
-                            layer.msg("修改成功");
-                        }
-                        }
-                    });
-                    })
+            }
+        });
+    })
 </script>
 </html>

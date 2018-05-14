@@ -43,7 +43,8 @@
                 <h3>全部科室</h3>
             </div>
             <ul class="nav fl" >
-               <li><a href="/departmentPage" ><b>按科室挂号</b></a></li> 				<li><a href="/doctorPage"><b>按医生挂号</b></a></li>
+               <li><a href="/departmentPage" ><b>按科室挂号</b></a></li>
+                <li><a href="/doctorPage"><b>按医生挂号</b></a></li>
             </ul>
         </div>
     </div>
@@ -64,7 +65,7 @@
 <script src="/resources/lib/layer/layer.js"></script>
 <script type="text/javascript">
     $(function () {
-        var Uname = $.cookie("name");
+        var Uname = $.cookie("user.name");
         if (Uname != null) {
             $(".Username").text(Uname);
             $(".loginArea").show();
@@ -90,9 +91,7 @@
                         };
                     } else {
                         layer.msg('退出成功', {icon: 1});
-                        $.cookie("name", "", {expires: -1});
-                        $.cookie("role", "", {expires: -1});
-                        $.cookie("uno", "", {expires: -1});
+                        $.cookie("user", "", {expires: -1});
                         $(".rightArea").show();
                         $(".loginArea").hide();
                         window.location.href="/index.jsp";
