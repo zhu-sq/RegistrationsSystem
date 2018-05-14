@@ -23,14 +23,14 @@
 
             <div class="rightArea">
                 您好！请 <a href="/login">登录</a> | <a href="#">注册</a>
-                <div class="loginArea hide" >欢迎你！<p class="Username"></p>&nbsp&nbsp<a href="javascript:void(0);"class="logout">退出登录</a><a href="#">个人信息</a> </div>
+                <div class="loginArea hide" >欢迎你！<p class="Username"></p>&nbsp&nbsp<a href="javascript:void(0);"class="logout">退出登录</a><a href="/informationPage">个人信息</a> </div>
             </div>
         </div>
     </div>
     <div class="logoBar">
         <div class="comWidth">
             <div class="logo fl">
-                <a href="#"><img src="resources/index/img/timg.jpg" alt="医疗logo"></a>
+                <a href="/index.jsp"><img src="resources/index/img/timg.jpg" alt="医疗logo"></a>
 
             </div>
             <div class="logo_text fl">
@@ -46,8 +46,7 @@
                 <h3>全部科室<i></i></h3>
             </div>
             <ul class="nav fl" >
-                <li ><a href="#" ><b>按科室挂号</b></a></li>
-                <li><a href="#"><b>按医生挂号</b></a></li>
+               <li><a href="/departmentPage" ><b>按科室挂号</b></a></li> 				<li><a href="/doctorPage"><b>按医生挂号</b></a></li>
             </ul>
         </div>
     </div>

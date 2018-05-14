@@ -111,7 +111,7 @@
                         layer.msg("账号密码不正确");
                     }else{
                         //跳转到首页
-                        window.location.href="/index";
+                        window.location.href="/index.jsp";
                         layer.msg("登录成功");
                         $.cookie("name",data.name,{path:"/"});
                         $.cookie("role",data.role,{path:"/"});

@@ -18,7 +18,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Controller
-//@RequestMapping("/reg")
+@RequestMapping("/reg")
 public class RegisterController {
     private static Logger log= LoggerFactory.getLogger(RegisterController.class);
     @Resource

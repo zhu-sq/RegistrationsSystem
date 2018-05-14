@@ -84,7 +84,7 @@
 <script src="/resources/lib/layer/layer.js"></script>
 <script src="/resources/lib/jquery.cookie.js"></script>
 <script>
-    $document.wait(function () {
+    $(function () {
     $.ajax({
         url: "",
         data: {},
@@ -97,8 +97,8 @@
                $("#dot_signup").show();
             }
         }
-    })
-    })
+    });
+    });
 </script>
 <script>
     $(document).ready(function() {
@@ -110,7 +110,7 @@
             var pwd = $('#pwd').val();
             var idcard = $('#idcard').val();
             var phone = $('#phone').val();
-            console.log("click:",name,sex,Ugender,pwd,idcard,phone);
+            console.log("click:",name,sex,pwd,idcard,phone);
 
 
             if (name === undefined || name==="") {
@@ -163,8 +163,8 @@
                         layer.msg("注册失败！");
                     }else {
                         //跳转到首页
-                        window.location.href="/index";
                         layer.msg("注册成功！");
+                        window.location.href="/index.jsp";
                         $.cookie("name",data.name,{path:"/"});
                         $.cookie("role",data.role,{path:"/"});
                     }
