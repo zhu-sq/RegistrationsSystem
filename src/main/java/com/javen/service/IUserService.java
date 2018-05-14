@@ -6,7 +6,7 @@ import java.util.Map;
 
 
 public interface IUserService {
-     User getUserByAccountInfo(Integer uno,Integer phone,String idcard);
+     User getUserByAccountInfo(Map<String,String> queryMap);
      Integer getRoleByUno(Integer uno);
      User getUserByBirth(String birthday);
      User getUserByUno(Integer uno);

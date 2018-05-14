@@ -14,6 +14,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -28,18 +29,21 @@ public class RegisterController {
     public ModelAndView RegistPage(HttpServletRequest httpServletRequest){
         String role = null;
 
-
-
+        Enumeration em = httpServletRequest.getSession().getAttributeNames();
+        log.debug("em lsit---");
+        while(em.hasMoreElements()){
+            String str = em.nextElement().toString();
+            log.info(""+str + " " + httpServletRequest.getSession().getAttribute(str));
+        }
         if(httpServletRequest.getSession().getAttribute("role")!=null){
-
             role = httpServletRequest.getSession().getAttribute("role").toString();
         }
+        log.info("getRegPag----"+role);
         if(role==null || !role.equals("1")){
             return new ModelAndView("regist");
         }
         log.debug("regist");
-        System.out.println("regist");
-        return new ModelAndView("regist");
+        return new ModelAndView("regist","role",1);
     }
 
 
@@ -56,7 +60,6 @@ public class RegisterController {
     public Map<String,Object> RegistOpt(@RequestBody Map<String, String> param, HttpServletRequest httpServletRequest) {
         System.out.println("RegistOpt");
 
-
         Map<String,Object> resMap=new HashMap<String, Object>();
 
         //检查数据完整性
@@ -66,46 +69,70 @@ public class RegisterController {
             return resMap;//返回给前端页面提示
         }
 
-
-        String opt = param.get("opt");//1管理员2医生3普通用户
-        String role="";
-        String sessionRole = "";
-        User user = new User();
-        if(httpServletRequest.getSession().getAttribute("role")!=null){//1管理员2医生3普通用户
-            sessionRole = httpServletRequest.getSession().getAttribute("role").toString();
-        }
-        if(opt==null || !opt.equals("1")){
-            role="3";
-        }else if(sessionRole.equals("1")){
-            role="1";
-        }else{
-            resMap.put("code","2");
-            resMap.put("msg","不是管理员，无权限注册医生账号");
+        if(!(param.get("sex").equals("男") || param.get("sex").equals("女"))){
+            resMap.put("code","3");
+            resMap.put("msg","性别必须为男或者女");
             return resMap;
         }
 
-
-        synchronized(this){
-            user.setName(param.get("name"));
-            user.setPwd(param.get("pwd"));
-            user.setPhone(param.get("phone"));
-            user.setIdcard(param.get("idcard"));
-            user.setBirthday(param.get("birthday"));
-            user.setSex(param.get("sex"));
-            user.setIntro(param.get("intro"));
-            user.setRole(Integer.valueOf(role));
-
-            userService.addUser(user);
-
-            Map<String,String> queryMap=new HashMap<String, String>();
-            queryMap.put("idcard",param.get("idcard"));
-            queryMap.put("rno",role);
-
-            userService.defineRole(queryMap);
+        if(param.get("phone").length()!=11){
+            resMap.put("code","3");
+            resMap.put("msg","非法手机号");
+            return resMap;
         }
 
-        //添加defineRole
+        if(!(param.get("idcard").length()==15 || param.get("idcard").length()==18)){
+            resMap.put("code","3");
+            resMap.put("msg","非法身份证号");
+            return resMap;
+        }
 
+        HashMap<String,String> queryMap = new HashMap<String, String>();
+        queryMap.put("idcard",param.get("idcard"));
+        User u = userService.getUserByAccountInfo(queryMap);
+
+        if(u!=null){
+            resMap.put("code","4");
+            resMap.put("msg","身份证号已存在");
+            return resMap;
+        }
+
+        u=null;
+        queryMap.clear();
+        queryMap.put("phone",param.get("phone"));
+        u = userService.getUserByAccountInfo(queryMap);
+        if(u!=null){
+            resMap.put("code","4");
+            resMap.put("msg","手机号已存在");
+            return resMap;
+        }
+
+        String role="";
+        User user = new User();
+        if(httpServletRequest.getSession().getAttribute("role")!=null && httpServletRequest.getSession().getAttribute("role").toString().equals("1")){//1管理员2医生3普通用户
+           role="2";
+        }else{
+            role="3";
+        }
+
+        user.setName(param.get("name"));
+        user.setPwd(param.get("pwd"));
+        user.setPhone(param.get("phone"));
+        user.setIdcard(param.get("idcard"));
+        user.setBirthday(param.get("birthday"));
+        user.setSex(param.get("sex"));
+        user.setIntro(param.get("intro"));
+        user.setRole(Integer.valueOf(role));
+        log.info(user.toString());
+        userService.addUser(user);
+
+        queryMap.clear();
+        queryMap.put("idcard",param.get("idcard"));
+        queryMap.put("rno",role);
+
+        userService.defineRole(queryMap);
+
+        //添加defineRole
         resMap.put("code","0");
         resMap.put("msg","操作成功");
         return resMap;

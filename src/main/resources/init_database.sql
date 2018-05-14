@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS user(
   ,name VARCHAR(30) NOT NULL
   ,pwd VARCHAR(50) NOT NULL
   ,birthday DATETIME
-  ,sex enum('男','女')
+  ,sex VARCHAR (4)
   ,idcard CHAR(18) UNIQUE
   ,phone VARCHAR(20) UNIQUE
   ,intro VARCHAR(100)

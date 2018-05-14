@@ -241,9 +241,12 @@ public class ShiftController {
         reg = shiftService.getRegByUno(uno);
         shift = shiftService.getShiftBySno(reg.getUno());
 
+        HashMap<String,String> queryMap = new HashMap<String, String>();
+        queryMap.put("uno",shift.getUno()+"");
+        User doctor = userService.getUserByAccountInfo(queryMap);
+
         HashMap<String,Object> depar_map = new HashMap<String, Object>();
         depar_map.put("dno",shift.getDno());
-        User doctor = userService.getUserByAccountInfo(shift.getUno(),null,"");
         Department department = departmentService.getDeparByDno(depar_map);
 
         resMap.put("code","0");

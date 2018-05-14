@@ -82,7 +82,11 @@ public class LoginController {
             return resMap;
         }
 
-        User user =this.userService.getUserByAccountInfo(uno,phone,idcard);
+        HashMap<String,String> queryMap = new HashMap<String, String>();
+        queryMap.put("uno",uno+"");
+        queryMap.put("phone",phone+"");
+        queryMap.put("idcard",idcard+"");
+        User user =this.userService.getUserByAccountInfo(queryMap);
         if(user!=null){
             log.info(user.toString());
         }
@@ -96,6 +100,7 @@ public class LoginController {
 
         Integer role = userService.getRoleByUno(user.getUno());
         user.setRole(role);
+        log.info("login---role:"+role);
         resMap.put("code",0);
         resMap.put("msg","登录成功");
         resMap.put("user",user);

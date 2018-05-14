@@ -28,8 +28,8 @@ public class UserServiceImpl implements IUserService {
 //    }
 //
 
-    public User getUserByAccountInfo(Integer uno,Integer phone,String idcard){
-        return this.userDao.selectByAccountInfo(uno,phone,idcard);
+    public User getUserByAccountInfo(Map<String,String> queryMap){
+        return this.userDao.selectByAccountInfo(queryMap);
     }
 
     public User getUserByUno(Integer uno){

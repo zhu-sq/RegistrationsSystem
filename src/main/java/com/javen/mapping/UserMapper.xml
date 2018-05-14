@@ -19,13 +19,13 @@
     SELECT * FROM user
     WHERE
     <if test="uno!=null and uno!=0">
-      uno=#{uno,jdbcType=INTEGER}
+      uno=#{uno}
     </if>
     <if test="phone!=null and phone!=0">
-      phone=#{phone,jdbcType=INTEGER}
+      phone=#{phone}
     </if>
     <if test="idcard!=null and idcard!=''">
-      idcard=#{idcard,jdbcType=CHAR}
+      idcard=#{idcard}
     </if>
   </select>
 
@@ -46,7 +46,7 @@
 
   <insert id="defineRole" parameterType="java.util.Map">
         INSERT INTO role_user(uno,rno)
-        VALUES ((SELECT DISTINCT uno FROM user WHERE idcard=#{idcard}),#{role})
+        VALUES ((SELECT DISTINCT uno FROM user WHERE idcard=#{idcard}),#{rno})
   </insert>
 
   <select id="selectUserByUno" resultType="com.javen.model.User">
