@@ -198,7 +198,8 @@
     }
 
     function doc(sno) {
-        var uno=$.cookie("user.uno");
+        var user = JSON.parse($.cookie("user"))
+        var uno=user.uno;
         $.ajax({
             url: "/pri/pri/reg/addReg",
             data: JSON.stringify({"sno":sno,"uno" :uno}),

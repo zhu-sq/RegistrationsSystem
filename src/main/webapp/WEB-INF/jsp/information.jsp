@@ -22,7 +22,7 @@
         <div class="comWidth">
 
             <div class="rightArea">
-                您好！请 <a href="/login">登录</a> | <a href="#">注册</a>
+                您好！请 <a href="/login">登录</a> | <a href="/reg">注册</a>
                 <div class="loginArea hide" >欢迎你！<p class="Username"></p>&nbsp&nbsp<a id="logout" href="#">退出登录</a>&nbsp&nbsp<a href="/informationPage">个人信息</a> </div>
             </div>
         </div>
@@ -74,8 +74,8 @@
         <div>开始时间：<p id="sd"></p> </div>
         <div>结束时间：<p id="ed"></p> </div>
     </div>
-
 </div>
+<div class="adds comWidth hide"><button type="button" id="add">添加排班表</button> </div>
 <div id="bottomBar"></div>
 </body>
 <script type="text/javascript" src="resources/lib/jquery-2.1.4.min.js"></script>
@@ -83,15 +83,19 @@
 <script src="/resources/lib/layer/layer.js"></script>
 <script type="text/javascript">
     $(function () {
-        var Uname=$.cookie("user.name");
-        if(Uname!=null ){
-            $(".Username").text(Uname );
+        var user = JSON.parse($.cookie("user"));
+        if(user!=null ){
+            $(".Username").text(user.name);
             $(".loginArea").show();
             $(".rightArea").hide();
         }
-        var Role=$.cookie("user.role");
+        var Role=user.role;
         if (Role==1){
-            window.open("/addSchePage");
+                var html='<a href="/reg">注册</a>';
+                $(".loginArea").append(html);
+                $(".doc_it").show();
+                $(".infor").hide();
+                $(".adds").show();
         }else if(Role==2){
             $(".doc_it").show();
             $(".infor").hide();
@@ -222,6 +226,9 @@
                 window.location.href='/informationPage';
             }
         });
+    })
+    $("#add").click(function () {
+        window.location.href="/addSchePage";
     })
 </script>
 </html>

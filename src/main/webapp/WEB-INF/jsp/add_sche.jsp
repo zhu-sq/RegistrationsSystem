@@ -65,13 +65,18 @@
 <script src="/resources/lib/layer/layer.js"></script>
 <script type="text/javascript">
     $(function () {
-        var Uname = $.cookie("user.name");
-        if (Uname != null) {
-            $(".Username").text(Uname);
+        var user = JSON.parse($.cookie("user"));
+        if (user != null) {
+            $(".Username").text(user.name);
             $(".loginArea").show();
             $(".rightArea").hide();
         }
-    }
+        var Role = user.role;
+        if (Role == 1) {
+            var html = '<a href="/reg">注册</a>';
+            $(".loginArea").append(html);
+        }
+    })
     $(".logout").click(function () {
         layer.confirm('确定退出登录？', {
             btn: ['确定','取消'] //按钮
