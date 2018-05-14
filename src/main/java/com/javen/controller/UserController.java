@@ -37,31 +37,33 @@ public class UserController{
     public Map<String,Object> updateUser(@RequestBody Map<String, String> param, HttpServletRequest httpServletRequest){
         log.info("-------------UpdateUser-------");
 
+
         Map<String,Object> resMap=new HashMap<String, Object>();
 
         User user = new User();
-        user.setUno(Integer.valueOf(param.get("uno")));
 
-        if(param.get("uno")==null || param.get("uno").equals("")){
+        if(httpServletRequest.getSession().getAttribute("uno")==null){
             resMap.put("code",1);//1缺少用户编号
-            resMap.put("msg","缺少用户编号");
+            resMap.put("msg","请登录");
+            return  resMap;
         }
-        user.setName(param.get("name"));
-        user.setPwd(param.get("pwd"));
-        user.setBirthday(param.get("birthday"));
-        if(param.get("phone").length()==11){
-            user.setPhone(param.get("phone"));
-        }
-        else{
+        log.info(param.get("phone"));
+        if(param.get("phone")!=null && !param.get("phone").equals("") && param.get("phone").length()!=11){
             resMap.put("code",2);//输入信息不合法
             resMap.put("msg","输入的手机号不合法");
             return resMap;
         }
+
+        user.setUno(Integer.valueOf(httpServletRequest.getSession().getAttribute("uno").toString()));
+        user.setName(param.get("name"));
+        user.setPwd(param.get("pwd"));
+        user.setBirthday(param.get("birthday"));
+        user.setPhone(param.get("phone"));
         user.setIntro(param.get("intro"));
-        if(httpServletRequest.getSession().getAttribute("role")=="2" &&
-                param.get("title")!=null && !param.get("name").equals(null)){
-            user.setTitle(param.get("title"));
-        }
+//        if(httpServletRequest.getSession().getAttribute("role")=="2" &&
+//                param.get("title")!=null && !param.get("name").equals(null)){
+//            user.setTitle(param.get("title"));
+//        }
         userService.updateUser(user);
         resMap.put("code",0);
         resMap.put("msg","修改信息成功");

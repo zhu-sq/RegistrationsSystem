@@ -236,10 +236,16 @@ public class ShiftController {
         Registration reg = null;
         Shift shift = null;
         HashMap<String,Object> map = new HashMap<String, Object>();
-
-
         reg = shiftService.getRegByUno(uno);
-        shift = shiftService.getShiftBySno(reg.getUno());
+        log.info("-----"+reg);
+        if(reg==null){
+            resMap.put("code","10");
+            resMap.put("msg","没有挂号信息");
+            return  resMap;
+        }
+        log.info("-----"+reg.getSno()+"");
+        shift = shiftService.getShiftBySno(reg.getSno());
+        log.info(shift+"");
 
         HashMap<String,String> queryMap = new HashMap<String, String>();
         queryMap.put("uno",shift.getUno()+"");

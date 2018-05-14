@@ -43,7 +43,7 @@
                 <h3>全部科室</h3>
             </div>
             <ul class="nav fl" >
-               <li><a href="/departmentPage" ><b>按科室挂号</b></a></li>
+                <li><a href="/departmentPage" ><b>按科室挂号</b></a></li>
                 <li><a href="/doctorPage"><b>按医生挂号</b></a></li>
             </ul>
         </div>
@@ -51,10 +51,10 @@
 </div>
 <div class="inf comWidth">
     <div>姓名：<p id="name"></p> </div>
-    <div>生日：<p id="bir"></p><input type="text" id="birth " maxlength="20" placeholder="格式：2016-03-25" style="display: none"></div>
+    <div>生日：<p id="bir"></p><input type="text" id="birth" maxlength="20" placeholder="格式：2016-03-25" style="display: none"></div>
     <div>性别：<p id="sex"></p></div>
     <div>身份证号码：<p id="idc"></p></div>
-    <div>联系电话：<p id="phone"></p><input type="text" id="phones " maxlength="12" placeholder="请输入新的联系电话" style="display: none"></div>
+    <div>联系电话：<p id="phone"></p><input type="text" id="phones" maxlength="12" placeholder="请输入新的联系电话" style="display: none"></div>
     <div class="doc_it hide ">
         <div>职称：<p id="tit"></p><input type="text" id="tit " maxlength="20" placeholder="请输入新的职称" style="display: none"></div>
         <div>个人简介：<p id="intro"></p><input type="text" id="intros " maxlength="50" placeholder="请输入新的个人简介" style="display: none"></div>
@@ -130,96 +130,96 @@
     });
     $(function () {
 
-                     var res=$.cookie("user");
-                    $("#name").html(res.name);
-                    $("#bir").html(res.birthday);
-                    $("#sex").html(res.sex);
-                    $("#idc").html(res.idcard);
-                    $("#phone").html(res.phone);
-                    $("#tit").html(res.tit);
-                    $("#intro").html(res.intro);
+
+        var res=$.cookie("user");
+
+        $("#name").html(res.name);
+        $("#bir").html(res.birthday);
+        $("#sex").html(res.sex);
+        $("#idc").html(res.idcard);
+        $("#phone").html(res.phone);
+        $("#tit").html(res.tit);
+        $("#intro").html(res.intro);
     });
-        $(function () {
-            var uno = $.cookie("user.uno");
-            $.ajax({
-                url: "/pri/shift/getShiftByUno",
-                data: {"uno": uno},
-                type: "get",
-                contentType: "application/json",
-                dataType: "json",
-                success: function (res) {
-
-                    if (res.code == 0) {
-
-                        $("#sno").html(res.sno);
-                        $("#DRname").html(res.doctName);
-                        $("#Dpname").html(res.deparName);
-                        $("#sd").html(res.startDate);
-                        $("#ed").html(res.endDate);
-
-                    }
+    $(function () {
+        var uno = $.cookie("user.uno");
+        $.ajax({
+            url: "/shift/getShiftByUno",
+            data: {"uno": uno},
+            type: "get",
+            success: function (res) {
+                if (res.code == 0) {
+                    $("#sno").html(res.sno);
+                    $("#DRname").html(res.doctName);
+                    $("#Dpname").html(res.deparName);
+                    $("#sd").html(res.startDate);
+                    $("#ed").html(res.endDate);
+                }else if(res.code==10){
+                    layer.msg("没有挂号信息");
                 }
-            });
+            }
         });
-            $("#snos").click(function () {
+    });
+    $("#snos").click(function () {
 
-                var dsno = $("#dsno").val();
-                $.ajax({
-                    url: "/pri/pri/reg/getReg",
-                    data: {"sno": dsno},
-                    type: "get",
-                    contentType: "application/json",
-                    dataType: "json",
-                    success: function (res) {
+        var dsno = $("#dsno").val();
+        $.ajax({
+            url: "/pri/pri/reg/getReg",
+            data: {"sno": dsno},
+            type: "get",
+            contentType: "application/json",
+            dataType: "json",
+            success: function (res) {
 
-                        if (res.code == 0) {
-                            $("#unos").html(res.users.uno);
-                            $("#Unames").html(res.users.name);
-                            $("#Uphone").html(res.users.phone);
-                        }
-                    }
-                });
-            });
-            $("#change").click(function () {
-                $(".inf input").show();
-                $(".inf button").show();
-                $(this).hide();
-            })
-            $("#cancel").click(function () {
-                $(".inf input").hide();
-                $("#change").show();
-                $(this).hide();
-                $("#sure").hide();
-            })
-            $("#sure").click(function () {
-                var birt=$("#bir").val();
-                var phones=$("#phone").val();
-                var tits=$("#tit").val();
-                var intr=$("#intro").val();
-
-                if (phones!=11){
-                    layer.msg("请输入正确的电话号码");
-                    return;
+                if (res.code == 0) {
+                    $("#unos").html(res.users.uno);
+                    $("#Unames").html(res.users.name);
+                    $("#Uphone").html(res.users.phone);
                 }
-                var data={
-                    "birthday" :birt,
-                    "phone":phones,
-                    "tits":title,
-                    "intr":intro
-                }
+            }
+        });
+    });
+    $("#change").click(function () {
+        $(".inf input").show();
+        $(".inf button").show();
+        $(this).hide();
+    })
+    $("#cancel").click(function () {
+        $(".inf input").hide();
+        $("#change").show();
+        $(this).hide();
+        $("#sure").hide();
+    })
+    $("#sure").click(function () {
 
-                $.ajax({
-                    url: "/user/updateUser",
-                    data: JSON.stringify(data),
-                    type: "get",
-                    contentType: "application/json",
-                    dataType: "json",
-                    success: function (res) {
-                        if(res.code==0){
-                            layer.msg("修改成功");
-                        }
-                        }
-                    });
-                    })
+        var birt=$("#bir").val();
+        var phones=$("#phone").val();
+        var tits=$("#tit").val();
+        var intr=$("#intro").val();
+
+        if (phones!=11){
+            layer.msg("请输入正确的电话号码");
+            return;
+        }
+        var data={
+            "birthday" :birt,
+            "phone":phones,
+            "tits":title,
+            "intr":intro
+        }
+
+        $.ajax({
+            url: "/user/updateUser",
+            data: JSON.stringify(data),
+            type: "post",
+            contentType: "application/json",
+            dataType: "json",
+            success: function (res) {
+                if(res.code==0){
+                    layer.msg("修改成功");
+                }
+            }
+        });
+    })
 </script>
 </html>

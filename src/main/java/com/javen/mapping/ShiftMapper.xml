@@ -43,6 +43,7 @@
             WHERE s.uno = #{uno}
         </if>
         AND <![CDATA[start_date >=#{startDate} and start_date <=#{endDate}]]>
+        ORDER BY start_date ASC
     </select>
 
     <insert id="addShift" parameterType="java.util.List">
@@ -80,7 +81,7 @@
         WHERE sno=#{sno}
     </update>
 
-    <select id="selectRegByUno" resultMap="shiftResultMap">
+    <select id="selectRegByUno" resultType="com.javen.model.Registration">
         SELECT * FROM registration
         WHERE uno=#{uno}
     </select>
