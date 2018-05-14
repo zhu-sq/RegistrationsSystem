@@ -1,8 +1,10 @@
 package com.javen.controller;
 
 import com.javen.model.Department;
+import com.javen.model.Registration;
 import com.javen.model.Shift;
 import com.javen.model.User;
+import com.javen.model.Registration;
 import com.javen.service.IDepartmentService;
 import com.javen.service.IShiftService;
 import com.javen.service.IUserService;
@@ -34,7 +36,7 @@ public class ShiftController {
     private IUserService userService;
 
     /**
-     * @MethodName : GetShifByDate
+     * @MethodName : GetShiftByDate
      * @Description : 根据时间段获取挂号信息 包含开始和结束时间
      * @param  startDate:开始的时间
      * @param  endDate:结束时间
@@ -42,14 +44,16 @@ public class ShiftController {
      */
     @RequestMapping(value = "/shift/getByDate",method = RequestMethod.GET)
     @ResponseBody
-    public Map<String,Object> GetShifByDate(@RequestParam(value="startDate") String startDate,
+    public Map<String,Object> GetShiftByDate(@RequestParam(value="startDate") String startDate,
                                             @RequestParam(value="endDate") String endDate) {
         log.info("-------------getByDate-------");
         log.info(startDate);
         log.info(endDate);
         Map<String,Object> resMap=new HashMap<String, Object>();
         if(startDate==null || endDate==null
+                || !isValidDate(startDate)  || !isValidDate(endDate)
                 || !DateTools.IsVaildDate(startDate)  || !DateTools.IsVaildDate(endDate)){
+
             resMap.put("code",1);
             resMap.put("msg","查询日期不正确");
             log.info("查询日期不正确");
@@ -70,15 +74,15 @@ public class ShiftController {
     }
 
     /**
-     * @MethodName : GetShifByDoctor
+     * @MethodName : GetShiftByDnoUno
      * @Description : 根据科室或者医生获取排班表信息
      * @param  dno:科室编号
      * @param  uno:医生编号
      * @return :返回排班表信息集合
      */
-    @RequestMapping(value = "/shift/getByDnoUno",method = RequestMethod.GET)
-    @ResponseBody
-    public Map<String,Object> GetShifByDnoUno(@RequestParam(value="uno",required = false) Integer uno,
+        @RequestMapping(value = "/shift/getByDnoUno",method = RequestMethod.GET)
+        @ResponseBody
+    public Map<String,Object> GetShiftByDnoUno(@RequestParam(value="uno",required = false) Integer uno,
                                               @RequestParam(value="dno",required = false) Integer dno) {
         log.info("-------------getByDate-------");
         log.info(uno+"");
@@ -189,12 +193,67 @@ public class ShiftController {
     }
 
 
+    /**
+     * @MethodName : isValidDate
+     * @Description : 判断传来的日期是否符合格式
+     * @param  date:要判断的日期
+     * @return :返回是否符合格式
+     */
+    private Boolean isValidDate(String date){
+        Boolean isValid=true;
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        try {
+            // 设置lenient为false. 否则SimpleDateFormat会比较宽松地验证日期，比如2007/02/29会被接受，并转换成2007/03/01
+            format.setLenient(false);
+            format.parse(date);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            // 如果throw java.text.ParseException或者NullPointerException，就说明格式不对
+            isValid=false;
+        }
+        return isValid;
+    }
+
+    /**
+     * @MethodName : GetShiftByUno
+     * @Description : 根据用户编号获取挂号信息
+     * @param  uno：用户的编号
+     * @return :返回排班表信息集合
+     */
+    @RequestMapping(value = "/shift/getShiftByUno",method = RequestMethod.GET)
+    @ResponseBody
+    public Map<String,Object> GetShiftByUno(@RequestParam(value="uno") Integer uno){
+        log.info("-------------getByDate-------");
+        log.info(uno.toString());
+        Map<String,Object> resMap=new HashMap<String, Object>();
+        if(uno==null || userService.getRoleByUno(uno)!=3){
+            resMap.put("code",1);
+            resMap.put("msg","该编号不是普通用户");
+            log.info("该编号不是普通用户");
+            return resMap;
+        }
+
+        Registration reg = null;
+        Shift shift = null;
+        HashMap<String,Object> map = new HashMap<String, Object>();
 
 
+        reg = shiftService.getRegByUno(uno);
+        shift = shiftService.getShiftBySno(reg.getUno());
 
+        HashMap<String,Object> depar_map = new HashMap<String, Object>();
+        depar_map.put("dno",shift.getDno());
+        User doctor = userService.getUserByAccountInfo(shift.getUno(),null,"");
+        Department department = departmentService.getDeparByDno(depar_map);
 
-
-
-
-
+        resMap.put("code","0");
+        resMap.put("msg","操作成功");
+        resMap.put("sno",reg.getSno());
+        resMap.put("doctName",doctor.getName());
+        resMap.put("deparName",department.getName());
+        resMap.put("startDate",shift.getStartDate());
+        resMap.put("endDate",shift.getEndDate());
+        resMap.put("detail",shift.getDetail());
+        return resMap;
+}
 }

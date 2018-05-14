@@ -42,7 +42,7 @@
         WHERE uno IN (
             SELECT uno
             FROM  registration
-            WHERE  sno=#{sno}
+            WHERE  suno=#{suno}
         );
     </select>
 

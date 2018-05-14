@@ -25,6 +25,13 @@
         WHERE <![CDATA[start_date >=#{startDate} and start_date <=#{endDate}]]>
     </select>
 
+    <select id="selectByDateAndDept" resultMap="shiftResultMap">
+    SELECT * FROM shift
+    WHERE <![CDATA[start_date >=#{startDate} and start_date <=#{endDate}]]> AND dno=#{dno}
+    </select>
+
+
+
     <select id="getShiftByDnoUno" resultMap="shiftResultMap">
         SELECT sno,start_date,end_date, dno,s.uno,max_num,num,detail,name,birthday,sex,phone,intro,title
         FROM shift s LEFT JOIN user u
@@ -72,4 +79,15 @@
         </set>
         WHERE sno=#{sno}
     </update>
+
+    <select id="selectRegByUno" resultMap="shiftResultMap">
+        SELECT * FROM registration
+        WHERE uno=#{uno}
+    </select>
+
+    <select id="selectShiftBySno" resultMap="shiftResultMap">
+        SELECT * FROM shift
+        WHERE sno=#{sno}
+    </select>
+
 </mapper>
