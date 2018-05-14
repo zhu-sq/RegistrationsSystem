@@ -180,6 +180,7 @@
         });
     });
     $("#change").click(function () {
+        $("#bir,#phone,#tit,#intro").hide();
         $(".inf input").show();
         $(".inf button").show();
         $(this).hide();
@@ -204,8 +205,8 @@
         var data={
             "birthday" :birt,
             "phone":phones,
-            "tits":title,
-            "intr":intro
+            "title":tits,
+            "intro":intr
         }
 
         $.ajax({
@@ -217,6 +218,10 @@
             success: function (res) {
                 if(res.code==0){
                     layer.msg("修改成功");
+                    $("#bir,#phone,#tit,#intro").show();
+                    $(".inf input").hide();
+                    $(".inf button").hide();
+                    $("#change").show();
                 }
             }
         });
