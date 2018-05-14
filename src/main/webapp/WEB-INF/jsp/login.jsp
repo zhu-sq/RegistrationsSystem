@@ -107,7 +107,7 @@
                 success: function (data) {
                     //关闭加载动画
                     layer.close(index);
-                    if(data.code!==0){
+                    if(data.code!=0){
                         layer.msg("账号密码不正确");
                     }else{
                         //跳转到首页
