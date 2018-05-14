@@ -91,4 +91,9 @@
         WHERE sno=#{sno}
     </select>
 
+
+    <select id="getRegByUnoSno" resultType="com.javen.model.Registration">
+        SELECT * FROM registration
+        WHERE uno=${uno} AND sno=#{sno}
+    </select>
 </mapper>

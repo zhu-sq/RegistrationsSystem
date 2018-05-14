@@ -110,6 +110,7 @@
             $(".day").eq(i).html(mymonth+"月"+myday+"日");
         }
     })
+
     $(function () {
         var dnos=window.location.href.split("=")[1];
         var dno=parseInt(dnos);
@@ -138,7 +139,7 @@
                     })
                     day=0;
                     $('.aft').find('.pm').each(function () {
-                        var amTime = new Date(getTime('8:00:00',day++));
+                        var amTime = new Date(getTime('14:00:00',day++));
                         for(i=0;i<data.shifts.length;i++){
                             var item = data.shifts[i];
                             var itemTime = new Date(item.startDate);

@@ -11,6 +11,7 @@ public interface IShiftService {
      void addShift(List<Shift> list);
      void updateShift(Shift shift);
      Registration getRegByUno(Integer uno);
+     Registration getRegByUnoSno(HashMap<String,Integer> map);
      Shift getShiftBySno(Integer uno);
 
 }

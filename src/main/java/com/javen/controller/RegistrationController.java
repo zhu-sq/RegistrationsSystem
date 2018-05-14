@@ -1,6 +1,8 @@
 package com.javen.controller;
 
 
+import com.javen.model.Registration;
+import com.javen.service.IShiftService;
 import com.javen.util.RoleConfig;
 import com.javen.model.User;
 import com.javen.service.IRegistrationService;
@@ -27,6 +29,8 @@ public class RegistrationController {
 
     @Resource
     private IRegistrationService registrationService;
+    @Resource
+    private IShiftService shiftService;
 
 
     @Autowired(required=false)
@@ -58,6 +62,13 @@ public class RegistrationController {
         map.put("sno",sno);
         map.put("uno",uno);
 
+        Registration registration = shiftService.getRegByUnoSno(map);
+        if(registration !=null){
+            resMap.put("code",3);
+            resMap.put("msg","您已预约");
+            log.info("您已预约");
+            return resMap;
+        }
         Boolean isOk = registrationService.addRestration(map);
 
         if(!isOk){

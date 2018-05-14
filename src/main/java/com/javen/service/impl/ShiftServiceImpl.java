@@ -45,5 +45,7 @@ public class ShiftServiceImpl implements IShiftService {
         return this.shiftDao.selectShiftBySno(sno);
     }
 
+    public Registration getRegByUnoSno(HashMap<String,Integer> map){return this.shiftDao.getRegByUnoSno(map);}
+
 }
 

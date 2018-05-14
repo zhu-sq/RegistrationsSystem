@@ -13,4 +13,5 @@ public interface IShiftDao {
      void updateShift(Shift shift);
      Registration selectRegByUno(Integer uno);
      Shift selectShiftBySno(Integer sno);
+     Registration getRegByUnoSno(HashMap<String,Integer> map);
 }

@@ -46,7 +46,7 @@
                 <h3>全部科室<i></i></h3>
             </div>
             <ul class="nav fl" >
-               <li><a href="/departmentPage" ><b>按科室挂号</b></a></li> 				<li><a href="/doctorPage"><b>按医生挂号</b></a></li>
+                <li><a href="/departmentPage" ><b>按科室挂号</b></a></li> 				<li><a href="/doctorPage"><b>按医生挂号</b></a></li>
             </ul>
         </div>
     </div>
@@ -133,8 +133,15 @@
                             var itemTime = new Date(item.startDate);
                             if(itemTime.getTime()>amTime.getTime()) break;
                             if(itemTime.getTime()==amTime.getTime()){
-                                var html = '<li><a href="/docSchePage?uno=' + item.uno
-                                    +'">' +item.name
+                                var num=0;
+                                if(isNaN(item.num)){
+                                    num=0;
+                                }else{
+                                    num=item.num;
+                                }
+                                var html = '<li num="' +num +'" maxNum="'+item.maxNum + '"sno="'+item.sno
+                                    +'"><div>预约情况</div>'
+                                    + '<div> '+ num +"/"+ item.maxNum+'</div>'
                                     +'</li>';
                                 $(this).append(html);
                             }
@@ -142,14 +149,21 @@
                     })
                     day=0;
                     $('.aft').find('.pm').each(function () {
-                        var amTime = new Date(getTime('8:00:00',day++));
+                        var amTime = new Date(getTime('14:00:00',day++));
                         for(i=0;i<data.shifts.length;i++){
                             var item = data.shifts[i];
                             var itemTime = new Date(item.startDate);
                             if(itemTime.getTime()>amTime.getTime()) break;
                             if(itemTime.getTime()==amTime.getTime()){
-                                var html = '<li><a href="/docSchePage?uno=' + item.uno
-                                    +'">' +item.name
+                                var num=0;
+                                if(isNaN(item.num)){
+                                    num=0;
+                                }else{
+                                    num=item.num;
+                                }
+                                var html = '<li num="' +num +'" maxNum="'+item.maxNum + '"sno="'+item.sno
+                                    +'"><div>预约情况</div>'
+                                    + '<div> '+ num +"/"+ item.maxNum+'</div>'
                                     +'</li>';
                                 $(this).append(html);
                             }
@@ -190,7 +204,58 @@
                     layer.msg("预约失败");
                 }
             }
-            })
+        })
+    }
+
+    $('.am').click(reg);
+    $('.pm').click(reg);
+
+    function reg() {
+        console.log("1111111111");
+        var thiz = $(this).find('li');
+        console.log(thiz.attr('num'));
+        console.log($(thiz).attr('num'));
+        if($(thiz).attr('num')>=$(thiz).attr('maxNum')){
+            layser.msg("预约已满");
+        }
+        //显示一个加载动画
+        var index = layer.open({
+            type:3,
+            shade: 0,//0.1透明度的白色背景
+            time:0
+        });
+
+        layer.confirm('是否要预约', {
+            btn: ['是','否'] //按钮
+        }, function(){
+            $.ajax({
+                url: "/pri/reg/addReg?sno="+$(thiz).attr('sno')+"&uno="+window.location.href.split("=")[1],
+                type: "GET",
+                dataType:"json",
+                success: function (data) {
+                    //关闭加载动画
+                    layer.close(index);
+                    if(data.code!=0){
+                        layer.msg(data.msg);
+                        return;
+                    }
+                    layer.msg('预约成功');
+                    var html = '<li num="' +$(thiz).attr('num') +'" maxNum="'+$(thiz).attr('maxNum')  + '"sno="'+$(thiz).attr('sno')
+                        +'"><div>预约情况</div>'
+                        + '<div> '+ (parseInt((thiz).attr('num'))+1) +"/"+ $(thiz).attr('maxNum') +'</div>'
+                        +'</li>';
+                    $(thiz).html(html)
+                },
+                error:function () {
+                    //关闭加载动画
+                    layer.close(index);
+                    layer.msg("请检查网络");
+                }
+            });
+
+        }, function(){
+          layer.closeAll();
+        });
     }
 </script>
 </html>
