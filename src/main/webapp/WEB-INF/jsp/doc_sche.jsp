@@ -101,46 +101,9 @@
 <script type="text/javascript" src="resources/lib/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="resources/lib/jquery.cookie.js"></script>
 <script src="/resources/lib/layer/layer.js"></script>
+<script type="text/javascript" src="WEB-INF/jsp/logout.jsp"></script>
 <script type="text/javascript">
-    $(function () {
-        var Uname=$.cookie("name");
-        if(Uname!=null ){
-            $(".Username").text(Uname );
-            $(".loginArea").show();
-            $(".rightArea").hide();
-        }
-    })
-    $(".logout").click(function () {
-        layer.confirm('确定退出登录？', {
-            btn: ['确定','取消'] //按钮
-        }, function(){
 
-            $.ajax({
-                url: "/login/logout",
-                data: {},
-                type: "get",
-                contentType: "application/json",
-                dataType: "json",
-                success: function (res) {
-                    if (res.code != 0) {
-                        layer.msg
-                        {
-                            "退出失败"
-                        };
-                    } else {
-                        layer.msg('退出成功', {icon: 1});
-                        $.cookie("name", "", {expires: -1});
-                        $.cookie("role", "", {expires: -1});
-                        $.cookie("uno", "", {expires: -1});
-                        $(".rightArea").show();
-                        $(".loginArea").hide();
-                    }
-                }
-            })
-        }, function(){
-            layer.close();
-        });
-    });
     $(function(){
         var mydate=new Date();
         var mytime=mydate.getTime();
@@ -214,7 +177,7 @@
         })
     })
     function doc(sno) {
-        var uno=$.cookie("uno");
+        var uno=$.cookie("user.uno");
         $.ajax({
             url: "/pri/pri/reg/addReg",
             data: JSON.stringify({"sno":sno,"uno" :uno}),

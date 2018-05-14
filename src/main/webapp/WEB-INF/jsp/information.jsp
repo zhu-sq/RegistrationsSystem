@@ -83,15 +83,15 @@
 <script src="/resources/lib/layer/layer.js"></script>
 <script type="text/javascript">
     $(function () {
-        var Uname=$.cookie("name");
+        var Uname=$.cookie("user.name");
         if(Uname!=null ){
             $(".Username").text(Uname );
             $(".loginArea").show();
             $(".rightArea").hide();
         }
-        var Role=$.cookie("role");
+        var Role=$.cookie("user.role");
         if (Role==1){
-            window.open(); //sssssss
+            window.open("/addSchePage");
         }else if(Role==2){
             $(".doc_it").show();
             $(".infor").hide();
@@ -117,9 +117,7 @@
                         };
                     } else {
                         layer.msg('退出成功', {icon: 1});
-                        $.cookie("name", "", {expires: -1});
-                        $.cookie("role", "", {expires: -1});
-                        $.cookie("uno", "", {expires: -1});
+                        $.cookie("user", "", {expires: -1});
                         $(".rightArea").show();
                         $(".loginArea").hide();
                         window.location.href="/index.jsp";
@@ -132,16 +130,7 @@
     });
     $(function () {
 
-        var uno = $.cookie("uno");
-        $.ajax({
-            url: "/login/logout",
-            data: {"uno": uno},
-            type: "post",
-            contentType: "application/json",
-            dataType: "json",
-            success: function (res) {
-
-                if (res.code == 0) {
+                     var res=$.cookie("user");
                     $("#name").html(res.name);
                     $("#bir").html(res.birthday);
                     $("#sex").html(res.sex);
@@ -149,12 +138,9 @@
                     $("#phone").html(res.phone);
                     $("#tit").html(res.tit);
                     $("#intro").html(res.intro);
-                }
-            }
-        });
     });
         $(function () {
-            var uno = $.cookie("uno");
+            var uno = $.cookie("user.uno");
             $.ajax({
                 url: "/pri/shift/getShiftByUno",
                 data: {"uno": uno},
@@ -210,6 +196,11 @@
                 var phones=$("#phone").val();
                 var tits=$("#tit").val();
                 var intr=$("#intro").val();
+
+                if (phones!=11){
+                    layer.msg("请输入正确的电话号码");
+                    return;
+                }
                 var data={
                     "birthday" :birt,
                     "phone":phones,
@@ -218,7 +209,7 @@
                 }
 
                 $.ajax({
-                    url: "/pri/pri/reg/getReg",
+                    url: "/user/updateUser",
                     data: JSON.stringify(data),
                     type: "get",
                     contentType: "application/json",

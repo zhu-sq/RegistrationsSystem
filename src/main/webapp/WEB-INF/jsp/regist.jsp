@@ -84,11 +84,59 @@
             <div class="form-group">
                 <div class="col-md-12">
                     <div class="control-wrapper">
+                        <div class="dep_name hide">
+                            <label for="phone" ><i class="fa fa-user fa-medium"></i></label>
+                              科室<select   id="dname" name="dname" >
+                            <option value="01儿科">01儿科</option>
+                            <option value="02小儿呼吸科">02小儿呼吸科</option>
+                            <option value="03小儿外科">03小儿外科</option>
+                            <option value="04小儿内科">04小儿内科</option>
+                            <option value="05小儿骨科">05小儿骨科</option>
+                            <option value="06妇科">06妇科</option>
+                            <option value="07产科">07产科</option>
+                            <option value="08妇科内分泌">08妇科内分泌</option>
+                            <option value="09妇泌尿科">09妇泌尿科</option>
+                            <option value="10遗传咨询科">10遗传咨询科</option>
+                            <option value="11神经外科">11神经外科</option>
+                            <option value="12心血管外科">12心血管外科</option>
+                            <option value="13胸外科">13胸外科</option>
+                            <option value="14整形科">14整形科</option>
+                            <option value="15泌尿外科">15泌尿外科</option>
+                            <option value="16心血管内科">16心血管内科</option>
+                            <option value="17神经内科">17神经内科</option>
+                            <option value="18内分泌科">18内分泌科</option>
+                            <option value="19消化内科">19消化内科</option>
+                            <option value="20普通内科">20普通内科</option>
+                            <option value="21耳鼻喉">21耳鼻喉</option>
+                            <option value="22头颈外科">22头颈外科</option>
+                            <option value="23口腔科">23口腔科</option>
+                            <option value="24正畸科">24正畸科</option>
+                            <option value="25牙周科">25牙周科</option>
+                            <option value="26骨科">26骨科</option>
+                            <option value="27脊柱外科">27脊柱外科</option>
+                            <option value="28手外科">28手外科</option>
+                            <option value="29创伤骨科">29创伤骨科</option>
+                            <option value="30矫形骨科">30矫形骨科</option>
+                            <option value="31肿瘤内科">31肿瘤内科</option>
+                            <option value="32肿瘤外科">32肿瘤外科</option>
+                            <option value="33肿瘤妇科">33肿瘤妇科</option>
+                            <option value="34放疗科">34放疗科</option>
+                            <option value="35肿瘤康复科">35肿瘤康复科</option>
+                        </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-12">
+                    <div class="control-wrapper">
                         <input  type="button" id="signup" value="注册" class="btn btn-info">
                         <input  type="button" id="dot_signup" value="医生注册" class="btn btn-info " style="display: none">
                     </div>
                 </div>
             </div>
+
+
 
             <hr>
 
@@ -114,11 +162,13 @@
                $("#signup").hide();
                $("#dot_signup").show();
                $(".doc_tit").show();
+               $(".dep_name").show();
             }
         }
     });
     });
 </script>
+
 <script>
     $(document).ready(function() {
 
@@ -131,6 +181,8 @@
             var idcard = $('#idcard').val();
             var phone = $('#phone').val();
             var title=$("#title").val();
+            var dname=$("#dname").val();
+            var dno=parseInt(dname.substr(0,2));
             console.log("click:",name,sex,pwd1,idcard,phone);
 
             if (name === undefined || name==="") {
@@ -146,7 +198,7 @@
                 layer.msg("请输入密码");
                 return;
             }
-            if (pwd2 !=pwd1 && pwd2==="") {
+            if (pwd2 !=pwd1 ) {
                 layer.msg("两个密码不一致");
                 return;
             }
@@ -164,7 +216,8 @@
                 "pwd": pwd1,
                 "idcard":idcard,
                 "phone":phone,
-                "title":title
+                "title":title,
+                "dno":dno
             }
 
 
@@ -189,9 +242,7 @@
                     }else {
                         //跳转到首页
                         layer.msg("注册成功！");
-                        $.cookie("name",data.user.name,{path:"/"});
-                        $.cookie("role",data.user.role,{path:"/"});
-                        $.cookie("uno",data.user.uno,{path:"/"});
+                        $.cookie("user",data.user,{path:"/"});
                         window.location.href="/index.jsp";
 
 
@@ -205,6 +256,7 @@
             });
         });
     })
+
 </script>
 
 

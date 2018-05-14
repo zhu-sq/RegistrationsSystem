@@ -37,20 +37,12 @@
                     </div>
                 </div>
             </div>
-            <div class="form-group">
-                <div class="col-md-12">
-                    <div class="checkbox control-wrapper">
-                        <label>
-                            <input type="checkbox"> 记住登录状态
-                        </label>
-                    </div>
-                </div>
-            </div>
+
             <div class="form-group">
                 <div class="col-md-12">
                     <div class="control-wrapper">
                         <input  type="button" id="login" value="登录" class="btn btn-info">
-                        <a href="forgot-password.html" class="text-right pull-right">忘记密码?</a>
+
                     </div>
                 </div>
             </div>
@@ -112,9 +104,7 @@
                     }else{
                         //跳转到首页
                         layer.msg("登录成功");
-                        $.cookie("name",data.user.name,{path:"/"});
-                        $.cookie("role",data.user.role,{path:"/"});
-                        $.cookie("uno",data.user.uno,{path:"/"});
+                        $.cookie("user",data.user,{path:"/"});
                         window.location.href="/index.jsp";
                     }
 
