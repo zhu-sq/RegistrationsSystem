@@ -85,7 +85,7 @@
                 <div class="col-md-12">
                     <div class="control-wrapper">
                         <input  type="button" id="signup" value="注册" class="btn btn-info">
-                        <input  type="button" id="dot_signup" value="医生注册" class="btn btn-info hide">
+                        <input  type="button" id="dot_signup" value="医生注册" class="btn btn-info " style="display: none">
                     </div>
                 </div>
             </div>
@@ -132,7 +132,6 @@
             var phone = $('#phone').val();
             var title=$("#title").val();
             console.log("click:",name,sex,pwd1,idcard,phone);
-
 
             if (name === undefined || name==="") {
                 layer.msg("请输入姓名");
@@ -190,9 +189,12 @@
                     }else {
                         //跳转到首页
                         layer.msg("注册成功！");
-                        window.location.href="/index.jsp";
                         $.cookie("name",data.name,{path:"/"});
                         $.cookie("role",data.role,{path:"/"});
+                        $.cookie("uno",data.uno,{path:"/"});
+                        window.location.href="/index.jsp";
+
+
                     }
                 },
                 error:function () {
