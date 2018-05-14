@@ -65,6 +65,7 @@
         <div>患者电话：<p id="uphone"></p> </div>
     </div>
     <div><button type="button" id="change">修改</button> </div>
+    <div><button type="button" id="sure" style="display: none">确定</button><button type="button" id="cancel" style="display: none">取消</button> </div>
     <div class="infor">
         <h3>预约信息</h3>
         <div>班次号：<p id="sno"></p> </div>
@@ -189,6 +190,17 @@
                 });
             });
             $("#change").click(function () {
+                $(".inf input").show();
+                $(".inf button").show();
+                $(this).hide();
+            })
+            $("#cancel").click(function () {
+                $(".inf input").hide();
+                $("#change").show();
+                $(this).hide();
+                $("#sure").hide();
+            })
+            $("#sure").click(function () {
                 var birt=$("#bir").val();
                 var phones=$("#phone").val();
                 var tits=$("#tit").val();
