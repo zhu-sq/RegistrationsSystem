@@ -79,7 +79,7 @@ public class RegisterController {
         }else if(sessionRole.equals("1")){
             role="1";
         }else{
-            resMap.put("code","3");
+            resMap.put("code","2");
             resMap.put("msg","不是管理员，无权限注册医生账号");
             return resMap;
         }
