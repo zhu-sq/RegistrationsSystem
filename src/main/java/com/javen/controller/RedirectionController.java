@@ -31,10 +31,10 @@ public class RedirectionController {
         return new ModelAndView("doc_res");
     }
 
-    @RequestMapping(value="/docShcePage",method= RequestMethod.GET)
+    @RequestMapping(value="/docSchePage",method= RequestMethod.GET)
     public ModelAndView docShcePage(){
-        System.out.println("docShcePage");
-        return new ModelAndView("doc_shce");
+        System.out.println("docSchePage");
+        return new ModelAndView("doc_sche");
     }
 
     @RequestMapping(value="/doctorPage",method= RequestMethod.GET)
