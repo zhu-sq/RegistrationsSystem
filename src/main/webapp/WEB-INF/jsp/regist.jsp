@@ -113,8 +113,6 @@
             console.log("click:",name,sex,Ugender,pwd,idcard,phone);
 
 
-
-
             if (name === undefined || name==="") {
                 layer.msg("请输入姓名");
                 return;
@@ -165,7 +163,7 @@
                         layer.msg("注册失败！");
                     }else {
                         //跳转到首页
-                        window.location.href="index.jsp";
+                        window.location.href="/index";
                         layer.msg("注册成功！");
                         $.cookie("name",data.name,{path:"/"});
                         $.cookie("role",data.role,{path:"/"});

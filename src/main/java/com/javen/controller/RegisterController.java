@@ -27,7 +27,11 @@ public class RegisterController {
     @RequestMapping(value="",method= RequestMethod.GET)
     public ModelAndView RegistPage(HttpServletRequest httpServletRequest){
         String role = null;
+
+
+
         if(httpServletRequest.getSession().getAttribute("role")!=null){
+
             role = httpServletRequest.getSession().getAttribute("role").toString();
         }
         if(role==null || !role.equals("1")){
@@ -62,11 +66,12 @@ public class RegisterController {
             return resMap;//返回给前端页面提示
         }
 
+
         String opt = param.get("opt");//1管理员2医生3普通用户
         String role="";
         String sessionRole = "";
         User user = new User();
-        if(httpServletRequest.getSession().getAttribute("role")!=null){
+        if(httpServletRequest.getSession().getAttribute("role")!=null){//1管理员2医生3普通用户
             sessionRole = httpServletRequest.getSession().getAttribute("role").toString();
         }
         if(opt==null || !opt.equals("1")){
