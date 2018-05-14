@@ -68,15 +68,41 @@ INSERT INTO role_user VALUES (7,3);
 
 
 -- 添加科室 科室为二级科室，使用逗号隔开。格式为:内科门诊,普通内科
-INSERT INTO department VALUES (1,'内科门诊,普通内科','普通内科');
-INSERT INTO department VALUES (2,'内科门诊,内科','内科');
-INSERT INTO department VALUES (3,'皮肤门诊,皮肤门诊','普通皮肤科');
-INSERT INTO department VALUES (4,'皮肤门诊,痔疮专科','痔疮专科');
-INSERT INTO department VALUES (5,'皮肤门诊,脱发专科','脱发专科');
-INSERT INTO department VALUES (6,'皮肤门诊,湿疹专科','湿疹专科');
-INSERT INTO department VALUES (7,'皮肤门诊,皮肤病专科','皮肤病专科');
-INSERT INTO department VALUES (8,'耳鼻喉门诊,耳鼻喉专科','耳鼻喉专科');
-INSERT INTO department VALUES (9,'耳鼻喉门诊,头颈肿瘤','头颈肿瘤');
+INSERT INTO department VALUES (1,'儿科','儿科');
+INSERT INTO department VALUES (2,'小儿呼吸科','小儿呼吸科');
+INSERT INTO department VALUES (3,'小儿外科','小儿外科');
+INSERT INTO department VALUES (4,'小儿内科','小儿内科');
+INSERT INTO department VALUES (5,'小儿骨科','小儿骨科');
+INSERT INTO department VALUES (6,'妇科','妇科');
+INSERT INTO department VALUES (7,'产科','产科');
+INSERT INTO department VALUES (8,'妇科内分泌','妇科内分泌');
+INSERT INTO department VALUES (9,'妇泌尿科','妇泌尿科');
+INSERT INTO department VALUES (10,'遗传咨询科','遗传咨询科');
+INSERT INTO department VALUES (11,'神经外科','神经外科');
+INSERT INTO department VALUES (12,'心血管外科','心血管外科');
+INSERT INTO department VALUES (13,'胸外科','胸外科');
+INSERT INTO department VALUES (14,'整形科','整形科');
+INSERT INTO department VALUES (15,'泌尿外科','泌尿外科');
+INSERT INTO department VALUES (16,'心血管内科','心血管内科');
+INSERT INTO department VALUES (17,'神经内科','神经内科');
+INSERT INTO department VALUES (18,'内分泌科','内分泌科');
+INSERT INTO department VALUES (19,'消化内科','消化内科');
+INSERT INTO department VALUES (20,'普通内科','普通内科');
+INSERT INTO department VALUES (21,'耳鼻喉','耳鼻喉');
+INSERT INTO department VALUES (22,'头颈外科','头颈外科');
+INSERT INTO department VALUES (23,'口腔科','口腔科');
+INSERT INTO department VALUES (24,'正畸科','正畸科');
+INSERT INTO department VALUES (25,'牙周科','牙周科');
+INSERT INTO department VALUES (26,'骨科','骨科');
+INSERT INTO department VALUES (27,'脊柱外科','脊柱外科');
+INSERT INTO department VALUES (28,'手外科','手外科');
+INSERT INTO department VALUES (29,'创伤骨科','创伤骨科');
+INSERT INTO department VALUES (30,'矫形骨科','矫形骨科');
+INSERT INTO department VALUES (31,'肿瘤内科','肿瘤内科');
+INSERT INTO department VALUES (32,'肿瘤外科','肿瘤外科');
+INSERT INTO department VALUES (33,'肿瘤妇科','肿瘤妇科');
+INSERT INTO department VALUES (34,'放疗科','放疗科');
+INSERT INTO department VALUES (35,'肿瘤康复科','肿瘤康复科');
 
 -- 将医生安排到科室
 INSERT INTO depar_user VALUES (2,1);
