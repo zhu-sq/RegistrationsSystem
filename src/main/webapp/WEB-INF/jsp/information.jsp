@@ -51,10 +51,10 @@
 </div>
 <div class="inf comWidth">
     <div>姓名：<p id="name"></p> </div>
-    <div>生日：<p id="bir"></p><input type="text" id="birth " maxlength="20" placeholder="格式：2016-03-25" style="display: none"></div>
+    <div>生日：<p id="bir"></p><input type="text" id="birth" maxlength="20" placeholder="格式：2016-03-25" style="display: none"></div>
     <div>性别：<p id="sex"></p></div>
     <div>身份证号码：<p id="idc"></p></div>
-    <div>联系电话：<p id="phone"></p><input type="text" id="phones " maxlength="12" placeholder="请输入新的联系电话" style="display: none"></div>
+        <div>联系电话：<p id="phone"></p><input type="text" id="phones" maxlength="12" placeholder="请输入新的联系电话" style="display: none"></div>
     <div class="doc_it hide ">
         <div>职称：<p id="tit"></p><input type="text" id="tit " maxlength="20" placeholder="请输入新的职称" style="display: none"></div>
         <div>个人简介：<p id="intro"></p><input type="text" id="intros " maxlength="50" placeholder="请输入新的个人简介" style="display: none"></div>
@@ -131,7 +131,6 @@
         });
     });
     $(function () {
-
         var uno = $.cookie("uno");
         $.ajax({
             url: "/login/logout",
@@ -140,7 +139,6 @@
             contentType: "application/json",
             dataType: "json",
             success: function (res) {
-
                 if (res.code == 0) {
                     $("#name").html(res.name);
                     $("#bir").html(res.birthday);
@@ -156,21 +154,18 @@
         $(function () {
             var uno = $.cookie("uno");
             $.ajax({
-                url: "/pri/shift/getShiftByUno",
+                url: "/shift/getShiftByUno",
                 data: {"uno": uno},
                 type: "get",
-                contentType: "application/json",
-                dataType: "json",
                 success: function (res) {
-
                     if (res.code == 0) {
-
                         $("#sno").html(res.sno);
                         $("#DRname").html(res.doctName);
                         $("#Dpname").html(res.deparName);
                         $("#sd").html(res.startDate);
                         $("#ed").html(res.endDate);
-
+                    }else if(res.code==10){
+                        layer.msg("没有挂号信息");
                     }
                 }
             });
@@ -206,10 +201,10 @@
                 $("#sure").hide();
             })
             $("#sure").click(function () {
-                var birt=$("#bir").val();
-                var phones=$("#phone").val();
-                var tits=$("#tit").val();
-                var intr=$("#intro").val();
+                var birt=$("#birth").val();
+                var phones=$("#phones").val();
+                var title=$("#tit").val();
+                var intro=$("#intro").val();
                 var data={
                     "birthday" :birt,
                     "phone":phones,
@@ -218,9 +213,9 @@
                 }
 
                 $.ajax({
-                    url: "/pri/pri/reg/getReg",
+                    url: "/user/updateUser",
                     data: JSON.stringify(data),
-                    type: "get",
+                    type: "post",
                     contentType: "application/json",
                     dataType: "json",
                     success: function (res) {

@@ -153,66 +153,65 @@
         }
     })
     $(function () {
-        var Unos=window.location.href.split("=")[1];
-        var uno=parseInt(Unos);
+        var uno=window.location.href.split("=")[1];
         $.ajax({
-            url: "/shift/getByDnoUno",
-            data: JSON.stringify({"uno" :uno}),
+            url: "/shift/getByDnoUno?uno="+uno,
             type: "GET",
-            contentType: "application/json",
-            dataType:"json",
             success: function (data) {
+                if(data.code!=0){
+                    layer.msg(data.msg);
+                }
                 if(data.code==0){
-                    $("#DRname").html(data.user.name);
-                    $("#DRsex").html(data.user.sex);
-                    $("#DRgender").html(data.user.birthday.split("-")[0]);
-                    $("#DRphone").html(data.user.phone);
-                    $("#DRtitle").html(data.user.title);
-                    $("#DRdetail").html(data.user.intro);
-                    var mydate=new Date();
-                    var mytime=mydate.getTime();
-                    var dayTime=24*60*60*1000;
-                    for(var i=0;i<$(".day").length;i++){
-                        var mydays=new Date(mytime+i*dayTime);
-                        var mymonth=mydays.getMonth()+1;
-                        var myday=mydays.getDate();
-                        for(varj=0;j<data.shifts.length;j++){
-                            var a=data.shifts[j].endDate.split(" ");
-                            var b=a[0].split("-");
-                            if((b[1]==mymonth)&&(b[2]==myday)){
-                                var c=a[1].split(":");
-                                if(c[0]<"12"){
-                                    var nums=data.shifts[j].maxNum-data.shifts[j].num;
-                                    if(nums>0){
-                                        $(".am").eq(i).html("剩余"+nums+"个号");
-                                    var d = document.createElement("a");
-                                    var node = document.createTextNode("预约");
-                                    d.appendChild(node);
-                                    d.setAttribute("href","doc(data.shifts[j].sno)");
-                                    $(".am").eq(i).appendChild(d);
-                                    }else {
-                                        $(".am").eq(i).html("没有号了");
-                                    }
-                                }else {
-                                    var nums=data.shifts[j].maxNum-data.shifts[j].num;
-                                    if(nums>0){
-                                        $(".pm").eq(i).html("剩余"+nums+"个号");
-                                        var d = document.createElement("a");
-                                        var node = document.createTextNode("预约");
-                                        d.appendChild(node);
-                                        d.setAttribute("href","doc(data.shifts[j].sno)");
-                                        $(".pm").eq(i).appendChild(d);
-                                    }else {
-                                        $(".pm").eq(i).html("没有号了");
-                                    }
-                                }
+                    var day=0;
+                    $('.mor').find('.am').each(function () {
+                        var amTime = new Date(getTime('8:00:00',day++));
+                        for(i=0;i<data.shifts.length;i++){
+                            var item = data.shifts[i];
+                            var itemTime = new Date(item.startDate);
+                            if(itemTime.getTime()>amTime.getTime()) break;
+                            if(itemTime.getTime()==amTime.getTime()){
+                                var html = '<li><a href="/docSchePage?uno=' + item.uno
+                                    +'">' +item.name
+                                    +'</li>';
+                                $(this).append(html);
                             }
                         }
-                    }
+                    })
+                    day=0;
+                    $('.aft').find('.pm').each(function () {
+                        var amTime = new Date(getTime('8:00:00',day++));
+                        for(i=0;i<data.shifts.length;i++){
+                            var item = data.shifts[i];
+                            var itemTime = new Date(item.startDate);
+                            if(itemTime.getTime()>amTime.getTime()) break;
+                            if(itemTime.getTime()==amTime.getTime()){
+                                var html = '<li><a href="/docSchePage?uno=' + item.uno
+                                    +'">' +item.name
+                                    +'</li>';
+                                $(this).append(html);
+                            }
+                        }
+                    })
                 }
             }
         })
     })
+    function getTime(startTime,day) {
+        var date = new Date();
+        var seperator1 = "-";
+        var seperator2 = ":";
+        var month = date.getMonth() + 1;
+        var strDate = date.getDate()+day;
+        if (month >= 1 && month <= 9) {
+            month = "0" + month;
+        }
+        if (strDate >= 0 && strDate <= 9) {
+            strDate = "0" + strDate;
+        }
+        var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate + " "+startTime;
+        return currentdate;
+    }
+
     function doc(sno) {
         var uno=$.cookie("uno");
         $.ajax({

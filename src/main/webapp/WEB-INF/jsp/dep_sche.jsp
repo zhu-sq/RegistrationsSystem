@@ -153,45 +153,64 @@
             url: "/shift/getByDnoUno?dno="+dno,
             type: "GET",
             success: function (data) {
-             if(data.code==0){
-                $("#dep_name").html(data.depar.name);
-                $("#dep_detail fl").html(data.depar.detail);
-                 var mydate=new Date();
-                 var mytime=mydate.getTime();
-                 var dayTime=24*60*60*1000;
-                 for(var i=0;i<$(".day").length;i++){
-                     var mydays=new Date(mytime+i*dayTime);
-                     var mymonth=mydays.getMonth()+1;
-                     var myday=mydays.getDate();
-                     for(varj=0;j<data.shifts.length;j++){
-                         var a=data.shifts[j].endDate.split(" ");
-                         var b=a[0].split("-");
-                         if((b[1]==mymonth)&&(b[2]==myday)){
-                             var c=a[1].split(":");
-                             if(c[0]<"12"){
-                                 var d = document.createElement("a");
-                                 var node = document.createTextNode(data.shifts[j].name);
-                                 d.appendChild(node);
-                                 d.setAttribute("href","doc(data.shifts[j].uno)");
-                                 $(".am").eq(i).appendChild(d);
-                             }else {
-                                 var d = document.createElement("a");
-                                 var node = document.createTextNode(data.shifts[j].name);
-                                 d.appendChild(node);
-                                 d.setAttribute("href","doc(data.shifts[j].uno)");
-                                 $(".pm").eq(i).appendChild(d);
-                             }
-                         }
-                     }
-                     }
-                 }
+                if(data.code!=0){
+                    layer.msg(data.msg);
+                }
+                if(data.code==0){
+                    var day=0;
+                    $('.mor').find('.am').each(function () {
+                        var amTime = new Date(getTime('8:00:00',day++));
+                        for(i=0;i<data.shifts.length;i++){
+                            var item = data.shifts[i];
+                            var itemTime = new Date(item.startDate);
+                            if(itemTime.getTime()>amTime.getTime()) break;
+                            if(itemTime.getTime()==amTime.getTime()){
+                                var html = '<li><a href="/docSchePage?uno=' + item.uno
+                                    +'">' +item.name
+                                    +'</li>';
+                                $(this).append(html);
+                            }
+                        }
+                    })
+                    day=0;
+                    $('.aft').find('.pm').each(function () {
+                        var amTime = new Date(getTime('8:00:00',day++));
+                        for(i=0;i<data.shifts.length;i++){
+                            var item = data.shifts[i];
+                            var itemTime = new Date(item.startDate);
+                            if(itemTime.getTime()>amTime.getTime()) break;
+                            if(itemTime.getTime()==amTime.getTime()){
+                                var html = '<li><a href="/docSchePage?uno=' + item.uno
+                                    +'">' +item.name
+                                    +'</li>';
+                                $(this).append(html);
+                            }
+                        }
+                    })
+                }
             }
-            })
+        })
     })
-  function doc(uno) {
+    function doc(uno) {
         var url="/docShcePage?dno="+uno;
         window.open(url);
 
+    }
+
+    function getTime(startTime,day) {
+        var date = new Date();
+        var seperator1 = "-";
+        var seperator2 = ":";
+        var month = date.getMonth() + 1;
+        var strDate = date.getDate()+day;
+        if (month >= 1 && month <= 9) {
+            month = "0" + month;
+        }
+        if (strDate >= 0 && strDate <= 9) {
+            strDate = "0" + strDate;
+        }
+        var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate + " "+startTime;
+        return currentdate;
     }
 </script>
 </html>

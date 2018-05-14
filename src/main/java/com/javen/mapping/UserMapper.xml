@@ -58,12 +58,12 @@
   <update id="updateUser" parameterType="com.javen.model.User">
     update user
     <set>
-      <if test="name!=null">start_date=#{name},</if>
-      <if test="pwd!=null">end_date=#{pwd},</if>
-      <if test="birthday!=null">start_date=#{birthday},</if>
-      <if test="phone!=null">start_date=#{phone},</if>
-      <if test="intro!=null">start_date=#{intro},</if>
-      <if test="title!=null">start_date=#{title},</if>
+      <if test="name!=null">name=#{name},</if>
+      <if test="pwd!=null">pwd=#{pwd},</if>
+      <if test="birthday!=null">birthday=#{birthday},</if>
+      <if test="phone!=null">phone=#{phone},</if>
+      <if test="intro!=null">intro=#{intro},</if>
+      <if test="title!=null">title=#{title},</if>
     </set>
     WHERE uno=#{uno}
   </update>
