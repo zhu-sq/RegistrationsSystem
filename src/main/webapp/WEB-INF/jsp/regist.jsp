@@ -40,13 +40,13 @@
             </div>
 
             <div class="form-group">
-            <div class="col-md-12">
-                <div class="control-wrapper">
-                    <label for="pwd1" ><i class="fa fa-lock fa-medium"></i></label>
-                    密码 <input type="password" class="form-control" id="pwd1" placeholder="输入密码">
+                <div class="col-md-12">
+                    <div class="control-wrapper">
+                        <label for="pwd1" ><i class="fa fa-lock fa-medium"></i></label>
+                        密码 <input type="password" class="form-control" id="pwd1" placeholder="输入密码">
+                    </div>
                 </div>
             </div>
-        </div>
             <div class="form-group">
                 <div class="col-md-12">
                     <div class="control-wrapper">
@@ -75,8 +75,8 @@
                 <div class="col-md-12">
                     <div class="control-wrapper">
                         <div class="doc_tit hide">
-                        <label for="phone" ><i class="fa fa-lock fa-medium"></i></label>
-                        职称 <input type="text" class="form-control" id="title" placeholder="输入职称">
+                            <label for="phone" ><i class="fa fa-lock fa-medium"></i></label>
+                            职称 <input type="text" class="form-control" id="title" placeholder="输入职称">
                         </div>
                     </div>
                 </div>
@@ -95,6 +95,7 @@
         </form>
     </div>
 </div>
+<div id="role">${role}</div>
 </body>
 
 
@@ -103,20 +104,11 @@
 <script src="/resources/lib/jquery.cookie.js"></script>
 <script>
     $(function () {
-    $.ajax({
-        url: "",
-        data: {},
-        type: "get",
-        contentType: "application/json",
-        dataType:"json",
-        success: function (res){
-            if(res.role=="1"){
-               $("#signup").hide();
-               $("#dot_signup").show();
-               $(".doc_tit").show();
-            }
+        if($('#role').html()=="1"){
+            $("#signup").hide();
+            $("#dot_signup").show();
+            $(".doc_tit").show();
         }
-    });
     });
 </script>
 <script>
@@ -184,8 +176,8 @@
                 success: function (data) {
                     //关闭加载动画
                     layer.close(index);
-                    if(data.code!==0){
-                        layer.msg("注册失败！");
+                    if(data.code!=0){
+                        layer.msg(data.msg);
                     }else {
                         //跳转到首页
                         layer.msg("注册成功！");
