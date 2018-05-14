@@ -27,6 +27,9 @@
     <if test="idcard!=null and idcard!=''">
       idcard=#{idcard}
     </if>
+    <if test="name!=null and name!=''">
+      name=#{name}
+    </if>
   </select>
 
   <select id="selectRoleByUno" resultType="INTEGER">
@@ -58,12 +61,12 @@
   <update id="updateUser" parameterType="com.javen.model.User">
     update user
     <set>
-      <if test="name!=null">name=#{name},</if>
-      <if test="pwd!=null">pwd=#{pwd},</if>
-      <if test="birthday!=null">birthday=#{birthday},</if>
-      <if test="phone!=null">phone=#{phone},</if>
-      <if test="intro!=null">intro=#{intro},</if>
-      <if test="title!=null">title=#{title},</if>
+      <if test="name!=null and name!=''">name=#{name}</if>
+      <if test="pwd!=null and pwd!=''">pwd=#{pwd}</if>
+      <if test="birthday!=null and birthday!=''">birthday=#{birthday}</if>
+      <if test="phone!=null and phone!=''">phone=#{phone}</if>
+      <if test="intro!=null and intro!=''">intro=#{intro}</if>
+      <if test="title!=null and title!=''">title=#{title}</if>
     </set>
     WHERE uno=#{uno}
   </update>
