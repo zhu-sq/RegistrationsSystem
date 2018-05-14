@@ -114,11 +114,8 @@
         var dnos=window.location.href.split("=")[1];
         var dno=parseInt(dnos);
         $.ajax({
-            url: "/shift/getByDnoUno",
-            data: JSON.stringify({"dno" :dno}),
+            url: "/shift/getByDnoUno?dno="+dno,
             type: "GET",
-            contentType: "application/json",
-            dataType:"json",
             success: function (data) {
              if(data.code==0){
                 $("#dep_name").html(data.depar.name);

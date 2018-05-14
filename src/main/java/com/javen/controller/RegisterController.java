@@ -42,7 +42,7 @@ public class RegisterController {
         if(role==null || !role.equals("1")){
             return new ModelAndView("regist");
         }
-        log.debug("regist");
+        log.info("doctor regist");
         return new ModelAndView("regist","role",1);
     }
 
