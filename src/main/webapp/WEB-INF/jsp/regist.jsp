@@ -155,9 +155,10 @@
 
         if($('#role').html()=="1"){
             $("#signup").hide();
+            $(".dep_name").show();
+
             $("#dot_signup").show();
             $(".doc_tit").show();
-            $(".dep_name").show();
 
         }
     });

@@ -56,10 +56,10 @@
     <div>身份证号码：<p id="idc"></p></div>
     <div>联系电话：<p id="phone"></p><input type="text" id="phones" maxlength="12" placeholder="请输入新的联系电话" style="display: none"></div>
     <div class="doc_it hide ">
-        <div>职称：<p id="tit"></p><input type="text" id="tit " maxlength="20" placeholder="请输入新的职称" style="display: none"></div>
+        <div>职称：<p id="tit"></p><input type="text" id="tits" maxlength="20" placeholder="请输入新的职称" style="display: none"></div>
         <div>个人简介：<p id="intro"></p><input type="text" id="intros " maxlength="50" placeholder="请输入新的个人简介" style="display: none"></div>
         <div>预约用户信息：</div>
-        <div><input type="text" id="dsno " maxlength="20" placeholder="请输入班次号" ><button type="button" id="snos">提交</button> </div>
+        <div><input type="text" id="dsno" maxlength="20" placeholder="请输入班次号" ><button type="button" id="snos">提交</button> </div>
         <div>患者编号：<p id="unos"></p> </div>
         <div>患者姓名：<p id="Unames"></p> </div>
         <div>患者电话：<p id="uphone"></p> </div>
@@ -143,11 +143,14 @@
         $("#intro").html(res.intro);
     });
     $(function () {
-        var uno = $.cookie("user.uno");
+        var user=JSON.parse($.cookie("user"));
+        var uno = user.uno;
         $.ajax({
             url: "/shift/getShiftByUno",
-            data: {"uno": uno},
-            type: "get",
+            data: {"uno":uno},
+            type: "GET",
+            contentType: "application/json",
+            dataType: "json",
             success: function (res) {
                 if (res.code == 0) {
                     $("#sno").html(res.sno);
@@ -163,14 +166,17 @@
     });
     $("#snos").click(function () {
         var dsno = $("#dsno").val();
-        $.ajax({
-            url: "/pri/pri/reg/getReg",
-            data: {"sno": dsno},
-            type: "get",
-            contentType: "application/json",
-            dataType: "json",
-            success: function (res) {
+        console.log(dsno);
 
+        $.ajax({
+            url: "/pri/reg/getReg?uno"+dsno,
+                type: "GET",
+                dataType: "json",
+            success: function (res) {
+  if(res.code!=0){
+    layer.mag(res.msg);
+    return;
+}
                 if (res.code == 0) {
                     $("#unos").html(res.users.uno);
                     $("#Unames").html(res.users.name);
@@ -195,7 +201,7 @@
 
         var birt=$("#birth").val();
         var phones=$("#phones").val();
-        var tits=$("#tit").val();
+        var tits=$("#tits").val();
         var intr=$("#intro").val();
 
         if (phones!="" && phones.length!=11){

@@ -61,12 +61,13 @@ public class RegistrationController {
             return resMap;
         }
 
-        if(request.getSession().getAttribute("uno")==null || !request.getSession().getAttribute("uno").equals(uno)){
-            resMap.put("code",4);
-            resMap.put("msg","请登录");
-            log.info("请登录");
-            return resMap;
-        }
+//        log.info("uno----"+uno);
+//        if(request.getSession().getAttribute("uno")==null || !request.getSession().getAttribute("uno").equals(uno)){
+//            resMap.put("code",4);
+//            resMap.put("msg","请登录");
+//            log.info("请登录");
+//            return resMap;
+//        }
 
         HashMap<String,Integer> map = new HashMap<String, Integer>();
         map.put("sno",sno);
@@ -150,20 +151,20 @@ public class RegistrationController {
 
     /**
      * @MethodName : GetReg
-     * @Description : 根据排班表编号(suno)获取当前排班表的预约病人的信息
-     * @param  suno:排班表编号
+     * @Description : 根据排班表编号(sno)获取当前排班表的预约病人的信息
+     * @param  sno:排班表编号
      * @return :返回是否操作成功
      */
     @RequestMapping(value = "/getReg",method = RequestMethod.GET)
     @ResponseBody
-    public Map<String,Object> GetReg(@RequestParam(value="suno") Integer suno,
+    public Map<String,Object> GetReg(@RequestParam(value="sno") Integer sno,
                                      HttpServletRequest httpServletRequest) {
         log.info("-------------GetReg-------");
-        log.info(suno+"");
+        log.info(sno+"");
 
         Map<String,Object> resMap=new HashMap<String, Object>();
         //判断参数是否有传进来
-        if(suno==null){
+        if(sno==null){
             resMap.put("code",2);
             resMap.put("msg","排班编号为空");
             log.info("排班编号为空");
@@ -188,7 +189,7 @@ public class RegistrationController {
             return resMap;
         }
 
-        List<User> list = registrationService.getRegUser(suno);
+        List<User> list = registrationService.getRegUser(sno);
 
         resMap.put("code","0");
         resMap.put("msg","获取成功");
