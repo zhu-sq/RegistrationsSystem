@@ -8,4 +8,11 @@
         WHERE dno=#{dno}
     </select>
 
+    <insert id="addDnoUno">
+        INSERT INTO depar_user(uno,dno)
+        values (
+        SELECT uno FROM user where idcard=#{idcard}
+        ,#{dn.o})
+    </insert>
+
 </mapper>

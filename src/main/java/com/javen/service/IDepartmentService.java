@@ -6,4 +6,5 @@ import java.util.HashMap;
 
 public interface IDepartmentService {
     Department getDeparByDno(HashMap<String,Object> map);
+    void addDnoUno(HashMap<String,String> map);
 }

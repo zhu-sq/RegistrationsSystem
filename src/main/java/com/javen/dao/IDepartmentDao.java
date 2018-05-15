@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface IDepartmentDao {
     Department selectByDno(HashMap<String,Object> map);
+    void addDnoUno(HashMap<String,String> map);
 }

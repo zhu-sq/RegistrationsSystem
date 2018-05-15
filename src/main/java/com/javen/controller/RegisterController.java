@@ -1,6 +1,7 @@
 package com.javen.controller;
 
 import com.javen.model.User;
+import com.javen.service.IDepartmentService;
 import com.javen.service.IUserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -24,6 +25,8 @@ public class RegisterController {
     private static Logger log= LoggerFactory.getLogger(RegisterController.class);
     @Resource
     private IUserService userService;
+ @Resource
+    private IDepartmentService departmentService;
 
     @RequestMapping(value="",method= RequestMethod.GET)
     public ModelAndView RegistPage(HttpServletRequest httpServletRequest){
@@ -123,6 +126,9 @@ public class RegisterController {
         user.setSex(param.get("sex"));
         user.setIntro(param.get("intro"));
         user.setRole(Integer.valueOf(role));
+        if(role.equals(("2"))){
+            user.setTitle(param.get("title"));
+        }
         log.info(user.toString());
         userService.addUser(user);
 
@@ -132,12 +138,24 @@ public class RegisterController {
 
         userService.defineRole(queryMap);
 
+
+        //如果注册医生，添加科室-医生关联
+        if(role.equals("2")){
+            queryMap.clear();
+            queryMap.put("idcard",param.get("idcard"));
+            queryMap.put("dno",param.get("dno"));
+            departmentService.addDnoUno(queryMap);
+        }
+
+        httpServletRequest.getSession().setAttribute("isLogin",1);
+        httpServletRequest.getSession().setAttribute("name",user.getName());
+        httpServletRequest.getSession().setAttribute("uno",user.getUno());
+        httpServletRequest.getSession().setAttribute("role",role);
+
         //添加defineRole
         resMap.put("code","0");
         resMap.put("msg","操作成功");
+
         return resMap;
-
-
-
     }
 }

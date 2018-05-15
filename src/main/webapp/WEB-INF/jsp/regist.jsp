@@ -235,10 +235,8 @@
                     }else {
                         //跳转到首页
                         layer.msg("注册成功！");
-                        $.cookie("user",data.user,{path:"/"});
+                        $.cookie("user",JSON.stringify(data.user),{path:"/"});
                         window.location.href="/index.jsp";
-
-
                     }
                 },
                 error:function () {

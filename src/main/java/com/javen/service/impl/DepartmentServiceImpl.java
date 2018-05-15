@@ -17,4 +17,8 @@ public class DepartmentServiceImpl implements IDepartmentService {
     public Department getDeparByDno(HashMap<String,Object> map){
         return this.departmentDao.selectByDno(map);
     }
+
+    public void addDnoUno(HashMap<String,String> map){
+         this.departmentDao.addDnoUno(map);
+    }
 }
