@@ -23,8 +23,9 @@
 
             <div class="rightArea">
                 您好！请 <a href="/login">登录</a> | <a href="/reg">注册</a>
-                <div class="loginArea hide" >欢迎你！<p class="Username"></p>&nbsp&nbsp<a id="logout" href="#">退出登录</a>&nbsp&nbsp<a href="/informationPage">个人信息</a> </div>
             </div>
+            <div class="loginArea hide" >欢迎你！<p class="Username"></p>&nbsp&nbsp<a id="logout" href="#">退出登录</a>&nbsp&nbsp<a href="/informationPage">个人信息</a> </div>
+
         </div>
     </div>
     <div class="logoBar">
@@ -56,14 +57,16 @@
     <div>身份证号码：<p id="idc"></p></div>
     <div>联系电话：<p id="phone"></p><input type="text" id="phones" maxlength="12" placeholder="请输入新的联系电话" style="display: none"></div>
     <div class="doc_it hide ">
-        <div>职称：<p id="tit"></p><input type="text" id="tit " maxlength="20" placeholder="请输入新的职称" style="display: none"></div>
-        <div>个人简介：<p id="intro"></p><input type="text" id="intros " maxlength="50" placeholder="请输入新的个人简介" style="display: none"></div>
-        <div>预约用户信息：</div>
-        <div><input type="text" id="dsno " maxlength="20" placeholder="请输入班次号" ><button type="button" id="snos">提交</button> </div>
+        <div>职称：<p id="tit"></p><input type="text" id="tit " maxlength="20" placeholder="请输入新的职称" "></div>
+        <div>个人简介：<p id="intro"></p><input type="text" id="intros " maxlength="50" placeholder="请输入新的个人简介" ></div>
+    </div>
+    <div class="amdinnot">
+        <h3>预约用户信息：</h3>
+        <div>班次号：<input type="text" id="dsno " maxlength="20" placeholder="请输入班次号" ><button type="button" id="snos">提交</button> </div>
         <div>患者编号：<p id="unos"></p> </div>
         <div>患者姓名：<p id="Unames"></p> </div>
         <div>患者电话：<p id="uphone"></p> </div>
-    </div>
+</div>
     <div><button type="button" id="change">修改</button> </div>
     <div><button type="button" id="sure" style="display: none">确定</button><button type="button" id="cancel" style="display: none">取消</button> </div>
     <div class="infor">
@@ -82,9 +85,10 @@
 <script type="text/javascript" src="resources/lib/jquery.cookie.js"></script>
 <script src="/resources/lib/layer/layer.js"></script>
 <script type="text/javascript">
+
     $(function () {
         var user = JSON.parse($.cookie("user"));
-        if(user!=null ){
+        if(user!=null){
             $(".Username").text(user.name);
             $(".loginArea").show();
             $(".rightArea").hide();
@@ -98,6 +102,7 @@
                 $(".adds").show();
         }else if(Role==2){
             $(".doc_it").show();
+            $(".amdinnot").show();
             $(".infor").hide();
 
         }

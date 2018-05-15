@@ -17,8 +17,9 @@
 
             <div class="rightArea">
                 您好！请 <a href="/login">登录</a> | <a href="/reg">注册</a>
-                <div class="loginArea hide" >欢迎你！<p class="Username"></p>&nbsp&nbsp<a id="logout" href="#">退出登录</a>&nbsp&nbsp<a href="/informationPage">个人信息</a> </div>
             </div>
+            <div class="loginArea hide" >欢迎你！<p class="Username"></p>&nbsp&nbsp<a id="logout" href="#">退出登录</a>&nbsp&nbsp<a href="/informationPage">个人信息</a> </div>
+
         </div>
     </div>
     <div class="logoBar">
@@ -58,7 +59,7 @@
 <script type="text/javascript" src="resources/lib/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="resources/lib/jquery.cookie.js"></script>
 <script src="/resources/lib/layer/layer.js"></script>
-<jsp:include page="logout.jsp"></jsp:include>
+<script language="JavaScript" src="../resources/logout.js" charset="gbk"></script>
 <script type="text/javascript">
 
     $(document).ready(function () {

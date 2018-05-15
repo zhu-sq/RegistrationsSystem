@@ -153,10 +153,11 @@
 <script>
     $(function () {
 
-        if($('#role').html()=="1"){
+        if($("#role").html()=="1"){
             $("#signup").hide();
             $("#dot_signup").show();
             $(".doc_tit").show();
+            $(".dep_name").show();
 
         }
     });

@@ -161,7 +161,7 @@
 </div>
 
 <div id="bottomBar"></div>
-<jsp:include page="WEB-INF/jsp/logout.jsp"></jsp:include>
+<script type="text/javascript" src="./resources/logout.js"></script>
 <script type="text/javascript">
 
     $(function () {
