@@ -74,7 +74,7 @@
             <div class="form-group ">
                 <div class="col-md-12">
                     <div class="control-wrapper">
-                        <div class="doc_tit "style="display: none">
+                        <div class="doc_tit hide">
                             <label for="phone" ><i class="fa fa-lock fa-medium"></i></label>
                             职称 <input type="text" class="form-control" id="title" placeholder="输入职称">
                         </div>
@@ -84,7 +84,7 @@
             <div class="form-group">
                 <div class="col-md-12">
                     <div class="control-wrapper">
-                        <div class="dep_name "style="display: none">
+                        <div class="dep_name hide">
                             <label for="phone" ><i class="fa fa-user fa-medium"></i></label>
                               科室<select   id="dname" name="dname" >
                             <option value="01儿科">01儿科</option>
@@ -157,6 +157,7 @@
             $("#signup").hide();
             $("#dot_signup").show();
             $(".doc_tit").show();
+            $(".dep_name").show();
 
         }
     });
