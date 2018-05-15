@@ -1,13 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
 <script type="text/javascript">
     $(function () {
-        var user = JSON.parse($.cookie("user"))
+        var user = JSON.parse($.cookie("user"));
         console.log(user);
         if(user!=null ){
             $(".Username").html(user.name);
             $(".loginArea").show();
             $(".rightArea").hide();
         }
+        if(user.role==1){
+            var html='<a href="/reg">注册</a>';
+            $(".loginArea").append(html);
+        }
+
     });
     $("#logout").click(function () {
 
