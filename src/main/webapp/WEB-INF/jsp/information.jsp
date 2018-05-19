@@ -57,7 +57,7 @@
     <div>身份证号码：<p id="idc"></p></div>
     <div>联系电话：<p id="phone"></p><input type="text" id="phones" maxlength="12" placeholder="请输入新的联系电话" style="display: none"></div>
     <div class="doc_it hide ">
-        <div>职称：<p id="tit"></p><input type="text" id="tit " maxlength="20" placeholder="请输入新的职称" "></div>
+        <div>职称：<p id="tit"></p><input type="text" id="tit " maxlength="20" placeholder="请输入新的职称"></div>
         <div>个人简介：<p id="intro"></p><input type="text" id="intros " maxlength="50" placeholder="请输入新的个人简介" ></div>
     </div>
     <div><button type="button" id="change">修改</button> </div>
