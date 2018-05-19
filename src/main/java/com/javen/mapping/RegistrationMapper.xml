@@ -37,13 +37,11 @@
     </delete>
 
     <select id="getRegUser" resultMap="userResultMap">
-        select uno,name,sex,birthday,phone,intro
-        FROM user
-        WHERE uno IN (
-            SELECT uno
-            FROM  registration
-            WHERE  suno=#{suno}
-        );
+        select r.uno,name,sex,birthday,phone,intro
+        FROM registration r
+            LEFT JOIN  user u
+                on r.uno=u.uno
+        WHERE r.sno=#{sno};
     </select>
 
 </mapper>

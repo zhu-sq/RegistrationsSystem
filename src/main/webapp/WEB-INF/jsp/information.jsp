@@ -57,14 +57,14 @@
     <div>身份证号码：<p id="idc"></p></div>
     <div>联系电话：<p id="phone"></p><input type="text" id="phones" maxlength="12" placeholder="请输入新的联系电话" style="display: none"></div>
     <div class="doc_it hide ">
-        <div>职称：<p id="tit"></p><input type="text" id="tit " maxlength="20" placeholder="请输入新的职称" "></div>
-        <div>个人简介：<p id="intro"></p><input type="text" id="intros " maxlength="50" placeholder="请输入新的个人简介" ></div>
+        <div>职称：<p id="tit"></p><input type="text" id="tit" maxlength="20" placeholder="请输入新的职称" "></div>
+        <div>个人简介：<p id="intro"></p><input type="text" id="intros" maxlength="50" placeholder="请输入新的个人简介" ></div>
     </div>
     <div><button type="button" id="change">修改</button> </div>
     <div><button type="button" id="sure" style="display: none">确定</button><button type="button" id="cancel" style="display: none">取消</button> </div>
     <div class="amdinnot hide">
         <h3>预约用户信息：</h3>
-        <div>班次号：<input type="text" id="dsno " maxlength="20" placeholder="请输入班次号" ><button type="button" id="snos">提交</button> </div>
+        <div>班次号：<input type="text" id="dsno" maxlength="20" placeholder="请输入班次号" ><button type="button" id="snos">提交</button> </div>
         <table id="patien">
             <tr>
                 <th class="tdclass">患者编号</th>
@@ -72,7 +72,7 @@
                 <th class="tdclass">患者电话</th>
             </tr>
         </table>
-</div>
+    </div>
     <div class="infor">
         <h3>预约信息</h3>
         <div>班次号：<p id="sno"></p> </div>
@@ -100,11 +100,11 @@
         }
         var Role=user.role;
         if (Role==1){
-                var html='<a href="/reg">注册</a>';
-                $(".loginArea").append(html);
-                $(".doc_it").show();
-                $(".infor").hide();
-                $(".adds").show();
+            var html='<a href="/reg">注册</a>';
+            $(".loginArea").append(html);
+            $(".doc_it").show();
+            $(".infor").hide();
+            $(".adds").show();
         }else if(Role==2){
             $(".doc_it").show();
             $(".amdinnot").show();
@@ -156,6 +156,7 @@
         $("#tit").html(res.tit);
         $("#intro").html(res.intro);
     });
+
     $(function () {
         var user=JSON.parse($.cookie("user"));
         var uno=user.uno;
@@ -176,6 +177,7 @@
             }
         });
     });
+
     $("#snos").click(function () {
         var dsno = $("#dsno").val();
 
@@ -200,24 +202,25 @@
                             '<td class="tdclass">' + item.uno + '</td>' +
                             '<td class="tdClass">' + item.name + '</td>' +
                             '<td class="tdClass">' + item.phone+ '</td>' +
-                            '</tr>')
+                            '</tr>');
                     }
                 }
             }
         });
     });
+
     $("#change").click(function () {
         $("#bir,#phone,#tit,#intro").hide();
         $(".inf input").show();
         $(".inf button").show();
         $(this).hide();
-    })
+    });
     $("#cancel").click(function () {
         $(".inf input").hide();
         $("#change").show();
         $(this).hide();
         $("#sure").hide();
-    })
+    });
     $("#sure").click(function () {
 
         var birt=$("#birth").val();
@@ -234,7 +237,7 @@
             "phone":phones,
             "title":tits,
             "intro":intr
-        }
+        };
 
         $.ajax({
             url: "/user/updateUser",
@@ -253,10 +256,10 @@
                 window.location.href='/informationPage';
             }
         });
-    })
+    });
     $("#add").click(function () {
         window.location.href="/addSchePage";
-    })
+    });
     $("#cancels").click(function () {
         var sno=$("#sno").val();
         var user=JSON.parse($.cookie("user"));
@@ -264,7 +267,7 @@
         var data={
             "sno" : sno,
             "uno" : uno
-        }
+        };
         layer.confirm('确定取消挂号？', {
             btn: ['确定','取消'] //按钮
         }, function() {
@@ -287,6 +290,6 @@
         }, function(){
             layer.close();
         });
-    })
+    });
 </script>
 </html>
