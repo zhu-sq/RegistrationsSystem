@@ -112,7 +112,8 @@ public class RegisterController {
 
         String role="";
         User user = new User();
-        if(httpServletRequest.getSession().getAttribute("role")!=null && httpServletRequest.getSession().getAttribute("role").toString().equals("1")){//1管理员2医生3普通用户
+        if(httpServletRequest.getSession().getAttribute("role")!=null
+                && httpServletRequest.getSession().getAttribute("role").toString().equals("1")){//1管理员2医生3普通用户
            role="2";
         }else{
             role="3";
@@ -159,3 +160,6 @@ public class RegisterController {
         return resMap;
     }
 }
+
+
+//插入数据库错误，应该插入患者编号和班次编号

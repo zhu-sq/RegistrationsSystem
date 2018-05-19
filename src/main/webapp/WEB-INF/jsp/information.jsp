@@ -23,8 +23,9 @@
 
             <div class="rightArea">
                 您好！请 <a href="/login">登录</a> | <a href="/reg">注册</a>
-                <div class="loginArea hide" >欢迎你！<p class="Username"></p>&nbsp&nbsp<a id="logout" href="#">退出登录</a>&nbsp&nbsp<a href="/informationPage">个人信息</a> </div>
             </div>
+            <div class="loginArea hide" >欢迎你！<p class="Username"></p>&nbsp&nbsp<a id="logout" href="#">退出登录</a>&nbsp&nbsp<a href="/informationPage">个人信息</a> </div>
+
         </div>
     </div>
     <div class="logoBar">
@@ -56,16 +57,22 @@
     <div>身份证号码：<p id="idc"></p></div>
     <div>联系电话：<p id="phone"></p><input type="text" id="phones" maxlength="12" placeholder="请输入新的联系电话" style="display: none"></div>
     <div class="doc_it hide ">
-        <div>职称：<p id="tit"></p><input type="text" id="tits" maxlength="20" placeholder="请输入新的职称" style="display: none"></div>
-        <div>个人简介：<p id="intro"></p><input type="text" id="intros " maxlength="50" placeholder="请输入新的个人简介" style="display: none"></div>
-        <div>预约用户信息：</div>
-        <div><input type="text" id="dsno" maxlength="20" placeholder="请输入班次号" ><button type="button" id="snos">提交</button> </div>
-        <div>患者编号：<p id="unos"></p> </div>
-        <div>患者姓名：<p id="Unames"></p> </div>
-        <div>患者电话：<p id="uphone"></p> </div>
+        <div>职称：<p id="tit"></p><input type="text" id="tit " maxlength="20" placeholder="请输入新的职称"></div>
+        <div>个人简介：<p id="intro"></p><input type="text" id="intros " maxlength="50" placeholder="请输入新的个人简介" ></div>
     </div>
     <div><button type="button" id="change">修改</button> </div>
     <div><button type="button" id="sure" style="display: none">确定</button><button type="button" id="cancel" style="display: none">取消</button> </div>
+    <div class="amdinnot hide">
+        <h3>预约用户信息：</h3>
+        <div>班次号：<input type="text" id="dsno " maxlength="20" placeholder="请输入班次号" ><button type="button" id="snos">提交</button> </div>
+        <table id="patien">
+            <tr>
+                <th class="tdclass">患者编号</th>
+                <th class="tdclass">患者姓名</th>
+                <th class="tdclass">患者电话</th>
+            </tr>
+        </table>
+</div>
     <div class="infor">
         <h3>预约信息</h3>
         <div>班次号：<p id="sno"></p> </div>
@@ -73,6 +80,7 @@
         <div>科室名称：<p id="Dpname"></p> </div>
         <div>开始时间：<p id="sd"></p> </div>
         <div>结束时间：<p id="ed"></p> </div>
+        <div><button type="button" id="cancels"></button> </div>
     </div>
 </div>
 <div class="adds comWidth hide"><button type="button" id="add">添加排班表</button> </div>
@@ -82,9 +90,10 @@
 <script type="text/javascript" src="resources/lib/jquery.cookie.js"></script>
 <script src="/resources/lib/layer/layer.js"></script>
 <script type="text/javascript">
+
     $(function () {
         var user = JSON.parse($.cookie("user"));
-        if(user!=null ){
+        if(user!=null){
             $(".Username").text(user.name);
             $(".loginArea").show();
             $(".rightArea").hide();
@@ -98,8 +107,13 @@
                 $(".adds").show();
         }else if(Role==2){
             $(".doc_it").show();
+            $(".amdinnot").show();
             $(".infor").hide();
-
+        }else{
+            $(".doc_it").hide();
+            $(".amdinnot").hide();
+            $(".adds").hide();
+            $(".infor").show();
         }
     })
     $(".logout").click(function () {
@@ -144,13 +158,11 @@
     });
     $(function () {
         var user=JSON.parse($.cookie("user"));
-        var uno = user.uno;
+        var uno=user.uno;
         $.ajax({
             url: "/shift/getShiftByUno",
-            data: {"uno":uno},
-            type: "GET",
-            contentType: "application/json",
-            dataType: "json",
+            data: {"uno": uno},
+            type: "get",
             success: function (res) {
                 if (res.code == 0) {
                     $("#sno").html(res.sno);
@@ -166,21 +178,30 @@
     });
     $("#snos").click(function () {
         var dsno = $("#dsno").val();
-        console.log(dsno);
 
         $.ajax({
-            url: "/pri/reg/getReg?uno"+dsno,
-                type: "GET",
-                dataType: "json",
+            url: "/pri/reg/getReg",
+            data: {"sno": dsno},
+            type: "get",
+            contentType: "application/json",
+            dataType: "json",
             success: function (res) {
-  if(res.code!=0){
-    layer.mag(res.msg);
-    return;
-}
+                if(res.code!=0){
+                    layer.msg(res.msg);
+                    return;
+                }
                 if (res.code == 0) {
-                    $("#unos").html(res.users.uno);
-                    $("#Unames").html(res.users.name);
-                    $("#Uphone").html(res.users.phone);
+                    var patientable=$("#patien");
+                    var patien=res.users;
+                    for (var i=1;i<patien.length;i++)
+                    {
+                        var item = patien[i-1];
+                        patientable.append('<tr> ' +
+                            '<td class="tdclass">' + item.uno + '</td>' +
+                            '<td class="tdClass">' + item.name + '</td>' +
+                            '<td class="tdClass">' + item.phone+ '</td>' +
+                            '</tr>')
+                    }
                 }
             }
         });
@@ -201,7 +222,7 @@
 
         var birt=$("#birth").val();
         var phones=$("#phones").val();
-        var tits=$("#tits").val();
+        var tits=$("#tit").val();
         var intr=$("#intro").val();
 
         if (phones!="" && phones.length!=11){
@@ -235,6 +256,37 @@
     })
     $("#add").click(function () {
         window.location.href="/addSchePage";
+    })
+    $("#cancels").click(function () {
+        var sno=$("#sno").val();
+        var user=JSON.parse($.cookie("user"));
+        var uno=user.uno;
+        var data={
+            "sno" : sno,
+            "uno" : uno
+        }
+        layer.confirm('确定取消挂号？', {
+            btn: ['确定','取消'] //按钮
+        }, function() {
+            $.ajax({
+                url: "/pri/pri/reg/delReg",
+                data: JSON.stringify(data),
+                type: "get",
+                contentType: "application/json",
+                dataType: "json",
+                success: function (res) {
+                    if (res.code != 0) {
+                        layer.msg("取消失败");
+                        return;
+                    } else {
+                        layer.msg("取消成功");
+                        window.location.href = '/informationPage';
+                    }
+                }
+            })
+        }, function(){
+            layer.close();
+        });
     })
 </script>
 </html>

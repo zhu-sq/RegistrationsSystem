@@ -8,6 +8,8 @@
 /*topBar*/
 .topBar{height: 32px;background-color: #F7F7F7;line-height: 32px;}
 .topBar a:hover{color: red;}
+.loginArea p{display: inline-block;}
+.loginArea {float: right;}
 
 /*logo*/
 .logoBar{height: 150px;}

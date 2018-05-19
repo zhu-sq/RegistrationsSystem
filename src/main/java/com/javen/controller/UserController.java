@@ -39,11 +39,11 @@ public class UserController{
 
         User user = new User();
 
-        if(httpServletRequest.getSession().getAttribute("uno")==null){
-            resMap.put("code",1);//1缺少用户编号
-            resMap.put("msg","请登录");
-            return  resMap;
-        }
+//        if(httpServletRequest.getSession().getAttribute("uno")==null){
+//            resMap.put("code",1);//1缺少用户编号
+//            resMap.put("msg","请登录");
+//            return  resMap;
+//        }
         log.info(param.get("phone"));
         if(param.get("phone")!=null && !param.get("phone").equals("") && param.get("phone").length()!=11){
             resMap.put("code",2);//输入信息不合法
@@ -53,7 +53,7 @@ public class UserController{
 
         user.setUno(Integer.valueOf(httpServletRequest.getSession().getAttribute("uno").toString()));
         user.setName(param.get("name"));
-        user.setPwd(param.get("pwd"));
+//        user.setPwd(param.get("pwd"));
         user.setBirthday(param.get("birthday"));
         user.setPhone(param.get("phone"));
         user.setIntro(param.get("intro"));

@@ -23,8 +23,8 @@
 
             <div class="rightArea">
                 您好！请 <a href="/login">登录</a> | <a href="#">注册</a>
-                <div class="loginArea hide" >欢迎你！<p class="Username"></p>&nbsp&nbsp<a id="logout" href="#">退出登录</a>&nbsp&nbsp<a href="/informationPage">个人信息</a> </div>
             </div>
+            <div class="loginArea hide" >欢迎你！<p class="Username"></p>&nbsp&nbsp<a id="logout" href="#">退出登录</a>&nbsp&nbsp<a href="/informationPage">个人信息</a> </div>
         </div>
     </div>
     <div class="logoBar">
@@ -162,8 +162,11 @@
                 contentType: "application/json",
                 dataType:"json",
                 success: function (res) {
-                    if(res.code==0){
-                        layer.msg("添加成功！");
+                    if(res.code!=0){
+                        layer.msg("添加错误！");
+                        return;
+                    }else {
+                        layer.msg("添加成功!");
                     }
                 }
             });

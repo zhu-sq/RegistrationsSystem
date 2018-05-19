@@ -23,8 +23,9 @@
 
             <div class="rightArea">
                 您好！请 <a href="/login">登录</a> | <a href="#">注册</a>
-                <div class="loginArea hide" >欢迎你！<p class="Username"></p>&nbsp&nbsp<a id="logout" href="#">退出登录</a>&nbsp&nbsp<a href="/informationPage">个人信息</a> </div>
             </div>
+            <div class="loginArea hide" >欢迎你！<p class="Username"></p>&nbsp&nbsp<a id="logout" href="#">退出登录</a>&nbsp&nbsp<a href="/informationPage">个人信息</a> </div>
+
         </div>
     </div>
     <div class="logoBar">
@@ -103,7 +104,7 @@
 <script type="text/javascript" src="resources/lib/jquery-2.1.4.min.js"></script>
 <script type="text/javascript" src="resources/lib/jquery.cookie.js"></script>
 <script src="/resources/lib/layer/layer.js"></script>
-<jsp:include page="logout.jsp"></jsp:include>
+<script language="JavaScript" src="../resources/logout.js" charset="gbk"></script>
 <script type="text/javascript">
 
     $(function(){
@@ -197,24 +198,7 @@
         return currentdate;
     }
 
-    function doc(sno) {
-        var user = JSON.parse($.cookie("user"))
-        var uno=user.uno;
-        $.ajax({
-            url: "/pri/pri/reg/addReg",
-            data: JSON.stringify({"sno":sno,"uno" :uno}),
-            type: "GET",
-            contentType: "application/json",
-            dataType:"json",
-            success: function (data) {
-                if(data.code==0){
-                    layer.msg("预约成功");
-                }else {
-                    layer.msg("预约失败");
-                }
-            }
-        })
-    }
+
 
     $('.am').click(reg);
     $('.pm').click(reg);
@@ -227,6 +211,8 @@
         if($(thiz).attr('num')>=$(thiz).attr('maxNum')){
             layser.msg("预约已满");
         }
+        var user = JSON.parse($.cookie("user"));
+        var uno=user.uno;
         //显示一个加载动画
         var index = layer.open({
             type:3,
@@ -238,7 +224,7 @@
             btn: ['是','否'] //按钮
         }, function(){
             $.ajax({
-                url: "/pri/reg/addReg?sno="+$(thiz).attr('sno')+"&uno="+window.location.href.split("=")[1],
+                url: "/pri/reg/addReg?sno="+$(thiz).attr('sno')+"&uno="+uno,
                 type: "GET",
                 dataType:"json",
                 success: function (data) {
