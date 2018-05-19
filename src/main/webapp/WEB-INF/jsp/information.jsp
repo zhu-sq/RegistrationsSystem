@@ -195,9 +195,8 @@
                 if (res.code == 0) {
                     var patientable=$("#patien");
                     var patien=res.users;
-                    for (var i=1;i<patien.length;i++)
-                    {
-                        var item = patien[i-1];
+                    for (var i=0;i<patien.length;i++) {
+                        var item = patien[i];
                         patientable.append('<tr> ' +
                             '<td class="tdclass">' + item.uno + '</td>' +
                             '<td class="tdClass">' + item.name + '</td>' +
