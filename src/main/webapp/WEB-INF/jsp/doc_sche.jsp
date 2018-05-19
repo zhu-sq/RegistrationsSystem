@@ -198,24 +198,7 @@
         return currentdate;
     }
 
-    function doc(sno) {
-        var user = JSON.parse($.cookie("user"))
-        var uno=user.uno;
-        $.ajax({
-            url: "/pri/pri/reg/addReg",
-            data: JSON.stringify({"sno":sno,"uno" :uno}),
-            type: "GET",
-            contentType: "application/json",
-            dataType:"json",
-            success: function (data) {
-                if(data.code==0){
-                    layer.msg("预约成功");
-                }else {
-                    layer.msg("预约失败");
-                }
-            }
-        })
-    }
+
 
     $('.am').click(reg);
     $('.pm').click(reg);
@@ -228,6 +211,8 @@
         if($(thiz).attr('num')>=$(thiz).attr('maxNum')){
             layser.msg("预约已满");
         }
+        var user = JSON.parse($.cookie("user"));
+        var uno=user.uno;
         //显示一个加载动画
         var index = layer.open({
             type:3,
@@ -239,7 +224,7 @@
             btn: ['是','否'] //按钮
         }, function(){
             $.ajax({
-                url: "/pri/reg/addReg?sno="+$(thiz).attr('sno')+"&uno="+window.location.href.split("=")[1],
+                url: "/pri/reg/addReg?sno="+$(thiz).attr('sno')+"&uno="+uno,
                 type: "GET",
                 dataType:"json",
                 success: function (data) {

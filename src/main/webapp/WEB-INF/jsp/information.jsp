@@ -60,6 +60,8 @@
         <div>职称：<p id="tit"></p><input type="text" id="tit " maxlength="20" placeholder="请输入新的职称" "></div>
         <div>个人简介：<p id="intro"></p><input type="text" id="intros " maxlength="50" placeholder="请输入新的个人简介" ></div>
     </div>
+    <div><button type="button" id="change">修改</button> </div>
+    <div><button type="button" id="sure" style="display: none">确定</button><button type="button" id="cancel" style="display: none">取消</button> </div>
     <div class="amdinnot hide">
         <h3>预约用户信息：</h3>
         <div>班次号：<input type="text" id="dsno " maxlength="20" placeholder="请输入班次号" ><button type="button" id="snos">提交</button> </div>
@@ -71,8 +73,6 @@
             </tr>
         </table>
 </div>
-    <div><button type="button" id="change">修改</button> </div>
-    <div><button type="button" id="sure" style="display: none">确定</button><button type="button" id="cancel" style="display: none">取消</button> </div>
     <div class="infor">
         <h3>预约信息</h3>
         <div>班次号：<p id="sno"></p> </div>
@@ -80,6 +80,7 @@
         <div>科室名称：<p id="Dpname"></p> </div>
         <div>开始时间：<p id="sd"></p> </div>
         <div>结束时间：<p id="ed"></p> </div>
+        <div><button type="button" id="cancels"></button> </div>
     </div>
 </div>
 <div class="adds comWidth hide"><button type="button" id="add">添加排班表</button> </div>
@@ -108,7 +109,11 @@
             $(".doc_it").show();
             $(".amdinnot").show();
             $(".infor").hide();
-
+        }else{
+            $(".doc_it").hide();
+            $(".amdinnot").hide();
+            $(".adds").hide();
+            $(".infor").show();
         }
     })
     $(".logout").click(function () {
@@ -251,6 +256,37 @@
     })
     $("#add").click(function () {
         window.location.href="/addSchePage";
+    })
+    $("#cancels").click(function () {
+        var sno=$("#sno").val();
+        var user=JSON.parse($.cookie("user"));
+        var uno=user.uno;
+        var data={
+            "sno" : sno,
+            "uno" : uno
+        }
+        layer.confirm('确定取消挂号？', {
+            btn: ['确定','取消'] //按钮
+        }, function() {
+            $.ajax({
+                url: "/pri/pri/reg/delReg",
+                data: JSON.stringify(data),
+                type: "get",
+                contentType: "application/json",
+                dataType: "json",
+                success: function (res) {
+                    if (res.code != 0) {
+                        layer.msg("取消失败");
+                        return;
+                    } else {
+                        layer.msg("取消成功");
+                        window.location.href = '/informationPage';
+                    }
+                }
+            })
+        }, function(){
+            layer.close();
+        });
     })
 </script>
 </html>
